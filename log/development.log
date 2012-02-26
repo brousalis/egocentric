@@ -1,0 +1,412 @@
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/rails-template/config/environment.rb:5)
+  [1m[36m (77.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (18.7ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'schema_migrations'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (2.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to DeviseCreateUsers (20110405113203)
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (22.3ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mColumns for index index_users_on_email on users (0.3ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 32913
+ AND a.attnum IN (2)
+
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110405113203')
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRoles (20110415105605)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "roles" ("id" serial primary key, "name" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110415105605')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to UserHasAndBelongsToManyRoles (20110415110329)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "roles_users" ("role_id" integer, "user_id" integer) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110415110329')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35m (0.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'roles_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (0.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mColumns for index index_users_on_email on users (0.2ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 32913
+ AND a.attnum IN (2)
+
+  [1m[36mColumns for index index_users_on_reset_password_token on users (0.2ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 32913
+ AND a.attnum IN (4)
+[0m
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/rails-template/config/environment.rb:5)
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/rails-template/config/environment.rb:5)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:15:13 -0600
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (13.4ms)
+  Rendered layouts/application/_header.html.erb (1.1ms)
+Completed 200 OK in 82ms (Views: 82.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:15:13 -0600
+Compiled bates.css  (0ms)  (pid 18591)
+Compiled application.css  (4ms)  (pid 18591)
+Served asset /application.css - 200 OK (11ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:15:13 -0600
+Compiled jquery.js  (1ms)  (pid 18591)
+Compiled jquery_ujs.js  (0ms)  (pid 18591)
+Compiled rails.js  (0ms)  (pid 18591)
+Compiled application.js  (14ms)  (pid 18591)
+Served asset /application.js - 200 OK (46ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:15:16 -0600
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (0.2ms)
+  Rendered layouts/application/_header.html.erb (0.4ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:15:16 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:15:16 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2012-02-26 15:15:19 -0600
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2012-02-26 15:15:26 -0600
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/_links.erb (1.0ms)
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/registrations/new.html.erb within layouts/application (4.8ms)
+  Rendered layouts/application/_header.html.erb (0.4ms)
+Completed 200 OK in 103ms (Views: 8.7ms | ActiveRecord: 13.2ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:15:26 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:15:26 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/egocentric/config/environment.rb:5)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:18:35 -0600
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (14.6ms)
+  Rendered layouts/application/_header.html.erb (1.0ms)
+Completed 200 OK in 63ms (Views: 63.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:18:36 -0600
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:18:36 -0600
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:18:36 -0600
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (0.3ms)
+  Rendered layouts/application/_header.html.erb (0.5ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/egocentric/config/environment.rb:5)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:36:50 -0600
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (13.4ms)
+  Rendered layouts/application/_header.html.erb (1.1ms)
+Completed 200 OK in 64ms (Views: 64.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:36:50 -0600
+Served asset /application.css - 304 Not Modified (24ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:36:50 -0600
+Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2012-02-26 15:36:52 -0600
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/_links.erb (2.0ms)
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/registrations/new.html.erb within layouts/application (7.9ms)
+  Rendered layouts/application/_header.html.erb (0.6ms)
+Completed 200 OK in 118ms (Views: 12.8ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:36:53 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:36:53 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2012-02-26 15:36:54 -0600
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/_links.erb (0.7ms)
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/sessions/new.html.erb within layouts/application (4.5ms)
+  Rendered layouts/application/_header.html.erb (0.5ms)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:36:54 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:36:54 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2012-02-26 15:41:17 -0600
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/_links.erb (0.5ms)
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/registrations/new.html.erb within layouts/application (3.3ms)
+  Rendered layouts/application/_header.html.erb (0.6ms)
+Completed 200 OK in 8ms (Views: 8.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:41:17 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:41:17 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-02-26 15:41:25 -0600
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0Xe833UX06zPXOoqkz2s3g2xjmOOlj9VEZSWaX/P6mI=", "user"=>{"email"=>"brousapg@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT 1 FROM "users" WHERE "users"."email" = 'brousapg@gmail.com' LIMIT 1
+  [1m[36mSQL (30.3ms)[0m  [1mINSERT INTO "users" ("created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["created_at", Sun, 26 Feb 2012 21:41:25 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "brousapg@gmail.com"], ["encrypted_password", "$2a$10$ZKEuARM1uHcJ9shfVN0CLeirMUMBMQIyPfr.zWJ/HmHa2rM.UioJe"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Sun, 26 Feb 2012 21:41:25 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = '2012-02-26 21:41:25.731300', "current_sign_in_at" = '2012-02-26 21:41:25.731300', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2012-02-26 21:41:25.731900' WHERE "users"."id" = 1
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 166ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:41:25 -0600
+Processing by PagesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered pages/index.html.erb within layouts/application (41.0ms)
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+  Rendered layouts/application/_header.html.erb (45.6ms)
+Completed 200 OK in 89ms (Views: 86.0ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:41:25 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:41:25 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2012-02-26 15:41:40 -0600
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/registrations/edit.html.erb within layouts/application (3.0ms)
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+  Rendered layouts/application/_header.html.erb (1.9ms)
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:41:40 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:41:40 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:41:42 -0600
+Processing by PagesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered pages/index.html.erb within layouts/application (0.9ms)
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+  Rendered layouts/application/_header.html.erb (1.7ms)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:41:42 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:41:42 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-26 15:41:47 -0600
+Processing by Admin::BaseController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /Users/pbrousalis/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/benchmark.rb:310)
+  Rendered public/404.html (0.2ms)
+Filter chain halted as :require_admin rendered or redirected
+Completed 404 Not Found in 31ms (Views: 2.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/admin" for 127.0.0.1 at 2012-02-26 15:41:51 -0600
+
+ActionController::RoutingError (No route matches [GET] "/users/admin"):
+  actionpack (3.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.1) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.1) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.1) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.1) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.1) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.1) lib/action_dispatch/middleware/static.rb:53:in `call'
+  railties (3.2.1) lib/rails/engine.rb:479:in `call'
+  railties (3.2.1) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.1) lib/rails/rack/log_tailer.rb:14:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine (0.12.10) lib/eventmachine.rb:256:in `run_machine'
+  eventmachine (0.12.10) lib/eventmachine.rb:256:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.1) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.1) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.1) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.1) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/egocentric/config/environment.rb:5)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (14.5ms)[0m  INSERT INTO "roles" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Sun, 26 Feb 2012 21:43:06 UTC +00:00], ["name", "admin"], ["updated_at", Sun, 26 Feb 2012 21:43:06 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from <top (required)> at /Users/pbrousalis/Projects/egocentric/config/environment.rb:5)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2012-02-26 15:44:57 -0600
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered /Users/pbrousalis/.rvm/gems/ruby-1.9.2-p290/gems/devise-2.0.0/app/views/devise/registrations/edit.html.erb within layouts/application (2.1ms)
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+  Rendered layouts/application/_header.html.erb (4.2ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:44:57 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:44:57 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-02-26 15:44:58 -0600
+Processing by Admin::BaseController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1[0m
+  Rendered admin/base/index.html.erb within layouts/admin (0.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1
+  Rendered layouts/admin/_main_nav.html.erb (0.5ms)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:44:58 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:44:58 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-02-26 15:44:59 -0600
+Processing by PagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered pages/index.html.erb within layouts/application (1.0ms)
+  [1m[35mRole Load (0.3ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = 1 AND "roles"."name" = 'admin' LIMIT 1
+  Rendered layouts/application/_header.html.erb (1.7ms)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-02-26 15:44:59 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-02-26 15:44:59 -0600
+Served asset /application.js - 304 Not Modified (0ms)
