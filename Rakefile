@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Leonards::Application.load_tasks
+Egocentric::Application.load_tasks

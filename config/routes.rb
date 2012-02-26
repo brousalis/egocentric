@@ -1,4 +1,4 @@
-Leonards::Application.routes.draw do
+Egocentric::Application.routes.draw do
   get "home/index"
 
   devise_for :users
