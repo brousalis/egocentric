@@ -1,0 +1,52 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %title The Leonard Washingtons
+    %meta{:content => "The Leonard Washingtons, a funky jam-band from Terre Haute, IN ", :name => "description"}
+    %meta{:content => "Pete Brousalis - brousalis.com", :name => "author"}
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "application"
+    %script{:src => "http://use.typekit.com/fhb0qqm.js", :type => "text/javascript"}
+    :javascript
+      try{Typekit.load();}catch(e){}
+  %body
+    .container
+      %header
+        %h1.logo
+          %a{:href => "#"} TLW
+        %nav
+          %li
+            %a.home{:href => "#"} Home
+          %li
+            %a{:href => "#"} About
+          %li
+            %a{:href => "#"} Shows
+          %li
+            %a{:href => "#"} Music
+          %li
+            %a{:href => "#"} Contact
+      #main
+        #top
+          #slider
+            = image_tag("3.jpg")
+            = link_to image_tag("3.jpg"), "#"
+            = image_tag("3.jpg")
+          .clearfix
+          #ajax
+            %span.close
+              %a{:href => "#"} X
+        #content
+          = yield
+      #footer
+        %p
+          All Rights Reserved. Copyright 2012
+          %span The Leonard Washingtons
+
+    = javascript_include_tag "application"
+    :javascript
+      window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+        Modernizr.load({
+        load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+      });

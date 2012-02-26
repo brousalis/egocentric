@@ -1,0 +1,278 @@
+.columns {
+  float:left;
+  width:1008px;
+  margin:0 0 0 -20px;
+  overflow:hidden;
+
+  .column {
+    float:left;
+    width:287px;
+    min-height:150px;
+    height:auto !important;
+    height:150px;
+    margin:0 0 0 28px;
+    color:#666;
+
+    h2 {    
+      font-family:  proxima-nova-extra-condensed-1;
+      text-transform:  uppercase;
+      font-weight: 500;
+      font-size: 34px; 
+      background: black;
+      text-align: center;
+      margin-bottom: 0;
+      border-radius: $border $border 0px 0px;
+      padding:3px 0px;
+      color: #549c95;
+      span { color: white; font-weight: 400;}
+    }
+    .content {
+      cursor: pointer;
+      @include transition(opacity 0.3s linear); 
+      background-color: black; opacity: 0.5;  
+
+      &:last-child { border-radius: 0 0 $border $border; }
+      &:hover { opacity: 0.7; @include transition(opacity 0.3s linear); }
+      h3 { margin: 1px 0 0 0; padding: 13px 15px 4px 15px; font-weight: 500; color: #fff; span { float: right; font-size: 0.8em; text-transform: uppercase; opacity: 0.5; margin-top: 4px;} }
+      p { margin: 0; padding: 7px 15px 15px 15px; font-size: 0.9em; line-height: 20px; }
+      span { color: #aaa; font-weight: 300; }
+    }
+  }
+
+  #album {
+    position: relative;
+    width: 282px;
+    cursor: pointer;
+    .artwork {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      padding-bottom: 24px; 
+      span {
+        position: absolute;
+        top: 1px;
+        right: 0;
+        bottom: 0;
+        left: 3px;
+        width: 282px;
+        border-radius: $border;
+      }
+      img { 
+        border-radius: $border;
+        display: block;
+        @include box-shadow();
+        border: 1px solid #000;
+      }
+    }
+    &:active { position: relative; top: 1px; }
+    &:hover .buy { opacity: 0.8; @include transition(all 0.3s linear);}
+    .buy { 
+      @include transition(all 0.3s linear);
+      position: absolute; bottom: 40px; left: 70px;
+      background: #000; opacity: 0.8;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      opacity: 0;
+      font-family:  proxima-nova-extra-condensed-1, proxima-nova-extra-condensed-2;
+      span { color: #549c95; }
+    }
+      
+  }  
+  #player {
+    padding-top: 30px;
+    h2 { background: #fff; }
+  }
+}
+
+$show-height: 120px;
+$show-width: 597px;
+
+#social-wrapper {
+  width: $width;
+  position: relative; 
+
+  #shows {
+    float:left;
+    margin: 8px 0px 6px 8px;
+
+    h2 {    
+      width: $show-width;
+      font-family:  proxima-nova-extra-condensed-1;
+      text-transform:  uppercase;
+      font-weight: 500;
+      font-size: 24px; 
+      background: black;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0 0 $border $border;
+      padding:8px 0px;
+      color: #444;
+      span { color: white; font-weight: 400;}
+    } 
+
+    .show{
+      float: left;
+      width: $show-width;
+      min-height:$show-height;
+      height:auto !important;
+      height:$show-height;
+      background:#111;
+      cursor: pointer; 
+      margin-bottom: 2px;
+      @include transition(all 0.3s linear);
+
+      &:first-child { @include border-radius($border $border 0px 0px); }
+      &:first-child img, &:first-child .overlay { @include border-radius($border 0px 0px 0px); }
+      &:last-child { @include border-radius(0px 0px $border $border); }
+      &:last-child img, &:last-child .overlay { @include border-radius(0px 0px 0px $border); }
+      &:hover { background: #000; @include transition(all 0.3s linear); }
+      &:hover .date { color: #fdf700; @include transition(all 0.3s linear);}
+
+      .image{
+        float:left;
+        position:relative;
+        width:170px;
+        height: $show-height;
+
+        img { width: 170px; height: $show-height + 4; }
+        a {
+          display:block;
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          z-index:10;
+          font-size:0;
+          line-height:0;
+          background:url(/assets/1px-transparent.png) no-repeat 0 0;
+          text-indent:-9999px;
+        }
+      }
+
+      .content {
+        float:left;
+        min-height:$show-height;
+        height:auto !important;
+        height:$show-height;
+        padding:4px 30px 0 25px;
+        color:#fff;
+        
+        h3 { 
+          text-transform: uppercase; color: #549a95; font-family: proxima-nova-extra-condensed-1, proxima-nova-extra-condensed-2; margin-top: 16px; font-size: 2.5em; font-weight: 300; margin-bottom: 5px; 
+          span { color: #fff; margin-left: 8px; }
+        }
+        .meta {
+          font-weight:300;
+          color: #555;
+          font-size: 1.2em;
+          text-shadow: 0px 1px 0px #000;
+          i { opacity: 0.8; margin-top: 3px; }
+          .time { margin-left: 10px; }
+        }
+      }
+      .overlay {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:url(/assets/img-overlay.png);
+      }
+
+      .date {
+        position:absolute;
+        top:51%;
+        left:25px;
+        @include transition(all 0.3s linear);
+        width:110px;
+        height:95px;
+        padding-top:19px;
+        margin:-55px 0 0 0;
+        text-align:center;
+        text-transform:uppercase;
+        font-weight:800;
+        color:#666;
+        background:url(/assets/img-overlay-date.png) no-repeat 0 0;
+
+        .month { clear:both; display:block; font-size:25px; line-height:22px; }
+        .day { clear:both; display:block; font-size:45px; line-height:35px; }
+        .year { clear:both; display:block; font-size:20px; line-height:19px; }
+      }
+    }
+  }
+
+  #social {
+    margin-left: $show-width + 36;
+    width: 287px;
+
+    h2 {    
+      font-family:  proxima-nova-extra-condensed-1;
+      text-transform:  uppercase;
+      font-weight: 500;
+      margin-top: 8px;
+      font-size: 34px; 
+      background: black;
+      text-align: center;
+      margin-bottom: 0;
+      border-radius: $border $border 0px 0px;
+      padding:3px 0px;
+      color: #549c95;
+      span { color: white; font-weight: 400;}
+    }
+
+    .content {
+      cursor: pointer;
+      @include transition(opacity 0.3s linear); 
+      background-color: black; opacity: 0.5;  
+      margin-bottom: 14px; 
+
+      &:last-child { border-radius: 0 0 $border $border; }
+      &:hover { opacity: 0.7; @include transition(opacity 0.3s linear); }
+      p { margin: 0; padding: 7px 15px 15px 15px; font: 0.9em "proxima-nova-1","proxima-nova-2"; line-height: 20px; span { color: #fff; }}
+      span { color: #aaa; font-weight: 300; }
+
+      #newsletter { 
+        -webkit-appearance:none;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        resize: none;
+        font: inherit;
+        color: #fff;
+        padding: 8px 18px;
+        line-height: 30px;
+        outline: none;
+        -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; 
+        border: none;
+        border-top: hsla(0,0%,100%,.2) solid 1px;
+        border-bottom: hsla(0,0%,100%,0) solid 1px;
+        border-left: #fdf700 solid 4px;
+        background-color: hsla(0,0%,0%,.3);
+        @include border-radius(0px 0px $border 0px);
+        @include box-shadow(inset hsla(0,0%,0%,.6) 0px 1px 5px 0px);
+        @include transition(background-color .6s linear); 
+      }
+
+      #newsletter:hover {   
+        background-color: hsla(0,0%,0%,.2);
+        @include transition(background-color .1s linear);
+      }
+
+      #newsletter:focus {
+        border-left: #549c95 solid 4px;
+        @include box-shadow(none);
+        @include transition(background-color .2s ease-in);
+      }
+    }
+    .share {
+      opacity: 0.2;
+      margin-top: 5px;
+      background: url('/assets/social.png');
+      height: 106px;
+      text-indent: 9999px;
+    }
+  }
+}
