@@ -1,36 +1,37 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  attr_accessible :username, :email, :password, :password_confirmation
+  
+  attr_accessor :password
+  before_save :encrypt_password
+  
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_presence_of :username, :on => :create
+  validates_uniqueness_of :email
+  validates_uniqueness_of :username
 
-  devise :omniauthable
+  has_many :guides
+  has_many :comments
+  has_many :likes
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-
-  has_and_belongs_to_many :roles
-
-  def role?(role)
-    return !!self.roles.find_by_name(role.to_s)
+  def already_likes?(comment)
+    self.likes.find(:all, :conditions => ['comment_id= ?', comment.id]).size > 0
   end
-
-  def make_admin
-    self.roles << Role.admin
-  end
-
-  def revoke_admin
-    self.roles.delete(Role.admin)
-  end
-
-  def admin?
-    role?(:admin)
-  end
-
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = access_token['extra']['user_hash']
-    if user = User.find_by_email(data["email"])
+  
+  def authenticate(username, password)
+    user = User.find_by_username(username)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
-    else # Create a user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+    else
+      nil
     end
   end
-
+  
+  def encrypt_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
 end

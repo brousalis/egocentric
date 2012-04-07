@@ -1,9 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def render404
-    render :file => File.join(Rails.root, 'public', '404.html'), :status => 404, :layout => false
-    return true
+private
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+
+  def authorize
+    redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
+  def is_admin?
+
+  end
+  helper_method :is_admin?
 end

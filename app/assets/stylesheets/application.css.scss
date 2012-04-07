@@ -1,0 +1,136 @@
+$baseFontFamily: proxima-nova, "Helvetica Neue", Helvetica, arial, sans-serif;
+$lightblue: #0e83be; //border bottom color
+$darkblue: #0964a0; //top of gradient
+$blue: #03488d; //bottom of gradient
+@import "bootstrap";
+
+html { background: url('/assets/bg.png') repeat; }
+body {
+  padding-top: 60px;
+  font-family: proxima-nova, Helvetica, arial, sans;
+  background: url('/assets/bg.png') repeat;
+  color: #aaa; 
+}
+a { text-decoration: none !important;
+  &:hover, &:active { text-decoration: none !important; } 
+} 
+
+.navbar {
+  border-bottom: 3px solid $lightblue;
+  .brand {
+    @include gradient-vertical($darkblue, $blue);
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 0px;
+    opacity: 0.85;
+    a { color: #fff; }
+    a:hover { color: #fff; }
+    a > span {
+      color: #fff;
+      border-bottom: 1px solid #41b6f1;
+      font-weight: normal; 
+    }
+    &:hover {opacity:1} 
+  } 
+
+  .nav-collapse { float: right; }
+  .nav {
+    margin-bottom: 0;
+    li {
+      padding: 0;
+      margin-left: 8px;
+      &.error { margin-top: 11px; font-weight: bold; margin-right: 5px; color: red; display: none; }
+      a.btn { line-height: 18px !important; border: 1px solid #000 !important; font-weight: bold; color: #fff; padding: 4px 12px; margin-top: 6px;  @include buttonBackground($darkblue, $blue);}
+      input {
+        width: 120px;
+        position: relative;
+        float: left;
+        margin-top: 6px;
+        margin-bottom: 0;
+        padding: 4px 9px 4px 23px;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: 1;
+        color: #ffffff;
+        background-color: #333;
+        border: 1px solid #000000;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+        opacity: 0.8;
+        border-left: 3px solid yellow;
+        &.failure { border-left: 3px solid red !important; }
+        &.username { background: url('/assets/user-white.png') 7px 8px no-repeat; }
+        &.password { background: url('/assets/lock-white.png') 7px 7px no-repeat; }
+        &:focus {
+          opacity: 1;
+          color: #fff;
+          background-color: #323232;
+          outline: 0; 
+        } 
+      } 
+    } 
+  }
+}
+
+.content {
+  .header {
+    .logo {
+      position: relative;
+      text-indent: -9999px; 
+      width: 287px;
+      opacity: 0.9;
+      height: 48px;
+      display: block;
+      float: left;
+      margin-top: 10px;
+      margin-left: 20px;
+      background: url('/assets/logo.png') no-repeat;
+    }
+    .menu {
+      float: right;
+      margin-top: 20px;
+      ul {
+        li {
+          a {
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            height: 60px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans;
+            opacity: 0.8;
+            &:hover { opacity: 1; background: url('/assets/arrow.png') no-repeat 50% 60%; }
+          }
+        }
+      }
+    }
+  }
+}
+
+#register { 
+  display: none;
+  @include border-radius(8px); 
+  width: 330px !important; 
+  margin: -250px 0 0 -145px;
+  form {
+    margin: 0;
+    input {
+      color: #ccc;
+      font-size: 14px;
+      width: 263px;
+      padding: 9px 7px 7px;
+      @include transition(all 0.8s linear);
+      padding-left: 26px;
+      &:focus { color: #666; }
+      &#user_username { background: url('/assets/user.png') 10px 12px no-repeat }
+      &#user_email { background: url('/assets/mail.png') 7px 12px no-repeat }
+      &#user_password { background: url('/assets/lock.png') 8px 12px no-repeat }
+      &#user_password_confirmation{ background: url('/assets/lock.png') 8px 12px no-repeat }
+    }
+  } 
+  .modal-header{ padding: 20px; @include border-radius(8px 8px 0px 0px); background: #f1f1f1; }
+  .modal-footer{ 
+    a.btn { margin-left: 5px; text-shadow: none; float: right; line-height: 18px !important; border: 1px solid #000 !important; font-weight: bold; color: #fff; padding: 4px 12px; margin-right: 3px; @include buttonBackground($darkblue, $blue);}
+  }
+}

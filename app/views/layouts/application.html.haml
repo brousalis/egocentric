@@ -1,0 +1,69 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %title Team Egocentric
+    %meta{:content => "brousalis.com", :name => "author"}
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "application"
+    = csrf_meta_tag
+    %script{:src => "http://use.typekit.com/iui1xgf.js", :type => "text/javascript"}
+    :javascript
+      try{Typekit.load();}catch(e){}
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          .brand
+            - if current_user
+              Welcome back, 
+              %a{:href => "#"} #{@user.username}
+            - else
+              %a{:"data-toggle" => "modal", :href => "#register"}
+                %strong Join our community today!
+                %span Create an account
+          .nav-collapse
+            %ul.nav
+              - if current_user
+                %li
+                  %a.logout.btn{:href => "/"} New topic
+                %li
+                  %a.logout.btn{:href => "/guides/new"} New guide
+                %li
+                  %a.logout.btn{:href => "/logout"} Logout
+              - else
+                %li.error
+                  Error
+                %li
+                  %input.username{:value => "brous"}
+                %li
+                  %input.password{:value => "123", :type => "password"}
+                %li
+                  %a.login.btn{:href => "#"} Login 
+    .container.content
+      .header
+        %a.logo{:href => "#"} Bootstrap starter template
+        .menu
+          %ul.nav.nav-pills
+            %li
+              %a{:href => "#"} Livestreams
+            %li
+              %a{:href => "#"} Articles
+            %li
+              %a{:href => "#"} Guides
+            %li
+              %a{:href => "#"} Forums
+            %li
+              %a{:href => "#"} Team
+      .clearfix
+      .page{:style => "background:#fff;padding:10px;"}
+        = yield
+
+    = render "layouts/register"
+    = javascript_include_tag "application"
+    :javascript
+      window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+        Modernizr.load({
+        load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+      });

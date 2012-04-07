@@ -1,17 +1,14 @@
-BaseApp::Application.routes.draw do
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  get "pages/index"
-
-  match "/admin" => "admin/base#index", :as => "admin"
-
-  namespace "admin" do
-
-    resources :users
-
+Egocentric::Application.routes.draw do
+  resources :guides do
+    resources :comments
   end
 
-  root :to => "pages#index"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "sign_up" => "users#new", :as => "sign_up"
 
+  resources :users
+  resources :sessions
+
+  root :to => 'home#index'
 end

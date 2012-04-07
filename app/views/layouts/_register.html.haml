@@ -1,0 +1,27 @@
+#register.modal.fade
+  .modal-header
+    %img{:src => "/assets/logo.png"}
+  .modal-body
+    = form_for @user do |f|
+      - if @user.errors.any?
+        .error_messages
+          %h2 Form is invalid
+          %ul
+            - for message in @user.errors.full_messages
+              %li= message
+      = f.text_field :username, :value => "username"
+      = f.text_field :email, :value => "email" 
+      = f.text_field :password, :value => "password" 
+      = f.text_field :password_confirmation, :value => "password" 
+      %p
+      .have-account
+        %small
+          Have an account?
+          %a.hide-register{:href => "#"} Log in 
+      .register{:style => "display: none;"}
+        %small
+          Need an account?
+          %a.show-register{:href => "#"} Sign up
+  .modal-footer
+    %a.btn.close{:"data-dismiss" => "modal"} Cancel
+    %a.btn.signup{:href => "#"} Submit
