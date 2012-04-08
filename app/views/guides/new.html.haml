@@ -1,0 +1,71 @@
+.guides.row
+  .alert.alert-error
+    %a.close{"data-dismiss" => "alert", :href => "#"} ×
+  .page.span9
+    .header
+      .add
+        %a.btn.add-image{:href => "#"} Add image
+        %input.image{:value => "url of image"}
+      %h1
+        %input.name{:value => "Name of guide"}
+
+    .video
+      %a.btn.add-video{:href => "#"} Add video
+      %input.video-url{:value => "http://youtube.com/embed/oevWde_F-yU"}
+    %iframe.youtube{:style => "display: none;", :allowfullscreen => "", :frameborder => "0", :height => "500", :src => "", :width => "100%"}
+
+    .body
+      %textarea{:autofocus => ""} **Test** this out. Press *preview*
+       
+  .sidebar.span3
+    %ul.nav
+      %li.nav-header
+        Date
+      %li.date
+        = format_date(Date.today)
+      %li.nav-header
+        Category
+      %li.categories
+        %select#guide_category{:name => "guide[category]"}
+          %option{:value => ""}
+          %option{:value => "capping"} Capping
+          %option{:value => "offense"} Offense
+          %option{:value => "defense"} Defense
+          %option{:value => "midfield"} Midfield
+          %option{:value => "maps"} Maps
+          %option{:value => "beginner"} Beginner
+      %li
+        %a.btn.preview{:href => "#"} Preview
+      %li
+        %a.btn.submit{:href => "#"} Submit
+    %ul.nav
+      %li.intro
+        The editor uses <strong>Markdown</strong>, a text-to-HTML tool. Here is a cheat sheet to help you.
+      %li 
+        .element header
+        .cheat #Header Text
+      %li 
+        .element list
+        .cheat * list item
+      %li 
+        .element nested list
+        .cheat indent * list item
+      %li 
+      %li 
+        .element blockquote
+        .cheat > quote text
+      %li 
+        .element bold
+        .cheat **bold words**
+      %li 
+        .element italics
+        .cheat *italic words* 
+      %li 
+        .element links
+        .cheat [Name](http://...com)
+      %li 
+        .element image
+        .cheat ![text](http://../img.png)
+      %li 
+        .element horizontal line
+        .cheat *** 

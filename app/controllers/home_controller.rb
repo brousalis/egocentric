@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
+  
   before_filter :authorize, :except => [:index]
+  before_filter :current_user
+
   def index
-    @user = current_user || User.new
   end
 end

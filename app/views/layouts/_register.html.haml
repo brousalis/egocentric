@@ -2,17 +2,15 @@
   .modal-header
     %img{:src => "/assets/logo.png"}
   .modal-body
-    = form_for @user do |f|
-      - if @user.errors.any?
-        .error_messages
-          %h2 Form is invalid
-          %ul
-            - for message in @user.errors.full_messages
-              %li= message
-      = f.text_field :username, :value => "username"
-      = f.text_field :email, :value => "email" 
-      = f.text_field :password, :value => "password" 
-      = f.text_field :password_confirmation, :value => "password" 
+    %form#new_user
+      %div{:style => "margin:0;padding:0;display:inline"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => "meK1hiu5YvuJ8acl79uxOVj2MOPeGLFpKzxNS0L7gLo="}/
+      .alert.alert-error
+      %input#user_username{:name => "user[username]", :value => "username"}
+      %input#user_email{:name => "user[email]", :value => "email"}
+      %input#user_password{:name => "user[password]", :type => "password", :value => "password"}
+      %input#user_password_confirmation{:name => "user[password_confirmation]", :type=> "password", :value => "password"}
       %p
       .have-account
         %small
@@ -23,5 +21,5 @@
           Need an account?
           %a.show-register{:href => "#"} Sign up
   .modal-footer
+    %a.btn.submit{:href => "#"} Submit
     %a.btn.close{:"data-dismiss" => "modal"} Cancel
-    %a.btn.signup{:href => "#"} Submit

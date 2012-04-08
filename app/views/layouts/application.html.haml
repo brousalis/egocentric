@@ -18,7 +18,7 @@
           .brand
             - if current_user
               Welcome back, 
-              %a{:href => "#"} #{@user.username}
+              %a{:href => "#"} #{current_user.username}
             - else
               %a{:"data-toggle" => "modal", :href => "#register"}
                 %strong Join our community today!
@@ -27,9 +27,9 @@
             %ul.nav
               - if current_user
                 %li
-                  %a.logout.btn{:href => "/"} New topic
+                  %a.new-topic.btn{:href => "/"} New topic
                 %li
-                  %a.logout.btn{:href => "/guides/new"} New guide
+                  %a.new-guide.btn{:href => "/guides/new"} New guide
                 %li
                   %a.logout.btn{:href => "/logout"} Logout
               - else
@@ -51,16 +51,17 @@
             %li
               %a{:href => "#"} Articles
             %li
-              %a{:href => "#"} Guides
+              %a{:href => "/guides"} Guides
             %li
-              %a{:href => "#"} Forums
+              %a{:href => "/forums"} Forums
             %li
               %a{:href => "#"} Team
       .clearfix
-      .page{:style => "background:#fff;padding:10px;"}
-        = yield
 
-    = render "layouts/register"
+      = yield
+
+    = render "layouts/register" if !current_user
+
     = javascript_include_tag "application"
     :javascript
       window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];

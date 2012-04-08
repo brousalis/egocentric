@@ -76,6 +76,7 @@ a { text-decoration: none !important;
 
 .content {
   .header {
+    position: relative;
     .logo {
       position: relative;
       text-indent: -9999px; 
@@ -108,21 +109,135 @@ a { text-decoration: none !important;
   }
 }
 
+.page {
+  @include border-radius(8px);
+  @include box-shadow("0px 1px 5px rgba(0,0,0,0.2), 0px 0px 2px rgba(0,0,0,0.2)");
+  background-color: white;
+  padding-bottom: 20px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.guides {
+  .alert { margin-left: 20px; display: none; }
+  .page {
+    h1 { 
+      background: url('/assets/guide-header.png') repeat; 
+      position: relative; 
+      top: 130px;
+      height: 50px; font-size: 36px; 
+      padding: 10px 15px;
+      line-height: 53px;
+      margin-bottom: 0px; 
+      color: #fff;
+      font-weight: bold;
+      font-family: "Helvetica Neue", Helvetica;
+    }
+    h2 { 
+      font-weight: 300; 
+      opacity: 0.3; 
+      float: right; position: absolute; 
+      right: 20px; bottom: 12px; 
+    }
+    .header {
+      height: 200px;
+      position: relative;
+      @include border-radius(8px 8px 0px 0px);
+      .btn { float: right; margin: 10px; }
+      input.image { float: right; margin: 10px 0px 10px 10px; }
+    }
+
+    .no-avatar { 
+      height: 70px; 
+      h1 { top: 0px; width: auto; color: #fff; background: #000; @include border-radius(6px 6px 0px 0px); height: 50px; padding: 10px 15px; line-height: 53px; font-size: 36px; }
+      h2 { top: 20px; color: #fff; }
+    }
+    .video { 
+      background-color: #f1f1f1; 
+      height: 50px;
+      .btn { margin: 10px; float: right; }
+      input { font-size: 1.4em; margin-top: 10px; margin-left: 10px; width: 83%;background: #fff; height: 20px; @include box-shadow(none); border:none; }
+    }
+    .body { padding: 10px; 
+      textarea {
+        font-size: 1.4em;
+        border: none;
+        width: 99%;
+        min-height: 380px;
+        @include box-shadow(none);
+      }
+      #preview { min-height: 380px; display: none; font-size: 1.1em; p { font-weight: normal; color: #000; font-size: 1.4em; } }
+    }
+  }
+  .sidebar {
+    ul {
+      background: rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.1),0 0 5px rgba(0,0,0,0.3) inset;
+      -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1),0 0 5px rgba(0,0,0,0.3) inset;
+      -o-box-shadow: 0 1px 0 rgba(255,255,255,0.1),0 0 5px rgba(0,0,0,0.3) inset;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.1),0 0 5px rgba(0,0,0,0.3) inset;
+      padding: 5px 0px;
+      @include border-radius(8px);
+      @include opacity(80);
+      li {
+        text-shadow: none !important;
+        position: relative;
+        margin-bottom: 5px !important; 
+        &.intro { padding: 10px; }
+        &.date { padding: 1px 15px; font-size: 1.5em;font-weight:bold}
+        .element { padding: 8px 10px 2px 10px; border-top: 1px #000 dotted; }
+        .cheat { font-weight: bold; padding: 8px 10px 2px 10px; position: absolute; top: 1px; right: 5px; }
+        &.nav-header { margin: 0px; margin-bottom: 0px !important; padding: 8px 15px }
+        select { width: 90%; margin: 3px 10px 3px 11px; font-size: 15px; }
+        &.categories { padding-bottom: 10px; }
+        a {
+          text-shadow: none !important;
+          margin: 0px 10px 10px 10px;
+          font-size: 1.5em;
+          padding: 15px 15px;
+          text-align: center;
+          color: #fff;
+          font-weight: bold;
+        }
+        a.btn { text-shadow: none !important; line-height: 18px !important; border: 1px solid #000 !important; font-weight: bold; color: #fff; @include buttonBackground($darkblue, $blue);}
+      }
+    }
+  }
+}
+
+.name { 
+  position: absolute;
+  left: 0px;
+  top: 130px;
+  height: 50px; font-size: 1.3em; 
+  @include box-shadow(none); 
+  width: 100% !important; 
+  border: 0 !important; 
+  font-weight: bold; 
+  background: url('/assets/guide-header.png') repeat; @include border-radius(0);
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica;
+  padding: 10px 15px;
+  margin-bottom: 0px;
+  &:focus { @include box-shadow(none); }
+}
+
 #register { 
   display: none;
   @include border-radius(8px); 
   width: 330px !important; 
   margin: -250px 0 0 -145px;
   form {
+    .alert { display: none }
     margin: 0;
     input {
-      color: #ccc;
+      color: #666;
       font-size: 14px;
       width: 263px;
       padding: 9px 7px 7px;
       @include transition(all 0.8s linear);
       padding-left: 26px;
-      &:focus { color: #666; }
+      &:focus { color: #000; }
       &#user_username { background: url('/assets/user.png') 10px 12px no-repeat }
       &#user_email { background: url('/assets/mail.png') 7px 12px no-repeat }
       &#user_password { background: url('/assets/lock.png') 8px 12px no-repeat }
@@ -134,3 +249,5 @@ a { text-decoration: none !important;
     a.btn { margin-left: 5px; text-shadow: none; float: right; line-height: 18px !important; border: 1px solid #000 !important; font-weight: bold; color: #fff; padding: 4px 12px; margin-right: 3px; @include buttonBackground($darkblue, $blue);}
   }
 }
+
+

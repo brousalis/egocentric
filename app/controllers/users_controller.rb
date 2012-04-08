@@ -8,9 +8,11 @@ class UsersController < ApplicationController
     @user.role = "member"
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Signed up!"
+      render :json => { "status" => "success",
+                        "redirect" => "/"}
     else
-      render "new"
+      render :json => { "status" => "failure",
+                        "errors" => @user.errors.full_messages}
     end
   end
 end

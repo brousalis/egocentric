@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :avatar
   
   attr_accessor :password
   before_save :encrypt_password
@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   validates_presence_of :username, :on => :create
   validates_uniqueness_of :email
   validates_uniqueness_of :username
+
+  has_attached_file :avatar, 
+                    :styles => { :medium => "300x300>",
+                                 :thumb => "100x100>" }
 
   has_many :guides
   has_many :comments

@@ -8,6 +8,7 @@ gem "therubyracer"
 gem "haml", ">= 3.0.0"
 gem "paperclip", "~> 3.0"
 gem "bcrypt-ruby", :require => "bcrypt"
+gem "vanntastic-imgur"
 
 group :assets do
   gem 'sass-rails',   '~> 3.1'

@@ -1,0 +1,32 @@
+.guides.guide.row
+  .sidebar.span3
+    %ul.nav
+      %li.nav-header
+        Date
+      %li.date
+        = format_date(Date.today)
+      %li.nav-header
+        Category
+      %li.categories
+        %select#guide_category{:name => "guide[category]"}
+          %option{:value => ""}
+          %option{:value => "capping"} Capping
+          %option{:value => "offense"} Offense
+          %option{:value => "defense"} Defense
+          %option{:value => "midfield"} Midfield
+          %option{:value => "maps"} Maps
+          %option{:value => "beginner"} Beginner
+      %li
+        %a.btn.preview{:href => "#"} Preview
+      %li
+        %a.btn.submit{:href => "#"} Submit
+  .page.span9
+    .header{:style => "background:#{@guide.avatar}", :class => ("no-avatar" if @guide.avatar == "rgba(0, 0, 0, 0) none repeat scroll 0% 0%")}
+      %h1= @guide.name
+      %h2= format_date(@guide.created_at)
+    - if @guide.video
+      %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "#{@guide.video}", :width => "100%"}
+
+    .body
+      = @guide.body
+       
