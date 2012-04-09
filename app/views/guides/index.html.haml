@@ -1,2 +1,3 @@
 - Guide.all.each do |guide|
-  = guide.name
+  %a{:href => guide_path(guide), :style => "display: block;"}
+    = guide.name
