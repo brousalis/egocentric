@@ -6,7 +6,7 @@
     - if @guide.video
       %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "#{@guide.video}", :width => "100%"}
     .body
-      = render_markdown(@guide.body)
+      != render_markdown(@guide.body)
   .sidebar.span3
     %ul.nav
       %li.top

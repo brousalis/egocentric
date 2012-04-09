@@ -9,6 +9,7 @@ gem "haml", ">= 3.0.0"
 gem "paperclip", "~> 3.0"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'ajaxful_rating', "~> 3.0.0.beta8"
+gem 'opinio'
 
 group :assets do
   gem 'jquery-rails', '>= 1.0.12'
