@@ -1,6 +1,9 @@
 Egocentric::Application.routes.draw do
   resources :guides do
     resources :comments
+    member do
+      post :rate
+    end
   end
 
   get "logout" => "sessions#destroy", :as => "logout"

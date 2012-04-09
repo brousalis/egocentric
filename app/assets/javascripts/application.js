@@ -1,5 +1,7 @@
 //
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
 //= require bootstrap
 
 $(document).ready(function() {
@@ -34,19 +36,23 @@ $(document).ready(function() {
       login($('#user_username').val(), $('#user_password').val());
     }
   });
-
+  $('a').live('ajax:complete', function(xhr, status) {
+    $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
+  });
   // guides
+  var add = false, preview = false;
   $('.guides .preview').live('click', function(e) {
     e.preventDefault();
     $('.guides textarea').toggle();
     $('.guides #preview').toggle();
+    $('.guides .video').toggle();
     $('.guides .preview').toggleClass('active');
+    preview = !preview;
   });
   $('.add-video').live('click', function(e) {
     e.preventDefault();
     $('.youtube').attr("src", $('.video-url').val()).fadeIn();
   });
-  var add = false;
   $('.add-image').live('click', function(e) {
     e.preventDefault();
     url = "url('" + $('input.image').val() + "')";
@@ -55,7 +61,7 @@ $(document).ready(function() {
     add = true;
   });
   $('.header').hover(function() {
-    if (add == true) $('.add').fadeIn();
+    if (add == true && preview == true) $('.add').fadeIn();
   }, function() {
     if (add == true) $('.add').fadeOut();
   });

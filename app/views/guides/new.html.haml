@@ -6,9 +6,7 @@
       .add
         %a.btn.add-image{:href => "#"} Add image
         %input.image{:value => "url of image"}
-      %h1
-        %input.name{:value => "Name of guide"}
-
+      %input.name{:value => "Name of guide"}
     .video
       %a.btn.add-video{:href => "#"} Add video
       %input.video-url{:value => "http://youtube.com/embed/oevWde_F-yU"}
@@ -38,7 +36,7 @@
         %a.btn.preview{:href => "#"} Preview
       %li
         %a.btn.submit{:href => "#"} Submit
-    %ul.nav
+    %ul.nav.cheats
       %li.intro
         The editor uses <strong>Markdown</strong>, a text-to-HTML tool. Here is a cheat sheet to help you.
       %li 
@@ -47,10 +45,6 @@
       %li 
         .element list
         .cheat * list item
-      %li 
-        .element nested list
-        .cheat indent * list item
-      %li 
       %li 
         .element blockquote
         .cheat > quote text

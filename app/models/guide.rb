@@ -8,4 +8,6 @@ class Guide < ActiveRecord::Base
   validates_presence_of :category
 
   attr_accessible :name, :body, :category, :user, :avatar, :video
+
+  ajaxful_rateable :stars => 5, :dimensions => [:rating]
 end

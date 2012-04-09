@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  ajaxful_rater
+
   def already_likes?(comment)
     self.likes.find(:all, :conditions => ['comment_id= ?', comment.id]).size > 0
   end

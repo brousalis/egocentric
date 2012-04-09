@@ -1,5 +1,4 @@
 class GuidesController < ApplicationController
-
   before_filter :authorize, :except => [:index]
   before_filter :find_guide
 
@@ -21,6 +20,17 @@ class GuidesController < ApplicationController
                         "errors" => @guide.errors.full_messages}
     end
   end 
+
+  def rate
+    @guide = Guide.find(params[:id])
+    respond_to do |format|
+      if @guide.rate(params[:stars], current_user, params[:dimension])
+        format.js { render :partial => "rating" }
+      else
+        format.js { render :partial => "rating" }
+      end
+    end
+  end
 
 private
   
