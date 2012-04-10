@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.role = "member"
+    @user.avatar = "default"
     if @user.save
       session[:user_id] = @user.id
       render :json => { "status" => "success",

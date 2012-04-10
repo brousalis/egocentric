@@ -1,12 +1,15 @@
 .guides.guide.row
-  .page.span9
-    .header{:style => "background:#{@guide.avatar}", :class => ("no-avatar" if @guide.avatar == "rgba(0, 0, 0, 0) none repeat scroll 0% 0%")}
-      %h1= @guide.name
-      %h2= format_date(@guide.created_at)
-    - if @guide.video
-      %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "#{@guide.video}", :width => "100%"}
-    .body
-      != render_markdown(@guide.body)
+  .span9
+    .page
+      .header{:style => "background:#{@guide.avatar}", :class => ("no-avatar" if @guide.avatar == "rgba(0, 0, 0, 0) none repeat scroll 0% 0%")}
+        %h1= @guide.name
+        %h2= format_date(@guide.created_at)
+      - if @guide.video
+        %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "#{@guide.video}", :width => "100%"}
+      .body
+        != render_markdown(@guide.body)
+    .comments
+      = comments_for @guide
   .sidebar.span3
     %ul.nav
       %li.top
@@ -32,7 +35,7 @@
       %li.meta
         .left Comments
         .right 
-          %span 14 
+          %span= @guide.comments.count 
       %li.meta.rating
         .left rating
         .right

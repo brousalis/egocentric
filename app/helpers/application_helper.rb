@@ -12,4 +12,7 @@ module ApplicationHelper
     md.to_html
   end
 
+  def user_avatar(user = current_user)
+    user.avatar == "default" ? "/assets/default.png" : user.avatar
+  end
 end

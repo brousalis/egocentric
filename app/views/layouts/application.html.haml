@@ -17,8 +17,9 @@
         .container
           .brand
             - if current_user
-              Welcome back, 
-              %a{:href => "#"} #{current_user.username}
+              %a{:href => "#"} 
+                %img{:src => "#{user_avatar}"}
+                #{current_user.username}
             - else
               %a{:"data-toggle" => "modal", :href => "#register"}
                 %strong Join our community today!

@@ -1,0 +1,637 @@
+$baseFontFamily: proxima-nova, "Helvetica Neue", Helvetica, arial, sans-serif
+$lightblue: #0e83be
+$darkblue: #0964a0 
+$blue: #03488d
+
+@import bootstrap
+@import ajaxful_rating
+
+html
+  background: url("/assets/bg.png") repeat
+
+body
+  padding-top: 60px
+  font-family: proxima-nova, Helvetica, arial, sans
+  background: url("/assets/bg.png") repeat
+  color: #aaa
+
+a
+  text-decoration: none !important
+  &:hover, &:active
+    text-decoration: none !important
+
+.navbar
+  border-bottom: 3px solid $lightblue
+  .brand
+    +gradient-vertical($darkblue, $blue)
+    padding: 5px 8px
+    font-size: 14px
+    font-weight: bold
+    margin-left: 0px
+    opacity: 0.85
+    line-height: 30px
+    padding-right: 20px
+    b.caret
+      vertical-align: middle
+      margin-left: 10px
+      margin-right: 7px
+    img 
+      width: 22px
+      border: 1px solid #000
+      float: left
+      margin: 4px 12px 0px 5px
+      opacity: 0.8
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset 
+    a
+      color: #fff
+    a:hover
+      color: #fff
+    a > span
+      color: #fff
+      border-bottom: 1px solid #41b6f1
+      font-weight: normal
+    &:hover
+      opacity: 1
+  .nav-collapse
+    float: right
+  .nav
+    margin-bottom: 0
+    li
+      padding: 0
+      margin-left: 8px
+      &.error
+        margin-top: 11px
+        font-weight: bold
+        margin-right: 5px
+        color: red
+        display: none
+      a.btn
+        line-height: 18px !important
+        border: 1px solid #000 !important
+        font-weight: bold
+        color: #fff
+        padding: 4px 12px
+        margin-top: 6px
+        +buttonBackground($darkblue, $blue)
+      input
+        width: 120px
+        position: relative
+        float: left
+        margin-top: 6px
+        margin-bottom: 0
+        padding: 4px 9px 4px 23px
+        font-size: 13px
+        font-weight: normal
+        line-height: 1
+        color: #ffffff
+        background-color: #333
+        border: 1px solid #000000
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+        opacity: 0.8
+        border-left: 3px solid yellow
+        &.failure
+          border-left: 3px solid red !important
+        &.username
+          background: url("/assets/user-white.png") 7px 8px no-repeat
+        &.password
+          background: url("/assets/lock-white.png") 7px 7px no-repeat
+        &:focus
+          opacity: 1
+          color: #fff
+          background-color: #323232
+          outline: 0
+
+.content
+  .header
+    position: relative
+    .logo
+      position: relative
+      text-indent: -9999px
+      width: 287px
+      opacity: 0.9
+      height: 48px
+      display: block
+      float: left
+      margin-top: 10px
+      margin-left: 20px
+      background: url("/assets/logo.png") no-repeat
+    .menu
+      float: right
+      margin-top: 20px
+      ul
+        li
+          a
+            color: #fff
+            font-size: 1.3em
+            font-weight: bold
+            height: 60px
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans
+            opacity: 0.8
+            &:hover
+              opacity: 1
+              background: url("/assets/arrow.png") no-repeat 50% 60%
+
+.guides
+  .alert
+    margin-left: 20px
+    display: none
+  .page
+    +border-radius(8px)
+    +box-shadow("0px 1px 5px rgba(0,0,0,0.2), 0px 0px 2px rgba(0,0,0,0.2)")
+    background-color: white
+    padding-bottom: 10px
+    position: relative
+    margin-bottom: 30px
+    h2
+      font-weight: 300
+      opacity: 0.3
+      float: right
+      position: absolute
+      right: 20px
+      bottom: 12px
+    .header
+      height: 200px
+      position: relative
+      +border-radius(8px 8px 0px 0px)
+      h1
+        background: url("/assets/guide-header.png") repeat
+        position: relative
+        top: 130px
+        height: 50px
+        font-size: 36px
+        padding: 10px 15px
+        line-height: 53px
+        margin-bottom: 0px
+        color: #fff
+        font-weight: bold
+        font-family: "Helvetica Neue", Helvetica 
+      .btn
+        float: right
+        margin: 10px
+      input.image
+        float: right
+        margin: 10px 0px 10px 10px
+      input.name
+        position: absolute
+        left: 0px
+        top: 130px
+        height: 50px
+        font-size: 36px
+        +box-shadow(none)
+        width: 670px !important
+        border: 0 !important
+        font-weight: bold
+        background: url("/assets/guide-header.png") repeat
+        +border-radius(0)
+        color: #fff
+        font-family: 'Helvetica Neue', Helvetica
+        padding: 10px 15px
+        margin-bottom: 0px
+        &:focus
+          +box-shadow(none)
+    .no-avatar
+      height: 70px
+      h1
+        top: 0px
+        width: auto
+        color: #fff
+        background: #000
+        +border-radius(6px 6px 0px 0px)
+        height: 50px
+        padding: 10px 15px
+        line-height: 53px
+        font-size: 36px
+      h2
+        top: 20px
+        color: #fff
+    .video
+      background-color: #f1f1f1
+      height: 50px
+      .btn
+        margin: 10px
+        float: right
+      input
+        font-size: 1.4em
+        margin-top: 10px
+        margin-left: 10px
+        width: 83%
+        background: #fff
+        height: 20px
+        +box-shadow(none)
+        border: none
+    .body
+      padding: 18px
+      h1 
+        color: #000
+        border-bottom: 1px dotted #999
+        margin-top: 20px
+        margin-bottom: 15px
+      p, li
+        font-size: 18px !important
+        font-family: "Helvetica Neue", Helvetica
+        line-height: 24px
+        color: #444
+      p
+        margin-bottom: 12px
+      textarea
+        font-size: 1.4em
+        border: none
+        width: 99%
+        min-height: 380px
+        +box-shadow(none)
+      #preview
+        min-height: 380px
+        display: none
+        font-size: 1.1em
+        p
+          font-weight: normal
+          color: #000
+          font-size: 1.4em
+  .sidebar
+    ul.cheats li
+      position: relative !important
+    ul.nav
+      background: rgba(0, 0, 0, 0.5)
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      padding: 5px 0px
+      +border-radius(8px)
+      +opacity(80)
+      li
+        text-shadow: none !important
+        margin-bottom: 0px
+        &.intro
+          padding: 10px
+        &.date
+          padding: 1px 15px
+          font-size: 1.5em
+          font-weight: bold
+        .element
+          padding: 8px 10px 2px 10px
+          border-top: 1px #000 dotted
+        .cheat
+          font-weight: bold
+          padding: 8px 10px 2px 10px
+          position: absolute
+          top: 1px
+          right: 5px
+        &.nav-header
+          margin: 0px
+          margin-bottom: 0px !important
+          padding: 8px 15px
+        &.categories
+          padding-bottom: 10px
+        select
+          width: 90%
+          margin: 3px 10px 3px 11px
+          font-size: 15px
+        a.btn
+          text-shadow: none !important
+          margin: 0px 10px 10px 10px
+          font-size: 1.5em
+          padding: 15px 15px
+          text-align: center
+          color: #fff
+          font-weight: bold
+        a.btn
+          text-shadow: none !important
+          line-height: 18px !important
+          border: 1px solid #000 !important
+          font-weight: bold
+          color: #fff
+          +buttonBackground($darkblue, $blue)
+
+.guide
+  .sidebar
+    ul.nav
+      +box-shadow(none)
+      padding: 0px
+      li
+        &:last-child
+          +border-radius(0px 0px 8px 8px)
+        &.rating
+          border-bottom: 0px
+          padding: 20px 9px !important
+          .ajaxful-rating-wrapper
+            margin-top: -12px
+        &.list
+          margin-bottom: 0px !important
+          border-bottom: 1px solid #000
+          font-size: 1.1em
+          opacity: 0.8
+          padding-top: 5px
+          padding-bottom: 15px
+          div
+            h1
+              font-size: 11px
+              font-weight: bold
+              color: #aaa
+              text-transform: uppercase
+              margin: 6px 9px 0px 9px
+              line-height: 22px
+            ul
+              padding: 0
+              margin: 0
+              +box-shadow(none)
+              background: rgba(0, 0, 0, 0)
+              li
+                display: block
+                margin-left: 19px
+                color: #666
+                border-bottom: 0
+                a
+                  font-family: "Helvetica Neue", Helvetica
+                  margin: 0
+                  padding: 0
+                  color: #666
+                  font-size: 13px
+                  font-weight: normal
+                  &:hover
+                    color: $lightblue
+        &.top
+          opacity: 1
+          +buttonBackground($darkblue, $blue)
+          height: 10px
+          +border-radius(8px 8px 0px 0px)
+          border-bottom: 1px solid $lightblue
+        &.bottom
+          opacity: 1
+          +buttonBackground($darkblue, $blue)
+          height: 10px
+          +border-radius(0px 0px 8px 8px)
+          border-bottom: 1px solid $lightblue
+        &.buttons
+          margin-bottom: 0px !important
+          border-bottom: 1px solid #000
+          font-size: 1.1em
+          opacity: 0.8
+          padding: 10px 10px 5px 10px
+          clear: both
+          a
+            margin: 0
+            padding: 0
+            float: left
+        &.meta
+          margin-bottom: 0px !important
+          border-bottom: 1px solid #000
+          font-size: 1.1em
+          opacity: 0.8
+          +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
+          line-height: 1px
+          padding: 16px 9px
+          position: relative
+          display: block
+          clear: both
+          &:hover
+            opacity: 1
+          .left
+            float: left
+            text-transform: uppercase
+            color: #f9f9f9
+            font-size: 13px
+            font-weight: bold
+            span
+              color: #777
+              margin-left: 5px
+          .right
+            float: right
+            a
+              font-size: 15px
+              font-weight: bold
+              margin: 0
+              padding: 0
+              color: #fff
+            span
+              font-size: 12px
+              font-weight: bold
+              background: #000
+              padding: 2px 6px
+              +border-radius(6px)
+              -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+              -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+              -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+              box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+
+.comments
+  .header
+    +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
+    padding: 10px 8px
+    +border-radius(8px 8px 0px 0px)
+    .sort 
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 11px
+    a 
+      margin-left: 8px
+      &.active 
+        border-bottom: 2px solid $lightblue
+        color: #fff
+      &.active:hover 
+        color: #fff
+      &:hover
+        color: $lightblue
+    .number
+      display: inline
+      font-size: 12px
+      font-weight: bold
+      background: #000
+      padding: 2px 6px
+      margin-right: 6px
+      +border-radius(6px)
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset    
+    .btn 
+      float: right
+      border: 1px solid #000 !important
+      text-shadow: none
+      font-weight: bold
+      color: #fff
+      padding: 4px 12px
+      margin-top: -4px
+      +buttonBackground($darkblue, $blue) 
+      &:hover
+        color: #fff
+  .textarea
+    margin: 0px
+    background: rgba(0, 0, 0, 0.5)
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    padding: 1px
+    opacity: 80
+    filter: alpha(opacity=8000)
+    border-left: 3px solid #222
+    border-right: 3px solid #222
+    border-bottom: 3px solid #222
+    form
+      margin: 0
+      position: relative
+      .btn
+        margin-right: 10px
+        margin-bottom: 10px
+        border: 1px solid #000 !important
+        text-shadow: none
+        font-weight: bold
+        color: #fff
+        right: 0
+        bottom: 0
+        padding: 4px 12px
+        position: absolute
+        +buttonBackground($darkblue, $blue)  
+      #preview
+        display: none
+    textarea
+      -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+      -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+      box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+      background: #202020
+      background-color: rgba(0, 0, 0, 0.3)
+      border: 1px solid #000
+      width: 100%
+      height: 100px
+      margin: 0
+      padding: 0
+  .new
+    margin-top: 20px
+    margin-bottom: 50px
+  #comments
+    list-style-type: none
+    margin: 0px
+    background: rgba(0, 0, 0, 0.5)
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    padding: 1px
+    +opacity(100)   
+    border-left: 3px solid $navbarBackground
+    border-right: 3px solid $navbarBackground
+    border-bottom: 3px solid $navbarBackground
+    li
+      .comment
+        background: #1c1c1c
+        min-height: 95px
+        padding: 8px
+        +border-radius(8px)
+        margin: 8px
+        position: relative
+        padding-top: 10px
+        .content
+          margin-left: 10px
+          padding-left: 40px
+          padding-top: 0px
+          margin-top: 0px
+          span
+            font-size: 12px
+            &.reply
+              position: absolute
+              bottom: 10px
+              right: 10px
+              font-size: 12px
+              opacity: 0.2
+              padding-left: 30px
+              background: url('/assets/left.png') no-repeat 
+          p
+            margin-top: 10px
+            font-family: "Helvetica Neue", Helvetica
+          a 
+            color: #fff
+        .likes
+          width: 43px
+          float: left
+          padding: 0px
+          margin: 0px
+          text-align: center
+          padding-top: 4px
+          .count
+            font-size: 24px
+            font-weight: bold
+            padding: 0
+            margin: 0
+            margin-top: 11px
+          .like
+            margin: 0
+            padding: 0
+            a
+              width: 26px
+              height: 24px
+              display: block
+              text-indent: -9999px
+              margin: 0
+              padding: 0
+              margin-left: 9px
+              margin-top: 5px
+              +transition(all 0.1s linear)
+              background: url('/assets/heart.png') no-repeat
+              &.active
+                background: url('/assets/heart_over.png') no-repeat 0px 0px
+              &:hover 
+                background: url('/assets/heart_over.png') no-repeat 0px 0px
+          img 
+            width: 30px
+            border: 1px solid #000
+            opacity: 0.8
+            +border-radius(6px)
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+            -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset  
+      ul
+        list-style-type: none
+        li
+          div
+            background: #232323!important
+
+#register
+  display: none
+  +border-radius(8px)
+  width: 330px !important
+  margin: -250px 0 0 -145px
+  form
+    .alert
+      display: none
+    margin: 0
+    input
+      color: #666
+      font-size: 14px
+      width: 263px
+      padding: 9px 7px 7px
+      +transition(all 0.8s linear)
+      padding-left: 26px
+      &:focus
+        color: #000
+      &#user_username
+        background: url("/assets/user.png") 10px 12px no-repeat
+      &#user_email
+        background: url("/assets/mail.png") 7px 12px no-repeat
+      &#user_password
+        background: url("/assets/lock.png") 8px 12px no-repeat
+      &#user_password_confirmation
+        background: url("/assets/lock.png") 8px 12px no-repeat
+  .modal-header
+    padding: 20px
+    +border-radius(8px 8px 0px 0px)
+    background: #f1f1f1
+  .modal-footer
+    a.btn
+      margin-left: 5px
+      text-shadow: none
+      float: right
+      line-height: 18px !important
+      border: 1px solid #000 !important
+      font-weight: bold
+      color: #fff
+      padding: 4px 12px
+      margin-right: 3px
+      +buttonBackground($darkblue, $blue)
+    

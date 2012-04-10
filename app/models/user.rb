@@ -11,20 +11,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_uniqueness_of :username
 
-  has_attached_file :avatar, 
-                    :styles => { :medium => "300x300>",
-                                 :thumb => "100x100>" }
-
   has_many :guides
   has_many :comments
   has_many :likes
 
   ajaxful_rater
 
-  def already_likes?(comment)
+   def already_likes?(comment)
     self.likes.find(:all, :conditions => ['comment_id= ?', comment.id]).size > 0
   end
-  
+ 
   def authenticate(username, password)
     user = User.find_by_username(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)

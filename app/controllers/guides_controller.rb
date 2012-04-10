@@ -21,6 +21,22 @@ class GuidesController < ApplicationController
     end
   end 
 
+  def like
+    @comment = Comment.find(params[:comment_id]) if params[:comment_id]
+    if current_user.already_likes?(@comment)
+      @like = @comment.likes.find_by_user_id(current_user.id)
+      @like.destroy
+      render :json => { "status" => "already likes", "count" => @comment.likes.count }
+    else
+      @like = Like.create(:comment => @comment, :user => current_user)
+      if @like
+        render :json => { "status" => "success", "count" => @comment.likes.count }
+      else
+        render :json => { "status" => "failure" }
+      end
+    end
+  end
+
   def rate
     @guide = Guide.find(params[:id])
     respond_to do |format|

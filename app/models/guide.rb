@@ -10,4 +10,5 @@ class Guide < ActiveRecord::Base
   attr_accessible :name, :body, :category, :user, :avatar, :video
 
   ajaxful_rateable :stars => 5, :dimensions => [:rating]
+  opinio_subjectum
 end

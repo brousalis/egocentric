@@ -69,7 +69,35 @@ $(document).ready(function() {
     e.preventDefault();
     submit_guide();
   });
+  $('.like a').live('click', function(e) {
+    e.preventDefault();
+    like(this);
+  });
 });
+
+function like(button) {
+  cid = $(button).parent().parent().parent().parent().attr("id").replace("comment_", "");
+  $.ajax({
+    headers: {
+      'X-Transaction': 'POST Example',
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: { comment_id: parseInt(cid) },
+    url: "/like",
+    type: "post",
+    dataType: 'json',
+    success: function(e) {
+      console.log(e);
+      if (e.status == "success") {
+        $(button).parent().parent().find('.count').html(e.count);
+        $(button).toggleClass('active');
+      } else if(e.status == "already likes") {
+        $(button).parent().parent().find('.count').html(e.count);
+        $(button).toggleClass('active');
+      }
+    }
+  });  
+}
 
 function submit_guide() {
   var data = { guide: 
@@ -148,6 +176,8 @@ if (textarea) {
  textarea.onkeyup.call(textarea);
 };
 }());
+
+
 
 function login(username, password) {
   $.ajax({

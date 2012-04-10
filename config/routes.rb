@@ -1,11 +1,14 @@
 Egocentric::Application.routes.draw do
+  opinio_model
+
   resources :guides do
-    resources :comments
+    opinio
     member do
       post :rate
     end
   end
 
+  post "like" => "guides#like", :as => "like"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "sign_up" => "users#new", :as => "sign_up"

@@ -1,0 +1,19 @@
+%div
+  = paginate comments
+
+.comments
+  .header
+    .number= comments.count 
+    %span.sort Sort by:
+    %a.liked.active Most Liked
+    %a.newest Newest
+    %a.oldest Oldest
+    %a.btn Add a comment
+  %ul#comments
+    - unless comments.empty?
+      = render :partial => 'opinio/comments/comment', :collection => comments
+    - else
+      %li#no_comments= t 'opinio.no_comments_found', :default => "No comments found"
+
+%div
+  = paginate comments

@@ -1,0 +1,23 @@
+- reply = defined?(reply) ? reply : false
+%li{:id => "comment_#{comment.id}"}
+  .comment
+    .likes
+      %img{:src => "#{user_avatar(comment.owner)}"}
+      .count
+        = comment.likes.count
+      .like
+        %a{:href => "#", :class => "#{current_user.already_likes?(comment) ? "active" : ""}"} like
+    .content
+      %span
+        By 
+        %a{:href => "#"} #{comment.owner.username}
+        = link_to '(delete)', comment_path(comment), :method => :delete, :remote => true
+        on
+        = format_date(comment.created_at)
+      %p
+        = comment.body
+      - if Opinio.accept_replies && !reply
+        %span.reply= link_to t("opinio.reply", :default => "Reply"), reply_comment_path(comment), :remote => true
+  - if Opinio.accept_replies && !reply
+    %ul.replies{:id => "comment_#{comment.id}_replies"}
+      = render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true}

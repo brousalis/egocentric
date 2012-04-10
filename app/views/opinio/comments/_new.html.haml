@@ -1,0 +1,14 @@
+.comments.new
+  .header
+    - if send(Opinio.current_user_method)
+      %span.sort POST A COMMENT
+  .textarea
+    - if send(Opinio.current_user_method)
+      = form_for Comment.new, :remote => true do |f|
+        = f.text_area :body, :id => "Comment"
+        = hidden_field_tag :commentable_id, commentable.id
+        = hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s
+        = f.submit "Submit", :class => "btn"
+    - else
+      %p
+        Must be logged in to comment.
