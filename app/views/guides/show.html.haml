@@ -1,14 +1,13 @@
 .guides.guide.row
   .span9
     .page
-      .header{:style => "background:#{@guide.avatar}", :class => ("no-avatar" if @guide.avatar == "rgba(0, 0, 0, 0) none repeat scroll 0% 0%")}
+      .header{:style => "background: url(#{@guide.avatar})", :class => ("no-avatar" unless @guide.avatar)}
         %h1= @guide.name
-        %h2= format_date(@guide.created_at)
       - if @guide.video
         %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "#{@guide.video}", :width => "100%"}
       .body
         != render_markdown(@guide.body)
-    .comments
+    .comments#comment-list
       = comments_for @guide
   .sidebar.span3
     %ul.nav
@@ -17,25 +16,27 @@
         .left 
           Author
         .right
-          %a{:href => "#"}= @guide.user.username
+          %a{:href => "#"}
+            = @guide.user.username
       %li.meta
         .left Date
-        .right= format_date(@guide.created_at)
+        .right
+          = format_date(@guide.created_at)
       %li.meta
         .left Category
-        .right= @guide.category.capitalize!
+        .right
+          = @guide.category.capitalize
       %li.list
         %div 
           %h1 More from #{@guide.category}
           %ul
-            %li
-              %a{:href => "#"} How to use impact nitrons
-            %li
-              %a{:href => "#"} Routes on Katabatic (DS/BE)
-      %li.meta
+            - @guide.more_from_category.each do |g|
+              %li
+                %a{:href => "#"} #{g.name}  
+      %li.sidebar-comment.meta
         .left Comments
         .right 
-          %span= @guide.comments.count 
+          %span= @guide.all_comments.count 
       %li.meta.rating
         .left rating
         .right

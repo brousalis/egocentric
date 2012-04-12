@@ -1,7 +1,37 @@
+require 'uri'
+require 'net/http'
+
 class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def update_avatar
+    success = false
+    url = URI.parse(params[:avatar])
+
+    Net::HTTP.start(url.host, url.port) do |http|
+      response = http.head(url.path)
+      case response
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        case response.content_type
+        when "image/png", "image/gif", "image/jpeg"
+          success = true
+        else
+          success = false
+        end
+      else
+        success = false
+      end
+    end
+
+    if success
+      current_user.update_attributes(:avatar => params[:avatar])
+      render :json => { "status" => "success" }
+    else
+      render :json => { "status" => "fail" }
+    end
   end
 
   def create

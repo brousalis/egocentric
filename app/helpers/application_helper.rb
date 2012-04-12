@@ -15,4 +15,8 @@ module ApplicationHelper
   def user_avatar(user = current_user)
     user.avatar == "default" ? "/assets/default.png" : user.avatar
   end
+
+  def remove_dupes
+    inject({}) {|h,v| h[v]=h[v].to_i+1; h}.reject{|k,v| v==1}.keys
+  end
 end

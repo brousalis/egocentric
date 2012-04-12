@@ -30,7 +30,7 @@ a
     margin-left: 0px
     opacity: 0.85
     line-height: 30px
-    padding-right: 20px
+    padding-right: 17px
     b.caret
       vertical-align: middle
       margin-left: 10px
@@ -55,6 +55,31 @@ a
       font-weight: normal
     &:hover
       opacity: 1
+  .avatar
+    +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
+    input
+      width: 160px
+      position: relative
+      float: left
+      margin-top: 1px
+      margin-left: 3px
+      margin-bottom: 0
+      padding: 4px 9px 4px 23px
+      font-size: 13px
+      font-weight: normal
+      line-height: 1
+      color: #ffffff
+      background-color: #333
+      border: 1px solid #000000
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15)
+      opacity: 0.3
+      background: url("/assets/user-white.png") 7px 8px no-repeat
+      &.failure
+        border-left: 3px solid red !important 
+      &:focus 
+        opacity: 1
   .nav-collapse
     float: right
   .nav
@@ -327,7 +352,7 @@ a
           font-size: 1.1em
           opacity: 0.8
           padding-top: 5px
-          padding-bottom: 15px
+          padding-bottom: 12px
           div
             h1
               font-size: 11px
@@ -353,6 +378,8 @@ a
                   color: #666
                   font-size: 13px
                   font-weight: normal
+                  &.active
+                    color: $lightblue
                   &:hover
                     color: $lightblue
         &.top
@@ -378,11 +405,49 @@ a
             margin: 0
             padding: 0
             float: left
+        &.search
+          opacity: 0.9
+          padding: 4px 0px
+          +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
+          input
+            position: relative
+            margin-top: 1px
+            margin-left: 3px
+            margin-bottom: 0
+            padding: 4px 9px 4px 27px
+            font-size: 13px
+            font-weight: normal
+            line-height: 1
+            color: #ffffff
+            background-color: #333
+            +box-shadow(none)
+            +border-radius(0)
+            border: none 
+            opacity: 0.8
+            background: url("/assets/search.png") 7px 7px no-repeat
+            &.failure
+              border-left: 3px solid red !important 
+            &:focus 
+              opacity: 1 
+          #bob
+            position: relative
+            margin-bottom: 0
+            padding: 8px 8px
+            font-size: 13px
+            font-weight: normal
+            line-height: 1
+            color: #ffffff
+            +box-shadow(none)
+            +border-radius(0)
+            border: none
+            border-left: 3px solid $lightblue
+            opacity: 0.8
+            background: none
         &.meta
           margin-bottom: 0px !important
           border-bottom: 1px solid #000
           font-size: 1.1em
-          opacity: 0.8
+          opacity: 0.9
           +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
           line-height: 1px
           padding: 16px 9px
@@ -408,6 +473,10 @@ a
               margin: 0
               padding: 0
               color: #fff
+              &.filter
+                color: #888
+              &.active 
+                color: #fff !important
             span
               font-size: 12px
               font-weight: bold
@@ -437,7 +506,7 @@ a
         color: #fff
       &:hover
         color: $lightblue
-    .number
+    .number, .reply
       display: inline
       font-size: 12px
       font-weight: bold
@@ -449,6 +518,13 @@ a
       -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
       -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset    
+    .reply 
+      float: right 
+      font-weight: normal
+      display: none
+      font-size: 12px
+      padding: 1px 6px
+      margin-right: 0
     .btn 
       float: right
       border: 1px solid #000 !important
@@ -488,6 +564,9 @@ a
         padding: 4px 12px
         position: absolute
         +buttonBackground($darkblue, $blue)  
+      .cancel
+        margin-right: 85px
+        display: none
       #preview
         display: none
     textarea
@@ -496,10 +575,11 @@ a
       box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
       background: #202020
       background-color: rgba(0, 0, 0, 0.3)
-      border: 1px solid #000
       width: 100%
+      border: none
       height: 100px
       margin: 0
+      resize: none
       padding: 0
   .new
     margin-top: 20px
@@ -507,17 +587,18 @@ a
   #comments
     list-style-type: none
     margin: 0px
-    background: rgba(0, 0, 0, 0.5)
+    background: rgba(0, 0, 0, 0.7)
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
     -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
     padding: 1px
-    +opacity(100)   
     border-left: 3px solid $navbarBackground
     border-right: 3px solid $navbarBackground
     border-bottom: 3px solid $navbarBackground
     li
+      &#no_comments
+        padding: 5px
       .comment
         background: #1c1c1c
         min-height: 95px
@@ -544,6 +625,8 @@ a
           p
             margin-top: 10px
             font-family: "Helvetica Neue", Helvetica
+            &.admin
+              color: $lightblue !important
           a 
             color: #fff
         .likes
@@ -563,7 +646,7 @@ a
             margin: 0
             padding: 0
             a
-              width: 26px
+              width: 29px
               height: 24px
               display: block
               text-indent: -9999px
@@ -572,11 +655,11 @@ a
               margin-left: 9px
               margin-top: 5px
               +transition(all 0.1s linear)
-              background: url('/assets/heart.png') no-repeat
+              background: url('/assets/heart.png') 1px 0px no-repeat
               &.active
-                background: url('/assets/heart_over.png') no-repeat 0px 0px
+                background: url('/assets/heart_over.png') no-repeat -1px 0px
               &:hover 
-                background: url('/assets/heart_over.png') no-repeat 0px 0px
+                background: url('/assets/heart_over.png') no-repeat -1px 0px
           img 
             width: 30px
             border: 1px solid #000
@@ -634,4 +717,98 @@ a
       padding: 4px 12px
       margin-right: 3px
       +buttonBackground($darkblue, $blue)
-    
+
+.guide-list
+  .header
+    +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
+    padding: 10px 8px
+    +border-radius(8px 8px 0px 0px) 
+    span 
+      text-transform: uppercase
+      color: #F9F9F9
+      font-size: 13px
+      font-weight: bold
+      margin-left: 5px
+      &.count
+        font-size: 12px
+        font-weight: bold
+        background: #000
+        padding: 1px 6px !important
+        margin-right: 6px
+        float: right
+        +border-radius(6px)
+        -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+        -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+        -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset     
+  .all-guides
+    margin: 0px
+    background: rgba(0, 0, 0, 0.5)
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+    padding: 1px
+    opacity: 80
+    filter: alpha(opacity=8000)
+    border-left: 3px solid #222
+    border-right: 3px solid #222
+    border-bottom: 3px solid #222 
+    #guides
+      position: relative
+      list-style-type: none
+      margin: 0
+      li
+        clear: both
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+        &:last-child 
+          border-bottom: none
+        .rating 
+          float: right    oun
+          position: relative
+          .ajaxful-rating-wrapper
+            position: absolute
+            top: -50px
+            right: 15px
+        a
+          display: block
+          padding-bottom: 14px
+          padding-top: 16px
+          padding-left: 13px
+          &:hover
+            background: rgba(0, 0, 0, 0.30)
+          img
+            width: 44px
+            height: 44px
+            float: left
+            margin-right: 14px
+            border-radius: 4px
+            -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75)
+            -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75)
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75)
+            display: block
+          strong
+            font-size: 28px
+            font-weight: 300
+            line-height: 26px
+            display: block
+            width: 700px
+          small
+            font-size: 15px
+            margin-top: 3px
+            color: rgba(255, 255, 255, 0.5)
+            display: block
+          span
+            font-size: 12px
+            color: #aaa
+            position: absolute
+            top: 26px
+            left: -6px
+            font-style: normal
+            background-color: rgba(0, 0, 0, 0.5)
+            border-radius: 30px
+            width: 24px
+            text-align: center
+            height: 20px
+            padding-top: 2px
+            padding-bottom: 2px

@@ -6,15 +6,16 @@
       .count
         = comment.likes.count
       .like
-        %a{:href => "#", :class => "#{current_user.already_likes?(comment) ? "active" : ""}"} like
+        %a{:id => "#{comment.id}", :href => "#", :class => "#{current_user.already_likes?(comment) ? "active" : ""}"} like
     .content
       %span
         By 
         %a{:href => "#"} #{comment.owner.username}
-        = link_to '(delete)', comment_path(comment), :method => :delete, :remote => true
+        - if current_user.username == comment.owner.username || current_user.role == "admin"
+          = link_to '(delete)', comment_path(comment), :method => :delete, :remote => true
         on
         = format_date(comment.created_at)
-      %p
+      %p{:class => "#{comment.owner.role == "admin" ? "admin" : ""}"}
         = comment.body
       - if Opinio.accept_replies && !reply
         %span.reply= link_to t("opinio.reply", :default => "Reply"), reply_comment_path(comment), :remote => true

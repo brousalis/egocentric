@@ -3,15 +3,14 @@
 
 .comments
   .header
-    .number= comments.count 
+    .number= @guide.all_comments.count
     %span.sort Sort by:
     %a.liked.active Most Liked
     %a.newest Newest
     %a.oldest Oldest
-    %a.btn Add a comment
   %ul#comments
     - unless comments.empty?
-      = render :partial => 'opinio/comments/comment', :collection => comments
+      = render :partial => 'opinio/comments/comment', :collection => comments.sort_by{|c| c.likes.count}.reverse!
     - else
       %li#no_comments= t 'opinio.no_comments_found', :default => "No comments found"
 

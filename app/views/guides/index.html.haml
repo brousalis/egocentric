@@ -1,3 +1,38 @@
-- Guide.all.each do |guide|
-  %a{:href => guide_path(guide), :style => "display: block;"}
-    = guide.name
+.guides.guide.row
+  .sidebar.span3
+    %ul.nav
+      %li.top
+      %li.meta
+        .left 
+          Sort by
+        .right
+          %a.filter.active{:href => "#"}
+            %span Rating
+          %a.filter{:href => "#"}
+            %span Date
+      %li.search
+        %input.searchbox
+      %li.list
+        %div
+          %h1 Categories
+          %ul#source
+            %li
+              %a.all.active{:href => "#"} All
+            - Guide.all_categories.each do |cat|
+              %li
+                %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
+  .guide-list.span9
+    .header
+      %span Guides
+      %span.count= Guide.find(:all).count
+    .all-guides 
+      %ul#guides
+        - Guide.all.each do |guide|
+          %li{:class => "#{guide.category}"}
+            %a{:href => guide_path(guide), :style => "display: block;"}
+              %img{:src => "#{guide.avatar}"}
+              .name
+                %strong= guide.name
+              %small by #{guide.user.username} on #{format_date(guide.created_at)}
+            .rating
+              = ratings_for guide, :static

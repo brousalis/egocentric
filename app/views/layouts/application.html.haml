@@ -4,7 +4,7 @@
     %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
     %title Team Egocentric
-    %meta{:content => "brousalis.com", :name => "author"}
+    %meta{:content => "brous", :name => "author"}
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag "application"
     = csrf_meta_tag
@@ -21,9 +21,12 @@
                 %img{:src => "#{user_avatar}"}
                 #{current_user.username}
             - else
-              %a{:"data-toggle" => "modal", :href => "#register"}
+              %a{:"data-toggle" => "modal", :style => "padding-left: 10px", :href => "#register"}
                 %strong Join our community today!
                 %span Create an account
+          - if current_user
+            .brand.avatar
+              %input{:value => "avatar url"}
           .nav-collapse
             %ul.nav
               - if current_user
@@ -37,14 +40,14 @@
                 %li.error
                   Error
                 %li
-                  %input.username{:value => "brous"}
+                  %input.username{:value => "username"}
                 %li
-                  %input.password{:value => "123", :type => "password"}
+                  %input.password{:value => "password", :type => "password"}
                 %li
                   %a.login.btn{:href => "#"} Login 
     .container.content
       .header
-        %a.logo{:href => "#"} Bootstrap starter template
+        %a.logo{:href => "#"} Egocentric
         .menu
           %ul.nav.nav-pills
             %li
@@ -54,7 +57,7 @@
             %li
               %a{:href => "/guides"} Guides
             %li
-              %a{:href => "/forums"} Forums
+              %a{:href => "#"} Forums
             %li
               %a{:href => "#"} Team
       .clearfix

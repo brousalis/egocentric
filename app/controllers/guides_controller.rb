@@ -11,6 +11,7 @@ class GuidesController < ApplicationController
 
   def create
     @guide = Guide.new(params[:guide])
+    @guide.avatar = nil if @guide.avatar == "url of image"
     @guide.user = current_user
     if @guide.save
       render :json => { "status" => "success",
@@ -26,7 +27,7 @@ class GuidesController < ApplicationController
     if current_user.already_likes?(@comment)
       @like = @comment.likes.find_by_user_id(current_user.id)
       @like.destroy
-      render :json => { "status" => "already likes", "count" => @comment.likes.count }
+      render :json => { "status" => "failure", "count" => @comment.likes.count }
     else
       @like = Like.create(:comment => @comment, :user => current_user)
       if @like

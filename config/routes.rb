@@ -8,6 +8,7 @@ Egocentric::Application.routes.draw do
     end
   end
 
+  post "avatar" => "users#update_avatar", :as => "avatar"
   post "like" => "guides#like", :as => "like"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

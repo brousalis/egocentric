@@ -5,11 +5,3 @@ development:
   pool: 5
   username: ego
   password:
-
-production:
-  adapter: mysql
-  encoding: unicode
-  database: 
-  pool: 5
-  username: 
-  password: 

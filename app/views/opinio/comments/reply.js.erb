@@ -2,3 +2,15 @@ $("#commentable_id").val('<%= @commentable_id %>')
 $("#commentable_type").val('<%= @commentable_type %>')
 $("#new_comment textarea").val('')
 $("#new_comment textarea").focus()
+$(".comments.new .reply, .cancel").fadeIn();
+$("#new_comment .btn").live('click', function(e) {
+  $(".comments.new .reply").fadeOut()
+});
+$('.cancel').live('click', function(e) {
+  e.preventDefault();
+  $(".comments.new .reply, .cancel").fadeOut();
+  $("#commentable_id").val($("#commentable_id_org").val());
+  $("#commentable_type").val($("#commentable_type_org").val());
+  $("#new_comment textarea").val('')
+  $("#new_comment textarea").focus()
+});
