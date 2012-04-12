@@ -19,7 +19,6 @@ $(document).ready(function() {
     if (match&&match[7].length==11){
         url = match[7];
     }
-    alert(url)
     $('.youtube').attr("src", "http://youtube.com/embed/"+url).fadeIn();
   });
 

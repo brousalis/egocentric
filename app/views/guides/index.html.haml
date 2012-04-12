@@ -27,7 +27,7 @@
       %span.count= Guide.find(:all).count
     .all-guides 
       %ul#guides
-        - Guide.all.each do |guide|
+        - Guide.all.sort_by{|g| g.rate_average}.reverse.each do |guide|
           %li{:class => "#{guide.category}"}
             %a{:href => guide_path(guide), :style => "display: block;"}
               %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
