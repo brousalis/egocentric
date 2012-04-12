@@ -1,7 +1,7 @@
 $('#no_comments').fadeOut()
 <% if @comment.valid? %>
   <% if @reply %>
-    5f($('#comment_<%= @comment.commentable_id %> ul').length == 0)
+    if($('#comment_<%= @comment.commentable_id %> ul').length == 0)
       $('#comment_<%= @comment.commentable_id %>').append('<ul id="comment_<%= @comment.commentable_id %>_replies" class="replies"></ul>')
     $('#comment_<%= @comment.commentable_id %>_replies').append("<%= escape_javascript( render @comment, :locals => {:reply => @reply} ) %>")
     $('#commentable_id').val('<%= @comment.commentable.commentable_id %>')

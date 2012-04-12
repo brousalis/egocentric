@@ -1,6 +1,6 @@
 module ApplicationHelper
   def format_date(datetime)
-    return datetime.strftime("%d/%m/%Y")
+    return datetime.strftime("%m/%d/%Y")
   end
 
   def truncate(string, length = 10)

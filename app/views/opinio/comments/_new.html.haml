@@ -11,7 +11,7 @@
         = hidden_field_tag :commentable_type_org, commentable.class.base_class.name.to_s
         = hidden_field_tag :commentable_id, commentable.id
         = hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s
-        = f.submit "Submit", :class => "btn"
+        = f.submit "Submit", :class => "btn reply-submit"
         %a.btn.cancel{:href => "#"} Cancel
     - else
       %p
