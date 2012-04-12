@@ -30,7 +30,7 @@
         - Guide.all.each do |guide|
           %li{:class => "#{guide.category}"}
             %a{:href => guide_path(guide), :style => "display: block;"}
-              %img{:src => "#{guide.avatar}"}
+              %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
               .name
                 %strong= guide.name
               %small by #{guide.user.username} on #{format_date(guide.created_at)}
