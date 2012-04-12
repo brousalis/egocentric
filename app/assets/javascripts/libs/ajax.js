@@ -47,9 +47,9 @@ function register() {
 
 function avatar(val) {
   var failure = function(e) { $('.brand.avatar input').addClass('failure'); }
-  var success = function(e) { window.location.href = e.redirect; }
+  var success = function(e) { window.location.reload() }
 
-  ajax_request('/avatar', 'post', val, success, failure);
+  ajax_request('/avatar', 'post', { avatar: val }, success, failure);
 }
 
 function login(username, password) {
