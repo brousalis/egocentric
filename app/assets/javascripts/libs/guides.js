@@ -10,10 +10,17 @@ $(document).ready(function() {
     $('.guides .preview').toggleClass('active');
     preview = !preview;
   });
-
-  $('.add-video').live('click', function(e) {
+ 
+ $('.add-video').live('click', function(e) {
     e.preventDefault();
-    $('.youtube').attr("src", $('.video-url').val()).fadeIn();
+    var url = $('.video-url').val();
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match&&match[7].length==11){
+        url = match[7];
+    }
+    alert(url)
+    $('.youtube').attr("src", "http://youtube.com/embed/"+url).fadeIn();
   });
 
   $('.add-image').live('click', function(e) {
@@ -38,6 +45,8 @@ $(document).ready(function() {
   $('a').live('ajax:complete', function(xhr, status) {
     $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
   });
+
+  $('.guides .page .body textarea').autogrow();
 
   // comments
   $('.like a').live('click', function(e) {
@@ -132,4 +141,48 @@ jQuery.expr[':'].Contains = function(a, i, m) {
     $(this).live('keyup', perform);
     $(this).bind('blur', perform);
   }
+})(jQuery);
+
+
+(function($) {
+  $.fn.autogrow = function(options) {
+      
+      this.filter('textarea').each(function() {
+          
+          var $this       = $(this),
+              minHeight   = $this.height(),
+              lineHeight  = $this.css('lineHeight');
+          
+          var shadow = $('<div></div>').css({
+              position:   'absolute',
+              top:        -10000,
+              left:       -10000,
+              width:      $(this).width(),
+              fontSize:   $this.css('fontSize'),
+              fontFamily: $this.css('fontFamily'),
+              lineHeight: $this.css('lineHeight'),
+              resize:     'none'
+          }).appendTo(document.body);
+          
+          var update = function() {
+              
+              var val = this.value.replace(/</g, '&lt;')
+                                  .replace(/>/g, '&gt;')
+                                  .replace(/&/g, '&amp;')
+                                  .replace(/\n/g, '<br/>');
+              
+              shadow.html(val);
+              $(this).css('height', Math.max(shadow.height() + 20, minHeight));
+          }
+          
+          $(this).change(update).keyup(update).keydown(update);
+          
+          update.apply(this);
+          
+      });
+      
+      return this;
+      
+  }
+  
 })(jQuery);
