@@ -19,6 +19,7 @@ $(document).ready(function() {
     if (match&&match[7].length==11){
         url = match[7];
     }
+    $('.video-url').val(url);
     $('.youtube').attr("src", "http://youtube.com/embed/"+url).fadeIn();
   });
 
@@ -95,6 +96,14 @@ $(document).ready(function() {
     });
   });
 
+  $('.filter').live('click', function(e) {
+    $('.filter').each(function() { $(this).removeClass('active') });
+    $(this).addClass('active');
+    $('.ajax').fadeIn();
+    e.preventDefault();
+    $.getScript(this.href);
+    return false;
+  });
 });
 
 jQuery.expr[':'].Contains = function(a, i, m) { 
@@ -142,46 +151,35 @@ jQuery.expr[':'].Contains = function(a, i, m) {
   }
 })(jQuery);
 
-
 (function($) {
   $.fn.autogrow = function(options) {
-      
-      this.filter('textarea').each(function() {
+    this.filter('textarea').each(function() {
+      var $this       = $(this),
+          minHeight   = $this.height(),
+          lineHeight  = $this.css('lineHeight');
+      var shadow = $('<div></div>').css({
+          position:   'absolute',
+          top:        -10000,
+          left:       -10000,
+          width:      $(this).width(),
+          fontSize:   $this.css('fontSize'),
+          fontFamily: $this.css('fontFamily'),
+          lineHeight: $this.css('lineHeight'),
+          resize:     'none'
+      }).appendTo(document.body);
+      var update = function() {
           
-          var $this       = $(this),
-              minHeight   = $this.height(),
-              lineHeight  = $this.css('lineHeight');
+          var val = this.value.replace(/</g, '&lt;')
+                              .replace(/>/g, '&gt;')
+                              .replace(/&/g, '&amp;')
+                              .replace(/\n/g, '<br/>');
           
-          var shadow = $('<div></div>').css({
-              position:   'absolute',
-              top:        -10000,
-              left:       -10000,
-              width:      $(this).width(),
-              fontSize:   $this.css('fontSize'),
-              fontFamily: $this.css('fontFamily'),
-              lineHeight: $this.css('lineHeight'),
-              resize:     'none'
-          }).appendTo(document.body);
-          
-          var update = function() {
-              
-              var val = this.value.replace(/</g, '&lt;')
-                                  .replace(/>/g, '&gt;')
-                                  .replace(/&/g, '&amp;')
-                                  .replace(/\n/g, '<br/>');
-              
-              shadow.html(val);
-              $(this).css('height', Math.max(shadow.height() + 20, minHeight));
-          }
-          
-          $(this).change(update).keyup(update).keydown(update);
-          
-          update.apply(this);
-          
-      });
-      
-      return this;
-      
+          shadow.html(val);
+          $(this).css('height', Math.max(shadow.height() + 20, minHeight));
+      }
+      $(this).change(update).keyup(update).keydown(update);
+      update.apply(this);
+    });
+    return this;
   }
-  
 })(jQuery);

@@ -203,6 +203,9 @@ a
       input.image
         float: right
         margin: 10px 0px 10px 10px
+        &:focus
+          +box-shadow(none)
+          border: 1px solid #000
       input.name
         position: absolute
         left: 0px
@@ -483,7 +486,17 @@ a
               padding: 0
               color: #fff
               &.filter
-                color: #888
+                color: #aaa
+                font-size: 12px
+                font-weight: bold
+                background: #000
+                padding: 2px 6px
+                margin-top: -3px
+                +border-radius(6px)
+                -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+                -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+                -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+                box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset 
               &.active 
                 color: #fff !important
             span
@@ -750,6 +763,14 @@ a
         -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
         -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
         box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset     
+      &.count.ajax
+        display: none
+        +box-shadow(none)
+        background: url('/assets/loader.gif') no-repeat
+        width: 24px
+        height: 24px
+        margin-right: 0px
+        margin-top: 3px
   .all-guides
     margin: 0px
     background: rgba(0, 0, 0, 0.5)
@@ -773,7 +794,7 @@ a
         &:last-child 
           border-bottom: none
         .rating 
-          float: right    oun
+          float: right
           position: relative
           .ajaxful-rating-wrapper
             position: absolute

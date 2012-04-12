@@ -1,8 +1,13 @@
 class GuidesController < ApplicationController
   before_filter :authorize, :except => [:index]
-  before_filter :find_guide
+  before_filter :find_guide, :except => [:index]
 
   def index
+    if params[:filter] == "date"
+      @guides = Guide.all.sort_by { |g| g.created_at }.reverse
+    else
+      @guides = Guide.all.sort_by { |g| g.rate_average }.reverse
+    end
   end 
 
   def new
@@ -54,4 +59,5 @@ private
   def find_guide
     @guide = Guide.find(params[:id]) if params[:id]
   end
+
 end

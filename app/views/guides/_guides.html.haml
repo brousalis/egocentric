@@ -1,0 +1,10 @@
+%ul#guides
+  - @guides.each do |guide|
+    %li{:class => "#{guide.category}", :"data-rating" => "#{guide.rate_average}", :"data-date" => "#{format_date(guide.created_at)}"}
+      %a{:href => guide_path(guide), :style => "display: block;"}
+        %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
+        .name
+          %strong= guide.name
+        %small by #{guide.user.username} on #{format_date(guide.created_at)}
+      .rating
+        = ratings_for guide, :static 

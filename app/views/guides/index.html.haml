@@ -6,10 +6,8 @@
         .left 
           Sort by
         .right
-          %a.filter.active{:href => "#"}
-            %span Rating
-          %a.filter{:href => "#"}
-            %span Date
+          = link_to "Rating", {:controller => "guides", :action => "index", :filter => "rating"}, {:class => "filter active"} 
+          = link_to "Date", {:controller => "guides", :action => "index", :filter => "date"}, {:class => "filter"}
       %li.search
         %input.searchbox
       %li.list
@@ -23,16 +21,8 @@
                 %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
   .guide-list.span9
     .header
-      %span Guides
+      %span.title Guides
       %span.count= Guide.find(:all).count
+      %span.count.ajax 
     .all-guides 
-      %ul#guides
-        - Guide.all.sort_by{|g| g.rate_average}.reverse.each do |guide|
-          %li{:class => "#{guide.category}"}
-            %a{:href => guide_path(guide), :style => "display: block;"}
-              %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
-              .name
-                %strong= guide.name
-              %small by #{guide.user.username} on #{format_date(guide.created_at)}
-            .rating
-              = ratings_for guide, :static
+      = render "guides"

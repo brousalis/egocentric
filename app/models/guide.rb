@@ -18,7 +18,7 @@ class Guide < ActiveRecord::Base
   end
 
   def more_from_category
-    Guide.find_all_by_category(self.category, :limit => 3)
+    Guide.find_all_by_category(self.category, :limit => 3, :conditions => ["id != ?", self.id])
   end
 
   def self.all_categories
