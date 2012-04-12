@@ -41,7 +41,7 @@ $(document).ready(function() {
     submit_guide();
   });
 
-  $('a').live('ajax:complete', function(xhr, status) {
+  $('.rating a').live('ajax:complete', function(xhr, status) {
     $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
   });
 
