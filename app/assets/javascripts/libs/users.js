@@ -24,7 +24,7 @@ $(document).ready(function() {
   });
 
   // register
-  var reg = false;
+  var reg = true;
   $('#register').modal('hide');
 
   $('.hide-register, .show-register').live('click', function(e) {
