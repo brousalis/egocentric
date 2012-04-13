@@ -4,6 +4,7 @@ Egocentric::Application.routes.draw do
   resources :guides do
     opinio
     member do
+      get :reload_comments
       post :rate
     end
   end

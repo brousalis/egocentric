@@ -1,4 +1,6 @@
 class GuidesController < ApplicationController
+  include Opinio::Controllers::Helpers
+
   before_filter :authorize, :except => [:index]
   before_filter :find_guide, :except => [:index]
 
@@ -54,10 +56,15 @@ class GuidesController < ApplicationController
     end
   end
 
+  def reload_comments
+    @guide = Guide.find(params[:id])
+    render "reload_comments", :layout => false
+  end 
+
 private
   
   def find_guide
-    @guide = Guide.find(params[:id]) if params[:id]
+    @guide = Guide.find(params[:id])
   end
 
 end

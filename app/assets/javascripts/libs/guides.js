@@ -3,16 +3,15 @@ $(document).ready(function() {
 
   // new guides
   $('.guides .preview').live('click', function(e) {
-    e.preventDefault();
     $('.guides textarea').toggle();
     $('.guides #preview').toggle();
     $('.guides .video').toggle();
     $('.guides .preview').toggleClass('active');
     preview = !preview;
+    return false;
   });
  
  $('.add-video').live('click', function(e) {
-    e.preventDefault();
     var url = $('.video-url').val();
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -21,14 +20,15 @@ $(document).ready(function() {
     }
     $('.video-url').val(url);
     $('.youtube').attr("src", "http://youtube.com/embed/"+url).fadeIn();
+    return false;
   });
 
   $('.add-image').live('click', function(e) {
-    e.preventDefault();
     url = "url('" + $('input.image').val() + "')";
     $('.header').css('background', url);
     $('.add').fadeOut();
     add = true;
+    return false;
   });
 
   $('.header').hover(function() {
@@ -38,8 +38,8 @@ $(document).ready(function() {
   });
 
   $('.guides .submit').live('click', function(e) {
-    e.preventDefault();
     submit_guide();
+    return false;
   });
 
   $('.rating a').live('ajax:complete', function(xhr, status) {
@@ -50,8 +50,8 @@ $(document).ready(function() {
 
   // comments
   $('.like a').live('click', function(e) {
-    e.preventDefault();
     like(this);
+    return false;
   });
 
   $('.sidebar-comment').click(function(e) {
@@ -68,7 +68,6 @@ $(document).ready(function() {
 
   //index
   $('#source li a').on("click", function(e) {
-    e.preventDefault();
     $('#source li a').each(function() { $(this).removeClass('active') } );
     var filter = $(this).attr('class');
     $(this).addClass('active');
@@ -80,6 +79,7 @@ $(document).ready(function() {
         else { $(this).fadeIn('slow').removeClass('out'); }
       });
     }
+    return false;
   });
  
   $('.searchbox').search('#guides li a .name', function(on) {
@@ -109,25 +109,42 @@ $(document).ready(function() {
     $('.filter').each(function() { $(this).removeClass('active') });
     $(this).addClass('active');
     $('.ajax').fadeIn();
-    e.preventDefault();
     $.getScript(this.href);
     return false;
   });
 
+  $('.sorting a').live('click', function(e) {
+    $(this).addClass('active');
+    var url = document.location.href + "/reload_comments"
+    $.ajax({
+      headers: {
+        'X-Transaction': 'POST Example',
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: { filter: $(this).attr('id') },
+      url: url,
+      type: 'get',
+      success: function(e) {
+        console.log(e);
+        $('#comment-list').html(e);
+      }
+    }); 
+    return false;
+  });
+
   $('.line').live('click', function(e) {
-    e.preventDefault();
     $(this).parent().parent().toggleClass('closed');
     $(this).parent().parent().parent().find('.replies').toggle();
+    return false;
   });
 
   $('.collapse-all').live('click', function(e) {
-    e.preventDefault();
     $('.comment').each(function() { $(this).addClass('closed'); });
-    
+    return false;
   });
   $('.collapse-none').live('click', function(e) {
-    e.preventDefault();
     $('.comment').each(function() { $(this).removeClass('closed') });
+    return false;
   }); 
 });
 

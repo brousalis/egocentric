@@ -5,9 +5,10 @@
   .header
     .left
       .number= @guide.all_comments.count
-      %span.sort Sort by:
-      %a.filter.active Most Liked
-      %a.filter Newest
+      .sorting
+        %span.sort Sort by:
+        %a#likes{:href => "#", :class => "#{"active" if params[:filter] == "likes"}"} Most Liked
+        %a#date{:href => "#", :class => "#{"active" if params[:filter] != "likes"}"}  Newest
     .right
       %span.sort.collapse Collapse:
       %a.collapse-all{:href => "#"} All
