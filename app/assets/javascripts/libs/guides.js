@@ -8,7 +8,7 @@ $(document).ready(function() {
     $('.guides .video').toggle();
     $('.guides .preview').toggleClass('active');
     preview = !preview;
-    $('.add').toggle();
+    $('.add').hide();
     if(add == false) $('.guides .header').toggleClass('no-avatar');
     return false;
   });

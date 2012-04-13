@@ -19,6 +19,7 @@ class GuidesController < ApplicationController
   def create
     @guide = Guide.new(params[:guide])
     @guide.avatar = nil if @guide.avatar == "url of image"
+    @guide.video = nil if @guide.video == "url of youtube video"
     @guide.user = current_user
     if @guide.save
       render :json => { "status" => "success",
