@@ -64,7 +64,7 @@ class GuidesController < ApplicationController
 private
   
   def find_guide
-    @guide = Guide.find(params[:id])
+    @guide = Guide.find(params[:id]) if params[:id]
   end
 
 end

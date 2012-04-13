@@ -8,11 +8,17 @@ $(document).ready(function() {
     $('.guides .video').toggle();
     $('.guides .preview').toggleClass('active');
     preview = !preview;
+    $('.add').toggle();
+    if(add == false) $('.guides .header').toggleClass('no-avatar');
     return false;
   });
  
  $('.add-video').live('click', function(e) {
     var url = $('.video-url').val();
+    if (url.indexOf('youtube') == -1) {
+      alert("Enter a valid youtube url");
+      return false;
+    }
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
     if (match&&match[7].length==11){
@@ -25,9 +31,12 @@ $(document).ready(function() {
 
   $('.add-image').live('click', function(e) {
     url = "url('" + $('input.image').val() + "')";
-    $('.header').css('background', url);
-    $('.add').fadeOut();
-    add = true;
+    $('<img/>').attr('src', $('input.image').val()).load(function() { 
+      $('.header').css('background', url);
+      $('.add').fadeOut();
+      add = true; 
+    });
+    add = false;
     return false;
   });
 
