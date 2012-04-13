@@ -4,6 +4,7 @@ $("#new_comment textarea").val('')
 $("#new_comment textarea").focus()
 $(".comments.new .reply, .cancel").fadeIn();
 $("#new_comment .btn").live('click', function(e) {
+  $('#new_comment textarea').val('');
   $(".comments.new .reply, .comments.new .cancel").fadeOut()
 });
 $('.cancel').live('click', function(e) {

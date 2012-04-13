@@ -99,6 +99,12 @@ $(document).ready(function() {
     });
   });
 
+  $('.name').keyup( function() {
+    var $this = $(this);
+    if($this.val().length > 36)
+      $this.val($this.val().substr(0, 36));     
+  });
+
   $('.filter').live('click', function(e) {
     $('.filter').each(function() { $(this).removeClass('active') });
     $(this).addClass('active');
@@ -113,6 +119,16 @@ $(document).ready(function() {
     $(this).parent().parent().toggleClass('closed');
     $(this).parent().parent().parent().find('.replies').toggle();
   });
+
+  $('.collapse-all').live('click', function(e) {
+    e.preventDefault();
+    $('.comment').each(function() { $(this).addClass('closed'); });
+    
+  });
+  $('.collapse-none').live('click', function(e) {
+    e.preventDefault();
+    $('.comment').each(function() { $(this).removeClass('closed') });
+  }); 
 });
 
 jQuery.expr[':'].Contains = function(a, i, m) { 

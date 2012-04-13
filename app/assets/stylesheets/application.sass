@@ -14,6 +14,7 @@ body
   font-family: proxima-nova, Helvetica, arial, sans
   background: url("/assets/bg.png") repeat
   color: #aaa
+  padding-bottom: 60px
 
 a
   color: $lightblue
@@ -33,6 +34,7 @@ a
   margin-top: 3px 
 
 .navbar
+  z-index: 1
   border-bottom: 3px solid $lightblue
   .brand
     +gradient-vertical($darkblue, $blue)
@@ -210,6 +212,8 @@ a
       .btn
         float: right
         margin: 10px
+      .youtube
+        z-index: 0
       input.image
         float: right
         margin: 10px 0px 10px 10px
@@ -465,6 +469,8 @@ a
             border-left: 3px solid $lightblue
             opacity: 0.8
             background: none
+        &.sidebar-comment.meta
+          cursor: pointer
         &.meta
           margin-bottom: 0px !important
           border-bottom: 1px solid #000
@@ -525,10 +531,17 @@ a
     +gradient-vertical($navbarBackgroundHighlight, $navbarBackground)
     padding: 10px 8px
     +border-radius(8px 8px 0px 0px)
+    height: 15px
+    position: relative
     .sort 
       text-transform: uppercase
       font-weight: bold
       font-size: 11px
+    .left
+      float: left
+    .right
+      float: right
+      margin-right: 3px
     a 
       margin-left: 8px
       &.active 
@@ -645,6 +658,10 @@ a
         &.closed
           height: 20px
           min-height: 20px
+          .content
+            padding-left: 0px
+          .likes 
+            display: none
           .reply
             display: none
         .content
@@ -656,7 +673,7 @@ a
             position: absolute
             right: 10px
             top: 10px
-            opacity: 0.3
+            opacity: 0.6
           span
             font-size: 12px
             &.reply
@@ -717,8 +734,6 @@ a
       ul
         list-style-type: none
         li
-          .line 
-            display: none
           div
             background: #232323!important
 
@@ -835,12 +850,12 @@ a
             -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75)
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75)
             display: block
+          .name 
+            position: relative
           strong
             font-size: 28px
             font-weight: 300
             line-height: 26px
-            display: block
-            width: 700px
           small
             font-size: 15px
             margin-top: 3px
@@ -849,14 +864,13 @@ a
           span
             font-size: 12px
             color: #aaa
-            position: absolute
-            top: 26px
-            left: -6px
             font-style: normal
-            background-color: rgba(0, 0, 0, 0.5)
+            background-color: rgba(0,0,0,0.8)
             border-radius: 30px
-            width: 24px
+            padding: 0px 7px
             text-align: center
-            height: 20px
-            padding-top: 2px
-            padding-bottom: 2px
+            height: 24px
+            line-height: 25px
+            position: absolute
+            top: 7px
+            left: -11px

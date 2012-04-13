@@ -26,13 +26,14 @@
         .left Category
         .right
           = @guide.category.capitalize
-      %li.list
-        %div 
-          %h1 More from #{@guide.category}
-          %ul
-            - @guide.more_from_category.each do |g|
-              %li
-                %a{:href => "#"} #{g.name}  
+      - if @guide.more_from_category == nil
+        %li.list
+          %div 
+            %h1 More from #{@guide.category}
+            %ul
+              - @guide.more_from_category.each do |g|
+                %li
+                  %a{:href => "#"} #{g.name}  
       %li.sidebar-comment.meta
         .left Comments
         .right 
