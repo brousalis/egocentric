@@ -17,6 +17,8 @@
         = format_date(comment.created_at)
       %p{:class => "#{comment.owner.role == "admin" ? "admin" : ""}"}
         = comment.body
+      %a.line{:href => "#"} 
+        %img{:src => "/assets/line.png"}
       - if Opinio.accept_replies && !reply
         %span.reply= link_to t("opinio.reply", :default => "Reply"), reply_comment_path(comment), :remote => true
   - if Opinio.accept_replies && !reply

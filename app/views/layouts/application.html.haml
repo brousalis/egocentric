@@ -17,7 +17,7 @@
         .container
           .brand
             - if current_user
-              %a{:href => "#"} 
+              %a{:href => "#"}
                 %img{:src => "#{user_avatar}"}
                 #{current_user.username}
             - else
@@ -47,7 +47,7 @@
                   %a.login.btn{:href => "#"} Login 
     .container.content
       .header
-        %a.logo{:href => "#"} Egocentric
+        %a.logo{:href => "/"} Egocentric
         .menu
           %ul.nav.nav-pills
             %li

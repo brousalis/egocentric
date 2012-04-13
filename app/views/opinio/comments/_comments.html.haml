@@ -5,12 +5,12 @@
   .header
     .number= @guide.all_comments.count
     %span.sort Sort by:
-    %a.liked.active Most Liked
-    %a.newest Newest
-    %a.oldest Oldest
+    %a.filter.active Most Liked
+    %a.filter Newest
+    %span.ajax
   %ul#comments
     - unless comments.empty?
-      = render :partial => 'opinio/comments/comment', :collection => comments.sort_by{|c| c.likes.count}.reverse!
+      = render :partial => 'opinio/comments/comment', :collection => comment_sort(comments)
     - else
       %li#no_comments= t 'opinio.no_comments_found', :default => "No comments found"
 

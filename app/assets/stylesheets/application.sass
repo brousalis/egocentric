@@ -22,6 +22,16 @@ a
     color: $blue
     text-decoration: none !important
 
+.ajax
+  float: right
+  display: none
+  +box-shadow(none)
+  background: url('/assets/loader.gif') no-repeat
+  width: 24px
+  height: 24px
+  margin-right: 0px
+  margin-top: 3px 
+
 .navbar
   border-bottom: 3px solid $lightblue
   .brand
@@ -547,6 +557,8 @@ a
       font-size: 12px
       padding: 1px 6px
       margin-right: 0
+    .ajax
+      float: right
     .btn 
       float: right
       border: 1px solid #000 !important
@@ -622,6 +634,7 @@ a
       &#no_comments
         padding: 5px
       .comment
+        overflow: hidden
         background: #1c1c1c
         min-height: 95px
         padding: 8px
@@ -629,11 +642,21 @@ a
         margin: 8px
         position: relative
         padding-top: 10px
+        &.closed
+          height: 20px
+          min-height: 20px
+          .reply
+            display: none
         .content
           margin-left: 10px
           padding-left: 40px
           padding-top: 0px
           margin-top: 0px
+          .line
+            position: absolute
+            right: 10px
+            top: 10px
+            opacity: 0.3
           span
             font-size: 12px
             &.reply
@@ -694,6 +717,8 @@ a
       ul
         list-style-type: none
         li
+          .line 
+            display: none
           div
             background: #232323!important
 
@@ -763,14 +788,7 @@ a
         -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
         -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
         box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset     
-      &.count.ajax
-        display: none
-        +box-shadow(none)
-        background: url('/assets/loader.gif') no-repeat
-        width: 24px
-        height: 24px
-        margin-right: 0px
-        margin-top: 3px
+
   .all-guides
     margin: 0px
     background: rgba(0, 0, 0, 0.5)

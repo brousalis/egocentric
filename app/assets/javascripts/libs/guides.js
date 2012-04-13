@@ -83,7 +83,10 @@ $(document).ready(function() {
   });
  
   $('.searchbox').search('#guides li a .name', function(on) {
-    on.all(function(results) { });
+    on.all(function(results) {
+      $('#source li a').each(function() { $(this).removeClass('active') } );
+      $('#source li a.all').addClass('active')
+    });
     on.reset(function() {
       $('#guides li').show();
     });
@@ -103,6 +106,12 @@ $(document).ready(function() {
     e.preventDefault();
     $.getScript(this.href);
     return false;
+  });
+
+  $('.line').live('click', function(e) {
+    e.preventDefault();
+    $(this).parent().parent().toggleClass('closed');
+    $(this).parent().parent().parent().find('.replies').toggle();
   });
 });
 

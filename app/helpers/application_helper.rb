@@ -15,8 +15,13 @@ module ApplicationHelper
   def user_avatar(user = current_user)
     user.avatar == "default" ? "/assets/default.png" : user.avatar
   end
-
-  def remove_dupes
-    inject({}) {|h,v| h[v]=h[v].to_i+1; h}.reject{|k,v| v==1}.keys
+  
+  def comment_sort(comments)
+    if params[:filter] == "likes"
+      comments.sort_by{|c| c.likes.count}.reverse
+    else
+      comments.sort_by{|c| c.created_at}.reverse
+    end
   end
+
 end
