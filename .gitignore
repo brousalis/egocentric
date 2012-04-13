@@ -3,4 +3,5 @@ _site/
 .DS_Store
 *.swp
 tmp/
+log/
 public/
