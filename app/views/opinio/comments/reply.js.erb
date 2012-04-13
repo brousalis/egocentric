@@ -4,14 +4,13 @@ $("#new_comment textarea").val('')
 $("#new_comment textarea").focus()
 $(".comments.new .reply, .cancel").fadeIn();
 $("#new_comment .btn").live('click', function(e) {
-  $('#new_comment textarea').val('');
   $(".comments.new .reply, .comments.new .cancel").fadeOut()
 });
 $('.cancel').live('click', function(e) {
-  e.preventDefault();
   $(".comments.new .reply, .cancel").fadeOut();
   $("#commentable_id").val($("#commentable_id_org").val());
   $("#commentable_type").val($("#commentable_type_org").val());
   $("#new_comment textarea").val('')
   $("#new_comment textarea").focus()
+  return false;
 });

@@ -6,8 +6,10 @@ $('#no_comments').fadeOut()
     $('#comment_<%= @comment.commentable_id %>_replies').append("<%= escape_javascript( render @comment, :locals => {:reply => @reply} ) %>")
     $('#commentable_id').val('<%= @comment.commentable.commentable_id %>')
     $('#commentable_type').val('<%= @comment.commentable.commentable_type %>')
+    $('#new_comment textarea').val('')
   <% else %>
     $('#comments').append("<%= escape_javascript( render @comment, :locals => {:reply => @reply} ) %>")
+    $('#new_comment textarea').val('')
   <% end %>
 <% else %>
 <% end %>
