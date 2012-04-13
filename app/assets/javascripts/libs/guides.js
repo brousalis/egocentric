@@ -115,6 +115,7 @@ $(document).ready(function() {
 
   $('.sorting a').live('click', function(e) {
     $(this).addClass('active');
+    $('.ajax').fadeIn();
     var url = document.location.href + "/reload_comments"
     $.ajax({
       headers: {
