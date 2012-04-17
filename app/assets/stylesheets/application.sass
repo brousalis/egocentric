@@ -211,14 +211,17 @@ a
       .btn
         float: right
         margin: 10px
+        padding: 4px 6px
       .youtube
         z-index: 0
+      .add-image
+        margin-right: 0px
       input.image
         float: right
-        margin: 10px 0px 10px 10px
+        margin: 10px 2px 10px 10px
         &:focus
           +box-shadow(none)
-          border: 1px solid #000
+          border: 1px solid #666
       input.name
         position: absolute
         left: 0px
@@ -261,18 +264,21 @@ a
       height: 50px
       .btn
         margin: 10px
+        padding: 4px 6px
         float: right
+      .add-video
+        margin-right: 3px
       input
-        font-size: 1.4em
+        font-size: 14px
         margin-top: 10px
         margin-left: 10px
-        width: 83%
+        width: 84%
         background: #fff
-        height: 20px
-        +box-shadow(none)
-        border: none
+        &:focus
+          +box-shadow(none)
+          border: 1px solid #666
     .body
-      padding: 18px
+      padding: 9px
       h1 
         color: #222
         border-bottom: 1px dotted #ccc
@@ -306,6 +312,21 @@ a
           color: #333
           font-size: 1.4em
   .sidebar
+    .admin
+      .btn.delete
+        margin-left: 6px
+      .btn
+        width: 36%
+    .btn
+      border: 1px solid #000 !important
+      text-shadow: none
+      font-weight: bold
+      color: #fff
+      padding: 4px 12px
+      margin-top: -4px
+      +buttonBackground($darkblue, $blue) 
+      &:hover
+        color: #fff 
     ul.cheats li
       position: relative !important
     ul.nav
@@ -772,6 +793,8 @@ a
     +border-radius(8px 8px 0px 0px)
     background: #f1f1f1
   .modal-footer
+    a.close 
+      opacity: 1
     a.btn
       margin-left: 5px
       text-shadow: none
@@ -821,6 +844,9 @@ a
     border-left: 3px solid #222
     border-right: 3px solid #222
     border-bottom: 3px solid #222 
+    .no-guides
+      padding: 4px
+      display: none
     #guides
       position: relative
       list-style-type: none
@@ -843,6 +869,7 @@ a
           padding-top: 16px
           padding-left: 13px
           &:hover
+            color: $lightblue
             background: rgba(0, 0, 0, 0.30)
           img
             width: 44px

@@ -11,13 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410030505) do
+ActiveRecord::Schema.define(:version => 20120416213135) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.boolean  "state",      :default => true
+    t.integer  "position",   :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.integer  "owner_id",         :null => false
     t.integer  "commentable_id",   :null => false
     t.string   "commentable_type", :null => false
     t.text     "body",             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "state",        :default => true
+    t.integer  "topics_count", :default => 0
+    t.integer  "posts_count",  :default => 0
+    t.integer  "position",     :default => 0
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +64,15 @@ ActiveRecord::Schema.define(:version => 20120410030505) do
     t.datetime "updated_at"
   end
 
+  create_table "posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "forum_id"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -56,6 +85,18 @@ ActiveRecord::Schema.define(:version => 20120410030505) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "hits",        :default => 0
+    t.boolean  "sticky",      :default => false
+    t.boolean  "locked",      :default => false
+    t.integer  "posts_count"
+    t.integer  "forum_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -70,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20120410030505) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "avatar"
+    t.integer  "topics_count",        :default => 0
+    t.integer  "posts_count",         :default => 0
   end
 
 end

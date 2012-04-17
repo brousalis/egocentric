@@ -1,15 +1,15 @@
 .guides.row
   .alert.alert-error
     %a.close{"data-dismiss" => "alert", :href => "#"} ×
-  .page.guide-new.span9
-    .header
+  .page.span9
+    .header{:style => "background: url(#{@guide.avatar})"}
       .add
         %a.btn.remove-image{:href => "#"} 
           %i.icon.icon-minus
         %a.btn.add-image{:href => "#"} 
-          %i.icon.icon-plus
-        %input.image{:value => "url of image"}
-      %input.name{:value => "Name of guide"}
+          %i.icon.icon-plus 
+        %input.image{:value => "#{@guide.avatar}"}
+      %input.name{:value => "#{@guide.name}"}
     .video
       %a.btn.remove-video{:href => "#"} 
         %i.icon.icon-minus
@@ -18,8 +18,9 @@
       %input.video-url{:value => "url of youtube video"}
     %iframe.youtube{:style => "display: none;", :allowfullscreen => "", :frameborder => "0", :height => "500", :src => "", :width => "100%"}
     .body
-      %textarea{:autofocus => ""} **Test** this out. Press *preview*
-
+      %textarea{:autofocus => ""}
+        != @guide.body
+       
   .sidebar.span3
     %ul.nav
       %li.nav-header
@@ -32,11 +33,13 @@
         %select#guide_category{:name => "guide[category]"}
           %option{:value => ""}
           - guide_categories.each do |c|
-            %option{:value => "#{c}"}= c.capitalize
+            %option{:value => "#{c}", :selected => "#{'selected' ? @guide.category == c : ''}"}= c.capitalize
       %li
         %a.btn.preview{:href => "#"} Preview
       %li
-        %a.btn.submit{:href => "#"} Submit
+        %a.btn.delete{:href => delete_guide_path(@guide.id)} Delete
+      %li
+        %a.btn.save{:href => "#"} Save
     %ul.nav.cheats
       %li.intro
         The editor uses <strong>Markdown</strong>, a text-to-HTML tool. Here is a cheat sheet to help you.
@@ -63,4 +66,4 @@
         .cheat ![text](http://../img.png)
       %li 
         .element horizontal line
-        .cheat *** 
+        .cheat ***  

@@ -16,6 +16,16 @@ class GuidesController < ApplicationController
     @guides = Guide.all
   end
 
+  def delete
+    @guide.destroy
+    render :json => { "status" => "success",
+                      "redirect" => "/guides"}
+  end
+
+  def update
+    @guide.update_attributes(params[:guide])
+  end
+
   def create
     @guide = Guide.new(params[:guide])
     @guide.avatar = nil if @guide.avatar == "url of image"

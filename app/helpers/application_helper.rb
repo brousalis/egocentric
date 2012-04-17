@@ -24,4 +24,8 @@ module ApplicationHelper
     end
   end
 
+  def guide_categories
+    ["capping", "offense", "defense", "midfield", "maps", "beginner"]
+  end
+
 end

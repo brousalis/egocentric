@@ -1,3 +1,6 @@
 jQuery('#comment_<%= @comment.id %>').remove();
+if (jQuery('#comments').children('li:not(#no_comments)').length == 0) {
+  jQuery('#no_comments').fadeIn();
+}
 //jQuery('#comments').prepend("<%= escape_javascript(flash[:notice]) %>");
 //jQuery('#comments').prepend("<%= escape_javascript(flash[:error]) %>");

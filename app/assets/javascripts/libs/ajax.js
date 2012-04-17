@@ -13,7 +13,7 @@ function like(button) {
   ajax_request('/like', 'post', data, success, failure);
 }
 
-function submit_guide() {
+function submit_guide(type) {
   var data = { guide:
                 { avatar: $('.image').val(),
                   name: $('.name').val(),
@@ -30,9 +30,16 @@ function submit_guide() {
     }); 
   }
 
-  ajax_request('/guides', 'post', data, success, failure);
+  ajax_request('/guides', type, data, success, failure);
 }
 
+function delete_guide(url) {
+  var failure = function(e) { }
+  var success = function(e) { window.location.href = e.redirect; }
+
+  ajax_request(url, 'post', {}, success, failure);
+}
+ 
 function register() {
   var failure = function(e) {
     $('#new_user .alert').html("").fadeIn();

@@ -1,6 +1,3 @@
-%div
-  = paginate comments
-
 .comments
   .header
     .left
@@ -19,6 +16,3 @@
       = render :partial => 'opinio/comments/comment', :collection => comment_sort(comments)
     - else
       %li#no_comments= t 'opinio.no_comments_found', :default => "No comments found"
-
-%div
-  = paginate comments

@@ -4,7 +4,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('input').input_focus();
+  $('.nav input, #register input, .brand input, .guide-new input').input_focus();
   $('.navbar input').attr('autocomplete', 'off');
   $('.alert').alert();
 });

@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  has_many :topics, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
+
   ajaxful_rater
 
    def already_likes?(comment)
