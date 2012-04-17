@@ -1,7 +1,7 @@
 class GuidesController < ApplicationController
   include Opinio::Controllers::Helpers
 
-  before_filter :authorize, :except => [:index]
+  before_filter :authorize, :except => [:index, :show]
   before_filter :find_guide, :except => [:index]
 
   def index
