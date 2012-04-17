@@ -38,12 +38,15 @@
       %li.sidebar-comment.meta
         .left Comments
         .right 
-          %span= @guide.all_comments.count 
+          %span.comments= @guide.all_comments.count 
       %li.meta.rating
         .left rating
         .right
-          = ratings_for @guide
-    - if current_user.username == @guide.user.username
+          - if current_user
+            = ratings_for @guide
+          - else
+            = ratings_for @guide, :static
+    - if current_user && current_user.username == @guide.user.username
       .admin
         %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit
         %a.btn.delete{:href => delete_guide_path(@guide.id)} Delete

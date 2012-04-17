@@ -6,7 +6,7 @@
       .count
         = comment.likes.count
       .like
-        %a{:id => "#{comment.id}", :href => "#", :class => "#{current_user.already_likes?(comment) ? "active" : ""}"} like
+        %a{:id => "#{comment.id}", :href => "#", :class => "#{current_user && current_user.already_likes?(comment) ? "active" : ""}"} like
     .content
       %span
         By 
