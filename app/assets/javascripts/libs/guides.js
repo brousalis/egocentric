@@ -77,10 +77,6 @@ $(document).ready(function() {
  
   $('textarea').autogrow();
 
- // $('.rating a').live('ajax:complete', function(xhr, status) {
- //   $(this).parent().parent().parent().replaceWith(status.responseText)
- // });
-
   // comments
   $('.like a').live('click', function(e) {
     like(this);
