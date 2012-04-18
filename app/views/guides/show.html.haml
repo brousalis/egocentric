@@ -40,12 +40,16 @@
         .right 
           %span.comments= @guide.all_comments.count 
       %li.meta.rating
-        .left rating
-        .right
+        .left average
+        #average.right
+          = ratings_for @guide, :static
+      %li.meta.rating
+        .left rate
+        #rates.right
           - if current_user
-            = ratings_for @guide
+            = ratings_for @guide, :show_user_rating => true
           - else
-            = ratings_for @guide, :static
+            %span Must be logged in
     - if current_user && current_user.username == @guide.user.username
       .admin
         %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit

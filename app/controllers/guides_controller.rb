@@ -58,12 +58,9 @@ class GuidesController < ApplicationController
 
   def rate
     @guide = Guide.find(params[:id])
+    @guide.rate(params[:stars], current_user, params[:dimension])
     respond_to do |format|
-      if @guide.rate(params[:stars], current_user, params[:dimension])
-        format.js { render :partial => "rating" }
-      else
-        format.js { render :partial => "rating" }
-      end
+      format.js 
     end
   end
 

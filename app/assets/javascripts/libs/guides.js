@@ -75,11 +75,11 @@ $(document).ready(function() {
     if (add) $('.add').fadeTo('fast', 0.5);
   });
  
-  $('.rating a').live('ajax:complete', function(xhr, status) {
-    $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
-  });
-
   $('.guides .page .body textarea').autogrow();
+
+ // $('.rating a').live('ajax:complete', function(xhr, status) {
+ //   $(this).parent().parent().parent().replaceWith(status.responseText)
+ // });
 
   // comments
   $('.like a').live('click', function(e) {

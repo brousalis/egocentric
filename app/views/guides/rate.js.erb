@@ -1,0 +1,2 @@
+$("#rates #<%= @guide.wrapper_dom_id(params) %>").html("<%= escape_javascript(ratings_for(@guide, params.merge(:wrap => false))) %>");
+$("#average #<%= @guide.wrapper_dom_id(params) %>").html("<%= escape_javascript(ratings_for(@guide, params.merge(:show_user_rating => false, :force_static => true, :wrap => false))) %>");
