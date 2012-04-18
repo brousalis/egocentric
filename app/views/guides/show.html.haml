@@ -11,6 +11,10 @@
       = comments_for @guide
 
   .sidebar.span3
+    - if current_user && current_user.username == @guide.user.username
+      .admin
+        %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit
+        %a.btn.delete{:href => delete_guide_path(@guide.id)} Delete 
     %ul.nav
       %li.top
       %li.meta
@@ -40,7 +44,7 @@
         .right 
           %span.comments= @guide.all_comments.count 
       %li.meta.rating
-        .left average
+        .left rating
         #average.right
           = ratings_for @guide, :static
       %li.meta.rating
@@ -50,7 +54,4 @@
             = ratings_for @guide, :show_user_rating => true
           - else
             %span Must be logged in
-    - if current_user && current_user.username == @guide.user.username
-      .admin
-        %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit
-        %a.btn.delete{:href => delete_guide_path(@guide.id)} Delete
+
