@@ -27,7 +27,7 @@
         .left Category
         .right
           = @guide.category.capitalize
-      - if @guide.more_from_category != nil
+      - if @guide.more_from_category != []
         %li.list
           %div 
             %h1 More from #{@guide.category}
