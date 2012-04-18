@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :store_return_to
+  before_filter :back
 
   def new
   end
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.json {
         if success
-          render :json => {"redirect" => "/", "user" => @user, "status" => "success"}.to_json
+          render :json => {"redirect" => request.env["HTTP_REFERER"], "user" => @user, "status" => "success"}.to_json
         else
           render :json => {"status" => "failure", "errors" => "Username or password incorrect"}.to_json
        end
@@ -28,12 +28,4 @@ class SessionsController < ApplicationController
 
 private
 
-  def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
-    session[:return_to] = nil
-  end
-
-  def store_return_to
-      session[:return_to] = request.url
-  end
 end

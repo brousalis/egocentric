@@ -1,8 +1,9 @@
 class GuidesController < ApplicationController
   include Opinio::Controllers::Helpers
 
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, :only => [:create, :update, :delete, :new, :rate]
   before_filter :find_guide, :except => [:index]
+  before_filter :back
 
   def index
     if params[:filter] == "date"
