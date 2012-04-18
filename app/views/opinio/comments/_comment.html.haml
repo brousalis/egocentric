@@ -11,7 +11,7 @@
       %span
         By 
         %a{:href => "#"} #{comment.owner.username}
-        - if current_user.username == comment.owner.username || current_user.role == "admin"
+        - if current_user && (current_user.username == comment.owner.username || current_user.role == "admin")
           = link_to '(delete)', comment_path(comment), :method => :delete, :remote => true
         on
         = format_date(comment.created_at)
