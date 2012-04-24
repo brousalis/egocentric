@@ -43,11 +43,11 @@
         .left Comments
         .right 
           %span.comments= @guide.all_comments.count 
-      %li.meta.rating
+      %li.rating
         .left rating
         #average.right
           = ratings_for @guide, :static
-      %li.meta.rating
+      %li.rating
         .left rate
         #rates.right
           - if current_user
