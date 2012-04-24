@@ -1,0 +1,22 @@
+.module
+  .module_header
+    = action_name.humanize
+    Post
+  .module_subheader.smaller
+  .module_body
+    = form_for [@topic, @post] do |f|
+      - if @post.errors.any?
+        - flash.now[:error] = @post.errors.full_messages.join(', and ')
+      .fieldset
+        %span.label.indent.smaller
+          = f.label :body
+          %br/
+          %small (Required)
+        %span.input.indent.smaller= f.text_area :body, :cols => 60, :rows => 15
+        .clear
+  .module_footer
+    .fieldset
+      %span.input
+        = f.submit "submit"
+        or #{link_to "cancel", @topic}
+      .clear

@@ -1,0 +1,33 @@
+//.right.controls= link_to "Back to Forum", forum_path(@topic.forum)
+//.module
+//  .module_header
+//    = @topic.title
+//    %span.right.controls
+//      = link_to "Edit", edit_topic_path(@topic)
+//      = link_to "Delete", @topic, :confirm => "Are you sure?", :method => :delete
+//      = link_to @topic.sticky ? "Unstick" : "Sticky", {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, :method => :put
+//      = link_to @topic.locked ? "Unlock" : "Lock", {:controller => 'topics', :action => 'update', :topic => {:locked => @topic.locked ? "false" : "true" }}, :method => :put
+%div
+  %table
+    - @topic.posts.each do |post|
+      %tr
+        %td.post_author{:rowspan => "2"}
+          %span.name= post.user.username
+          %span.avatar
+            / This space reserved for Avatar
+          %span.info.smaller
+            Posts #{post.user.posts.size}
+            %br/
+            Registered #{post.user.created_at.to_s(:joined)}
+            %br/
+        %td.post_header
+          %span.left.post_date.smaller
+            Posted #{post.created_at}
+          %span.right.controls
+            = link_to "Reply", new_topic_post_path(@topic)
+            = link_to "Quote", new_topic_post_path(@topic, :quote => post)
+            = link_to "Edit", edit_post_path(post)
+            = link_to "Delete", post, :confirm => "Are you sure?", :method => :delete
+      %tr
+        %td.post_body
+          = post.body

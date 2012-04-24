@@ -34,11 +34,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    current_user.update_attributes(params[:user])
+    current_user.save
+    redirect_to request.env["HTTP_REFERER"]
+  end
+
   def create
     @user = User.new(params[:user])
     @user.role = "member"
-    @user.avatar = "default"
     if @user.save
+
       session[:user_id] = @user.id
       render :json => { "status" => "success",
                         "redirect" => "/"}

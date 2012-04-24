@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  before_filter :back
 
   def new
   end

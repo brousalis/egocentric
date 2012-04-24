@@ -3,14 +3,14 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
-    %title Team Egocentric
+    %title Team Egocentric - BETA
     %meta{:content => "brous", :name => "author"}
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag "application"
     = csrf_meta_tag
-    %script{:src => "http://use.typekit.com/lvi4fxm.js", :type => "text/javascript"}
-    :javascript
-      try{Typekit.load();}catch(e){}
+    //%script{:src => "http://use.typekit.com/lvi4fxm.js", :type => "text/javascript"}
+    //:javascript
+    //  try{Typekit.load();}catch(e){}
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -18,7 +18,7 @@
           .brand
             - if current_user
               %a{:href => "#"}
-                %img{:src => "#{user_avatar}"}
+                = image_tag current_user.avatar.url(:thumb)
                 #{current_user.username}
             - else
               %a{:"data-toggle" => "modal", :style => "padding-left: 10px", :href => "#register"}
@@ -26,12 +26,11 @@
                 %span Create an account
           - if current_user
             .brand.avatar
-              %input{:value => "avatar url"}
+              = form_for(current_user, :html => { :multipart => true }) do |f|
+                = f.file_field :avatar
           .nav-collapse
             %ul.nav
               - if current_user
-                %li
-                  %a.new-topic.btn{:href => "/"} New topic
                 %li
                   %a.new-guide.btn{:href => "/guides/new"} New guide
                 %li
@@ -55,7 +54,7 @@
             %li
               %a{:href => "#"} Articles
             %li
-              %a{:href => "/guides"} Guides
+              %a.enabled{:href => "/guides"} Guides
             %li
               %a{:href => "#"} Forums
             %li
