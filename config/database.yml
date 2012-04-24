@@ -5,3 +5,11 @@ development:
   pool: 5
   username: ego
   password:
+
+production:
+  adapter: mysql
+  encoding: unicode
+  database: teamegoc_db
+  pool: 5
+  username: teamegoc_admin
+  password: 19Egocentric88
