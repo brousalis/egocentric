@@ -10,7 +10,6 @@ gem "paperclip", "~> 3.0"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'ajaxful_rating', "~> 3.0.0.beta8"
 gem 'opinio'
-gem 'will_paginate'
 gem 'forum_monster'
 
 group :assets do
@@ -24,6 +23,3 @@ end
 group :test do
   gem 'turn', '0.8.2', :require => false
 end
-
-
-gem "kaminari"

@@ -7,7 +7,7 @@ development:
   password:
 
 production:
-  adapter: mysql
+  adapter: mysql2
   encoding: unicode
   database: teamegoc_db
   pool: 5
