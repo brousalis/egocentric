@@ -5,3 +5,4 @@ _site/
 tmp/
 log/
 public/
+config/database.yml
