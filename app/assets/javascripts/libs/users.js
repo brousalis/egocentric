@@ -13,6 +13,10 @@ $(document).ready(function() {
   });
 
   // change avatar
+  $("input:file").change(function (){
+    $('.edit_user').submit();
+  });
+
   $('.brand a img').live('click', function(e) {
     $('.brand.avatar').toggle();
   });

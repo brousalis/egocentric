@@ -3,7 +3,6 @@ class Guide < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   validates_presence_of :user 
-  validates_presence_of :body
   validates_presence_of :name
   validates_presence_of :category
   validates_uniqueness_of :name

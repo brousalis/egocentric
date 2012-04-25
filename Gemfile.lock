@@ -140,6 +140,7 @@ DEPENDENCIES
   forum_monster
   haml (>= 3.0.0)
   jquery-rails (>= 1.0.12)
+  kaminari
   opinio
   paperclip (~> 3.0)
   pg

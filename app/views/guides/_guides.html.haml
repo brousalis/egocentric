@@ -9,4 +9,4 @@
         %small 
           by #{guide.user.username} on #{format_date(guide.created_at)}
       .rating
-        = ratings_for guide, :static 
+        = ratings_for guide, :static, :dimension => :rating

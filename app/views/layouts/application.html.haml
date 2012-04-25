@@ -63,6 +63,11 @@
 
       = yield
 
+      .footer
+        The website is still in beta. Please contact 
+        %a{:href => "mailto:webdev@teamegocentric.com"} brous
+        if you find any bugs.
+
     = render "layouts/register" if !current_user
 
     = javascript_include_tag "application"
