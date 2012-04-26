@@ -10,7 +10,7 @@ task :deploy => :environment do
   commands = [
     "cd #{remote_path} && sudo git fetch",
     "cd #{remote_path} && sudo git reset --hard origin/master",
-    #"cd #{remote_path} && sudo bundle install",
+    "cd #{remote_path} && sudo bundle install",
     "cd #{remote_path} && sudo touch tmp/restart.txt"
   ]
 
