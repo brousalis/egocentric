@@ -11,6 +11,7 @@ gem 'ajaxful_rating', "~> 3.0.0.beta8"
 gem 'opinio'
 gem 'forum_monster'
 gem 'kaminari'
+gem 'capistrano'
 
 group :development do
   gem 'pg'

@@ -6,8 +6,8 @@
         .left 
           Sort by
         .right
-          = link_to "Rating", {:controller => "guides", :action => "index", :filter => "rating"}, {:class => "filter active"} 
-          = link_to "Date", {:controller => "guides", :action => "index", :filter => "date"}, {:class => "filter"}
+          = link_to "Date", {:controller => "guides", :action => "index", :filter => "date"}, {:class => "filter active"}
+          = link_to "Rating", {:controller => "guides", :action => "index", :filter => "rating"}, {:class => "filter"} 
       %li.search
         %input.searchbox
       %li.list

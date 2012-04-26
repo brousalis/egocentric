@@ -323,12 +323,17 @@ a
           font-size: 1.4em
   .sidebar
     .admin
-      margin-bottom: 18px
+      margin-bottom: 5px
       .btn.delete
         margin-left: 6px
       .btn
         margin-top: 0px
         width: 36%
+    .admin.type
+      margin-bottom: 13px
+      .btn
+        width: 61px !important
+        padding: 4px
     .btn
       border: 1px solid #000 !important
       text-shadow: none
@@ -909,9 +914,11 @@ a
         .rating 
           float: right
           position: relative
+          width: 250px
+
           .ajaxful-rating-wrapper
             position: absolute
-            top: -50px
+            top: -55px
             right: 15px
         a
           display: block
@@ -934,14 +941,32 @@ a
           .name 
             position: relative
           strong
-            font-size: 26px
+            font-size: 25px
             font-weight: 300
             line-height: 26px
-          small
+          .meta
             font-size: 15px
             margin-top: 3px
-            color: rgba(255, 255, 255, 0.5)
+            color: rgba(255, 255, 255, 0.5) !important
             display: block
+            div
+              display: inline
+              background: #222
+              opacity: 0.5
+              padding: 1px 8px
+              border-radius: 6px
+              font-size: 12px
+              margin-left: 5px
+              font-weight: bold
+              text-transform: uppercase
+              &.approved
+                color: green !important
+              &.featured
+                color: $lightblue !important 
+            strong
+              font-weight: normal
+              font-size: 15px
+              color: #ccc
           span
             font-size: 12px
             color: #aaa

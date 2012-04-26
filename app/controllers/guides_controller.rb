@@ -6,10 +6,10 @@ class GuidesController < ApplicationController
   before_filter :back
 
   def index
-    if params[:filter] == "date"
-      @guides = Guide.all.sort_by { |g| g.created_at }.reverse
+    if params[:filter] == "rating"
+      @guides = Guide.all.sort_by { |g| g.rate_average(false, :rating) }.reverse
     else
-      @guides = Guide.all.sort_by { |g| g.rate_average }.reverse
+      @guides = Guide.all.sort_by { |g| g.created_at }.reverse
     end
   end 
 
@@ -25,6 +25,7 @@ class GuidesController < ApplicationController
 
   def update
     @guide.update_attributes(params[:guide])
+    redirect_to @guide
   end
 
   def create
@@ -55,6 +56,24 @@ class GuidesController < ApplicationController
         render :json => { "status" => "failure" }
       end
     end
+  end
+
+  def approve
+    @guide.guide_type = "approved"
+    @guide.save
+    redirect_to "/guides"
+  end
+
+  def feature
+    @guide.guide_type = "featured"
+    @guide.save
+    redirect_to "/guides"
+  end
+
+  def no_type
+    @guide.guide_type = nil
+    @guide.save
+    redirect_to "/guides"
   end
 
   def rate

@@ -6,7 +6,11 @@
         .name
           %strong= truncate(guide.name, 51)
           %span #{guide.all_comments.count}
-        %small 
-          by #{guide.user.username} on #{format_date(guide.created_at)}
+        .meta
+          by 
+          %strong #{guide.user.username} 
+          on #{format_date(guide.created_at)}
+          - if guide.guide_type != nil
+            %div{:class => guide.guide_type}= guide.guide_type
       .rating
         = ratings_for guide, :static, :dimension => :rating
