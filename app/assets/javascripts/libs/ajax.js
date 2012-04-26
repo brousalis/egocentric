@@ -33,6 +33,27 @@ function submit_guide(type) {
   ajax_request('/guides', type, data, success, failure);
 }
 
+function save_guide(type) {
+  var id = $('div[class^="guide-"]').attr('class').replace('guide-','');
+  var data = { guide:
+                { avatar: $('.image').val(),
+                  name: $('.name').val(),
+                  body: $('.body textarea').val(),
+                  category: $('#guide_category').val(),
+                  video: $('.video-url').val() 
+                }
+              }
+  var success = function(e) { window.location.href = e.redirect; }
+  var failure = function(e) {
+    $('.guides .alert').html("").fadeIn();
+    $.each(e.errors, function() {
+      $('.guides .alert').append("<div>"+this+"</div>");
+    }); 
+  }
+
+  ajax_request('/guides/'+id, type, data, success, failure);
+}
+ 
 function delete_guide(url) {
   var failure = function(e) { }
   var success = function(e) { window.location.href = e.redirect; }

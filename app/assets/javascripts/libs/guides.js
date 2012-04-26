@@ -46,7 +46,7 @@ $(document).ready(function() {
   });
 
   $('.guides .save').live('click', function(e) {
-    submit_guide('put');
+    save_guide('put');
     return false;
   });  
 

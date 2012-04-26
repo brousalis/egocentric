@@ -1,6 +1,7 @@
 .guides.row
   .alert.alert-error
     %a.close{"data-dismiss" => "alert", :href => "#"} ×
+  %div{:class => "guide-#{@guide.id}"}
   .page.span9
     .header{:style => "background: url(#{@guide.avatar})"}
       .add
@@ -18,7 +19,7 @@
       %input.video-url{:value => "url of youtube video"}
     %iframe.youtube{:style => "display: none;", :allowfullscreen => "", :frameborder => "0", :height => "500", :src => "", :width => "100%"}
     .body
-      %textarea{:autofocus => ""}
+      %textarea
         != @guide.body
        
   .sidebar.span3

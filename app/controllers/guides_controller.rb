@@ -25,7 +25,8 @@ class GuidesController < ApplicationController
 
   def update
     @guide.update_attributes(params[:guide])
-    redirect_to @guide
+    render :json => { "status" => "success",
+                       "redirect" => guide_path(@guide)}
   end
 
   def create
