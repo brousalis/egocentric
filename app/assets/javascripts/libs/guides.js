@@ -31,11 +31,15 @@ $(document).ready(function() {
   });
 
   $('.add-image').live('click', function(e) {
-    url = "url('" + $('input.image').val() + "')";
-    $('<img/>').attr('src', $('input.image').val()).load(function() { 
+    url = "url('" + $('.image').val() + "')";
+    $('<img/>').attr('src', $('.image').val()).load(function() { 
+      $('.image').removeClass('error');
       $('.header').css('background', url);
       $('.add').fadeTo('slow', 0.5);
       add = true;
+    });
+    $('<img/>').attr('src', $('.image').val()).error(function() { 
+      $('.image').addClass('error');
     });
     return false;
   });

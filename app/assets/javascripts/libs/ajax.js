@@ -35,23 +35,27 @@ function submit_guide(type) {
 
 function save_guide(type) {
   var id = $('div[class^="guide-"]').attr('class').replace('guide-','');
-  var data = { guide:
-                { avatar: $('.image').val(),
-                  name: $('.name').val(),
-                  body: $('.body textarea').val(),
-                  category: $('#guide_category').val(),
-                  video: $('.video-url').val() 
+  var request = function(avatar) {
+    var data = { guide:
+                  { avatar: avatar,
+                    name: $('.name').val(),
+                    body: $('.body textarea').val(),
+                    category: $('#guide_category').val(),
+                    video: $('.video-url').val() 
+                  }
                 }
-              }
-  var success = function(e) { window.location.href = e.redirect; }
-  var failure = function(e) {
-    $('.guides .alert').html("").fadeIn();
-    $.each(e.errors, function() {
-      $('.guides .alert').append("<div>"+this+"</div>");
-    }); 
-  }
+    var success = function(e) { window.location.href = e.redirect; }
+    var failure = function(e) {
+      $('.guides .alert').html("").fadeIn();
+      $.each(e.errors, function() {
+        $('.guides .alert').append("<div>"+this+"</div>");
+      }); 
+    }
 
-  ajax_request('/guides/'+id, type, data, success, failure);
+    ajax_request('/guides/'+id, type, data, success, failure);
+  }
+  $('<img/>').attr('src', $('input.image').val()).load(function() { request($('input.image').val()); });   
+  $('<img/>').attr('src', $('input.image').val()).error(function() { request(""); });   
 }
  
 function delete_guide(url) {
