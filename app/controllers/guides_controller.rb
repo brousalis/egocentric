@@ -24,6 +24,8 @@ class GuidesController < ApplicationController
   end
 
   def update
+    @guide.avatar = nil if @guide.avatar == "url of image" || @guide.avatar == ""
+    @guide.video = nil if @guide.video == "url of youtube video" || @guide.video = "" 
     @guide.update_attributes(params[:guide])
     render :json => { "status" => "success",
                        "redirect" => guide_path(@guide)}
