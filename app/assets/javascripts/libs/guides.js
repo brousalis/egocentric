@@ -99,6 +99,27 @@ $(document).ready(function() {
     );
   }); 
 
+  /*var $sidebar = $(".scroll");
+  if ($sidebar.length != 0) {
+    var $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 15;
+
+    if ($sidebar.hasClass("index")) topPadding = 55;
+    $window.scroll(function() {
+        console.log(offset.top);
+        if ($window.scrollTop() > offset.top) {
+            $sidebar.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+  }*/
+
   //index
   $('#source li a').on("click", function(e) {
     $('#source li a').each(function() { $(this).removeClass('active') } );

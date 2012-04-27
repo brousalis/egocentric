@@ -20,7 +20,7 @@
     %iframe.youtube{:style => "display: none;", :allowfullscreen => "", :frameborder => "0", :height => "500", :src => "", :width => "100%"}
     .body
       %textarea
-        != @guide.body
+        = @guide.body
        
   .sidebar.span3
     %ul.nav

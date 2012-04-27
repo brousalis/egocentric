@@ -11,7 +11,7 @@
     .comments#comment-list
       = comments_for @guide
 
-  .sidebar.span3
+  .sidebar.scroll.span3
     - if current_user && (current_user.username == @guide.user.username || current_user.role == "egocentric")
       .admin
         %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit

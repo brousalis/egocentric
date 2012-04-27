@@ -54,8 +54,10 @@ function save_guide(type) {
 
     ajax_request('/guides/'+id, type, data, success, failure);
   }
-  $('<img/>').attr('src', $('input.image').val()).load(function() { request($('input.image').val()); });   
-  $('<img/>').attr('src', $('input.image').val()).error(function() { request(""); });   
+  var value = $('.image').val();
+  if (value == "") value = "url of image";
+  $('<img/>').attr('src', value).load(function() { request($('input.image').val()); });   
+  $('<img/>').attr('src', value).error(function() { request(""); });   
 }
  
 function delete_guide(url) {
