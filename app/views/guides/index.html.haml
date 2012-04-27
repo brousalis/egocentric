@@ -1,30 +1,32 @@
-.guides.guide.row
-  .sidebar.scroll.index.span3
-    %ul.nav
-      %li.top
-      %li.meta
-        .left 
-          Sort by
-        .right
-          = link_to "Date", {:controller => "guides", :action => "index", :filter => "date"}, {:class => "filter active"}
-          = link_to "Rating", {:controller => "guides", :action => "index", :filter => "rating"}, {:class => "filter"} 
-      %li.search
-        %input.searchbox
-      %li.list
-        %div
-          %h1 Categories
-          %ul#source
-            %li
-              %a.all.active{:href => "#"} All
-            - Guide.all_categories.each do |cat|
+.guides.guide
+
+  .row
+    .sidebar.scroll.index.span3
+      %ul.nav
+        %li.top
+        %li.meta
+          .left 
+            Sort by
+          .right
+            = link_to "Date", {:controller => "guides", :action => "index", :filter => "date"}, {:class => "filter active"}
+            = link_to "Rating", {:controller => "guides", :action => "index", :filter => "rating"}, {:class => "filter"} 
+        %li.search
+          %input.searchbox
+        %li.list
+          %div
+            %h1 Categories
+            %ul#source
               %li
-                %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
-  .guide-list.span9
-    .header
-      %span.title Guides
-      %span.count= Guide.find(:all).count
-      %span.ajax 
-    .all-guides 
-      .no-guides
-        No guides are found.
-      = render "guides"
+                %a.all.active{:href => "#"} All
+              - Guide.all_categories.each do |cat|
+                %li
+                  %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
+    .guide-list.span9
+      .header
+        %span.title Guides
+        %span.count= Guide.find(:all).count
+        %span.ajax 
+      .all-guides 
+        .no-guides
+          No guides are found.
+        = render "guides"

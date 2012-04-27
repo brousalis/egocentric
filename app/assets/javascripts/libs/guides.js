@@ -99,6 +99,8 @@ $(document).ready(function() {
     );
   }); 
 
+  $('#promo-slider').carousel({ interval: false });
+
   /*var $sidebar = $(".scroll");
   if ($sidebar.length != 0) {
     var $window    = $(window),

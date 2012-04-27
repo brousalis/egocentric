@@ -8,6 +8,7 @@ $blue: #03488d
 
 html
   background: url("/assets/bg.png") repeat
+  -webkit-font-smoothing: antialiased !important
 
 body
   padding-top: 75px
@@ -187,6 +188,54 @@ a
                 background: url("/assets/arrow.png") no-repeat 50% 60%
 
 .guides
+  .promotions
+    margin-bottom: 30px
+    .promotion
+      .ad
+        position: relative
+        height: 190px
+        text-indent: -9999px
+        background: url('/assets/ad.png') no-repeat
+    .top
+      +gradient-vertical($darkblue, $blue)
+      padding: 8px
+      +border-radius(8px 8px 0px 0px)  
+      span
+        text-transform: uppercase
+        color: #F9F9F9
+        font-size: 13px
+        font-weight: bold
+        margin-left: 5px 
+        &.filter
+          text-transform: none
+          font-size: 12px
+          font-weight: bold
+          background: #000
+          padding: 1px 6px !important
+          margin-left: 6px
+          float: right
+          +border-radius(6px)
+          -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+          -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+          -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset      
+          a
+            color: #aaa
+            &.active 
+              color: #fff !important 
+    .body
+      margin: 0px
+      background: rgba(0, 0, 0, 0.5)
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 5px rgba(0, 0, 0, 0.3) inset
+      padding: 4px
+      opacity: 80
+      filter: alpha(opacity=8000)
+      border-left: 1px solid $blue
+      border-right: 1px solid $blue
+      border-bottom: 1px solid $blue
   .alert
     margin-left: 20px
     display: none
@@ -945,6 +994,7 @@ a
             font-size: 25px
             font-weight: 300
             line-height: 26px
+            text-shadow: -1px -1px 1px rgba(255,255,255,0.2), 1px 1px 1px rgba(255,255,255,0.2), 1px 1px 1px rgba(0,0,0,0.7)
           .meta
             font-size: 15px
             margin-top: 3px
