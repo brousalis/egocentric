@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  def guides_count
+    attributes['guides_count']
+  end
   
   def encrypt_password
     if password.present?

@@ -11,6 +11,7 @@ class GuidesController < ApplicationController
     else
       @guides = Guide.all.sort_by { |g| g.created_at }.reverse
     end
+    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username")
   end 
 
   def new
@@ -35,7 +36,7 @@ class GuidesController < ApplicationController
   def create
     @guide = Guide.new(params[:guide])
     @guide.avatar = nil if @guide.avatar == "url of image" || @guide.avatar == ""
-    @guide.video = nil if @guide.video == "url of youtube video" || @guide.video = ""
+    @guide.video = nil if @guide.video == "url of youtube video" || @guide.video == ""
     @guide.user = current_user
     if @guide.save
       render :json => { "status" => "success",

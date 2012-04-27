@@ -188,7 +188,7 @@ a
                 background: url("/assets/arrow.png") no-repeat 50% 60%
 
 .guides
-  .promotions
+  .top
     margin-bottom: 30px
     .promotion
       .body
@@ -197,13 +197,14 @@ a
         margin: 0
         .extra
           padding: 4px
-          
+          height: 182px
         .ad
+          cursor: pointer
           position: relative
           height: 190px
           text-indent: -9999px
           background: url('/assets/ad.png') no-repeat
-    .top
+    .header
       +gradient-vertical($darkblue, $blue)
       padding: 8px
       +border-radius(8px 8px 0px 0px)  
@@ -213,7 +214,7 @@ a
         font-size: 13px
         font-weight: bold
         margin-left: 5px 
-        &.filter
+        &.leaders
           text-transform: none
           font-size: 12px
           font-weight: bold
