@@ -191,11 +191,18 @@ a
   .promotions
     margin-bottom: 30px
     .promotion
-      .ad
-        position: relative
-        height: 190px
-        text-indent: -9999px
-        background: url('/assets/ad.png') no-repeat
+      .body
+        padding: 0
+      #promo-slider
+        margin: 0
+        .extra
+          padding: 4px
+          
+        .ad
+          position: relative
+          height: 190px
+          text-indent: -9999px
+          background: url('/assets/ad.png') no-repeat
     .top
       +gradient-vertical($darkblue, $blue)
       padding: 8px
@@ -994,6 +1001,7 @@ a
             font-size: 25px
             font-weight: 300
             line-height: 26px
+            -webkit-font-smoothing: antialiased !important
           .meta
             font-size: 15px
             margin-top: 3px
