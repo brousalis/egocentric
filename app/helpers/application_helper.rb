@@ -28,4 +28,9 @@ module ApplicationHelper
     ["capping", "offense", "defense", "midfield", "maps", "beginner"]
   end
 
+  def bar_width(user)
+    guides = Guide.all.count
+    return (user.to_f / guides.to_f * 100).round(2)
+  end
+
 end

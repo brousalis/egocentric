@@ -1,4 +1,35 @@
 .guides.guide
+  .row.top
+    .span4.promotion
+      .header
+        %span Promotions
+      .body
+        #promo-slider.carousel
+          .carousel-inner
+            .item.ad.active
+            .item.extra
+              Extra
+    .span4.leaderboard
+      .header
+        %span leaderboards
+        %span.leaders 
+          %a{:href => "#"} Guides
+        %span.leaders 
+          %a.active{:href => "#"} Authors
+      .body
+        %ul.leaderboard
+          - @user_leaders.collect do |u|
+            - user = User.find_by_username(u.username)
+            %li
+              %img{:src => user.avatar.url(:thumb)}
+              %span= user.username
+              %span.count= u.guides_count
+              %span.bar{:style => "width: #{bar_width(u.guides_count)}%"}
+    .span4
+      .header
+        %span Recent activity
+      .body
+        lols
   .row
     .sidebar.scroll.index.span3
       %ul.nav

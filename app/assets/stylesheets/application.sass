@@ -231,6 +231,7 @@ a
             color: #aaa
             &.active 
               color: #fff !important 
+
     .body
       margin: 0px
       background: rgba(0, 0, 0, 0.5)
@@ -244,6 +245,38 @@ a
       border-left: 1px solid $blue
       border-right: 1px solid $blue
       border-bottom: 1px solid $blue
+      ul.leaderboard
+        margin: 0
+        padding: 0
+        li
+          list-style: none
+          position: relative
+          z-index: 1
+          img
+            position: relative
+            z-index: 1
+          span.count
+            float: right
+            padding: 0
+            padding-right: 15px
+            padding-top: 5px
+          span.bar
+            z-index: 0
+            position: absolute
+            top: 0
+            left: 0
+            background: black
+            height: 30px
+            padding: 0
+          span
+            padding: 9px 2px 9px 9px
+            position: relative
+            z-index: 1
+            font-weight: bold
+  .leaderboard
+    .body
+      padding: 0px 
+      background: rgba(0, 0, 0, 0.1)
   .alert
     margin-left: 20px
     display: none

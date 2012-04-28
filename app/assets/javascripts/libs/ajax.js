@@ -44,6 +44,7 @@ function save_guide(type) {
                     video: $('.video-url').val() 
                   }
                 }
+    alert(video);
     var success = function(e) { window.location.href = e.redirect; }
     var failure = function(e) {
       $('.guides .alert').html("").fadeIn();
