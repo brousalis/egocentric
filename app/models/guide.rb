@@ -12,6 +12,12 @@ class Guide < ActiveRecord::Base
   ajaxful_rateable :stars => 5, :dimensions => [:rating]
   opinio_subjectum
 
+  after_create :add_activity
+
+  def add_activity
+    Activity.add(self.user, Activity::POSTED_GUIDE, self)
+  end  
+
   def all_comments
     self.comments.collect { |c| [c] + c.comments }.flatten
   end

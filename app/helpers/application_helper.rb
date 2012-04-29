@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def truncate(string, length = 10)
-    string.size > length ? string[0,length] + "..." : string
+    string.size > length ? string[0,length] + "&hellip;" : string
   end 
 
   def render_markdown(text)

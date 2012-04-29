@@ -99,12 +99,12 @@ $(document).ready(function() {
     );
   }); 
 
-  var carousel = $('#promo-slider').carousel({
+  /*var carousel = $('#promo-slider').carousel({
     interval: false
   });
   $('#promo-slider .item').live('click', function() {
     carousel.carousel('next');
-  });
+  });*/
 
   /*var $sidebar = $(".scroll");
   if ($sidebar.length != 0) {

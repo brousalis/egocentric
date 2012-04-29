@@ -27,6 +27,17 @@ $(document).ready(function() {
     }
   });
 
+  // cool
+  var c = 1
+  $('.leaderboard li').each(function() {
+    if (c <= 3) { $(this).prepend('<span class="medal"></span>'); }
+    c = c + 1
+  });
+
+  $('.time').tooltip({ placement: 'right', trigger: 'manual' }); 
+  $('.activities li').hover(function() { $(this).find('.time').tooltip('show') },
+                            function() { $(this).find('.time').tooltip('hide') });
+
   // register
   var reg = true;
   $('#register').modal('hide');
@@ -45,5 +56,11 @@ $(document).ready(function() {
       login($('#user_username').val(), $('#user_password').val());
     }
   });
+
+  $('#user_username').keyup( function() {
+    var $this = $(this);
+    if($this.val().length > 18)
+      $this.val($this.val().substr(0, 18));     
+  }); 
 
 });

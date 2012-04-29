@@ -34,8 +34,8 @@ function submit_guide(type) {
 }
 
 function save_guide(type) {
-  var id = $('div[class^="guide-"]').attr('class').replace('guide-','');
   var request = function(avatar) {
+    var id = $('div[class^="guide-"]').attr('class').replace('guide-','');
     var data = { guide:
                   { avatar: avatar,
                     name: $('.name').val(),
@@ -44,7 +44,6 @@ function save_guide(type) {
                     video: $('.video-url').val() 
                   }
                 }
-    alert(video);
     var success = function(e) { window.location.href = e.redirect; }
     var failure = function(e) {
       $('.guides .alert').html("").fadeIn();

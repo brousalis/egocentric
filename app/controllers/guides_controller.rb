@@ -11,7 +11,7 @@ class GuidesController < ApplicationController
     else
       @guides = Guide.all.sort_by { |g| g.created_at }.reverse
     end
-    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username")
+    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username", :limit => 6, :order => "guides_count DESC")
   end 
 
   def new
@@ -29,6 +29,7 @@ class GuidesController < ApplicationController
     updates['avatar'] = nil if updates['avatar'] == "url of image" || updates['avatar'] == ""
     updates['video'] = nil if updates['video'] == "url of youtube video" || updates['video'] == ""
     @guide.update_attributes(updates)
+    Activity.add(current_user, Activity::EDITED_GUIDE, @guide)
     render :json => { "status" => "success",
                        "redirect" => guide_path(@guide)}
   end
@@ -84,6 +85,7 @@ class GuidesController < ApplicationController
   def rate
     @guide = Guide.find(params[:id])
     @guide.rate(params[:stars], current_user, params[:dimension])
+
     respond_to do |format|
       format.js 
     end

@@ -2,7 +2,7 @@
   .row.top
     .span4.promotion
       .header
-        %span Promotions
+        %span Promotion
       .body
         #promo-slider.carousel
           .carousel-inner
@@ -12,24 +12,24 @@
     .span4.leaderboard
       .header
         %span leaderboards
-        %span.leaders 
-          %a{:href => "#"} Guides
-        %span.leaders 
-          %a.active{:href => "#"} Authors
       .body
         %ul.leaderboard
           - @user_leaders.collect do |u|
             - user = User.find_by_username(u.username)
             %li
-              %img{:src => user.avatar.url(:thumb)}
-              %span= user.username
+              %img.avatar{:src => user.avatar.url(:thumb)}
+              %span.username
+                %a{:href => "#"}= user.username
               %span.count= u.guides_count
               %span.bar{:style => "width: #{bar_width(u.guides_count)}%"}
-    .span4
+    .span4.recent
       .header
         %span Recent activity
       .body
-        lols
+        %ul.activities
+          - Activity.all.each do |a|
+            %li
+              != a.to_words
   .row
     .sidebar.scroll.index.span3
       %ul.nav
