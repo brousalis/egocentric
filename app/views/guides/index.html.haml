@@ -1,23 +1,5 @@
 .guides.guide
-  .row.top
-    .span8.promotion
-      .header
-        %span Promotion
-      .body
-        #promo-slider.carousel
-          .carousel-inner
-            .item.ad.active
-            .item.extra
-              Extra
 
-    .span4.recent
-      .header
-        %span Recent activity
-      .body
-        %ul.activities
-          - Activity.all.each do |a|
-            %li
-              != a.to_words
   .row
     .sidebar.scroll.index.span3
       %ul.nav
