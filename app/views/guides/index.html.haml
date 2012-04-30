@@ -1,6 +1,6 @@
 .guides.guide
   .row.top
-    .span4.promotion
+    .span8.promotion
       .header
         %span Promotion
       .body
@@ -9,19 +9,7 @@
             .item.ad.active
             .item.extra
               Extra
-    .span4.leaderboard
-      .header
-        %span leaderboards
-      .body
-        %ul.leaderboard
-          - @user_leaders.collect do |u|
-            - user = User.find_by_username(u.username)
-            %li
-              %img.avatar{:src => user.avatar.url(:thumb)}
-              %span.username
-                %a{:href => "#"}= user.username
-              %span.count= u.guides_count
-              %span.bar{:style => "width: #{bar_width(u.guides_count)}%"}
+
     .span4.recent
       .header
         %span Recent activity

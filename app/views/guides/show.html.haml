@@ -4,7 +4,7 @@
       .header{:style => "background: url(#{@guide.avatar})", :class => ("no-avatar" if (@guide.avatar == nil || @guide.avatar == ""))}
         %h1= @guide.name
       - if @guide.video
-        %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "http://youtube.com/embed/#{@guide.video}", :width => "100%"}
+        %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "http://www.youtube.com/embed/#{@guide.video}", :width => "100%"}
       - if @guide.body != ""
         .body
           != render_markdown(@guide.body)

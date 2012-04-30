@@ -26,7 +26,7 @@ $(document).ready(function() {
         url = match[7];
     }
     $('.video-url').val(url);
-    $('.youtube').attr("src", "http://youtube.com/embed/"+url).fadeIn();
+    $('.youtube').attr("src", "http://www.youtube.com/embed/"+url).fadeIn();
     return false;
   });
 
