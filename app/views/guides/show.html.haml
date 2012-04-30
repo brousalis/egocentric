@@ -44,7 +44,8 @@
             %ul
               - @guide.more_from_category.each do |g|
                 %li
-                  %a{:href => guide_path(g)}= truncate(g.name, 30)
+                  %a{:href => guide_path(g)}
+                    != truncate(g.name, 30)
       %li.sidebar-comment.meta
         .left Comments
         .right 
