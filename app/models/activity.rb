@@ -52,7 +52,7 @@ private
         name = truncate(name, 12)
       end
     end
-    "rated <a href='#{guide}'>#{name}</a> <span class='stars'>#{target.stars}</span>"
+    "rated <a href='#{guide}'>#{name}</a>"
   end  
 
   def shorten(text, action = "added")
