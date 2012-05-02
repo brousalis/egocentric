@@ -1,0 +1,231 @@
+o: ActiveSupport::Cache::Entry	:@expires_in0:@value{"pathname"0$root/app/assets/javascripts/application.js"id"%95586f2a666099ca278642161d6a6778"	body"e
+$(document).ready(function() {
+  $('.nav input, #register input, .brand input, .guide-new input').input_focus();
+  $('.navbar input').attr('autocomplete', 'off');
+  $('.alert').alert();
+});
+
+// ajax
+function ajax_request(url, type, data, success, failure) {
+  $.ajax({
+    headers: {
+      'X-Transaction': 'POST Example',
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: data,
+    url: url,
+    type: type,
+    dataType: 'json',
+    success: function(e) {
+      if (e.status == "success") {
+        success(e);
+      } else if (e.status == "failure") {
+        failure(e);
+      }
+    }
+  });
+}
+
+$.fn.input_focus = function() {
+  return $(this).each(function() {
+    var default_value = $(this).val();
+    $(this).focus(function() {
+      if($(this).val() == default_value) $(this).val("");
+    }).blur(function(){
+      if($(this).val().length == 0) $(this).val(default_value);
+    });
+  });
+}
+ 
+// carousel overwrite, dumb I know
+/* ==========================================================
+ * bootstrap-carousel.js v2.0.3
+ * http://twitter.github.com/bootstrap/javascript.html#carousel
+ * ==========================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================== */
+
+
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* CAROUSEL CLASS DEFINITION
+  * ========================= */
+
+  var Carousel = function (element, options) {
+    this.$element = $(element)
+    this.options = options
+    this.options.slide && this.slide(this.options.slide)
+    this.options.pause == 'hover' && this.$element
+      .on('mouseenter', $.proxy(this.pause, this))
+      .on('mouseleave', $.proxy(this.cycle, this))
+  }
+
+  Carousel.prototype = {
+
+    cycle: function (e) {
+      if (!e) this.paused = false
+      this.options.interval
+        && !this.paused
+        && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
+      return this
+    }
+
+  , to: function (pos) {
+      var $active = this.$element.find('.active')
+        , children = $active.parent().children()
+        , activePos = children.index($active)
+        , that = this
+
+      if (pos > (children.length - 1) || pos < 0) return
+
+      if (this.sliding) {
+        return this.$element.one('slid', function () {
+          that.to(pos)
+        })
+      }
+
+      if (activePos == pos) {
+        return this.pause().cycle()
+      }
+
+      return this.slide(pos > activePos ? 'next' : 'prev', $(children[pos]))
+    }
+
+  , pause: function (e) {
+      if (!e) this.paused = true
+      clearInterval(this.interval)
+      this.interval = null
+      return this
+    }
+
+  , next: function () {
+      if (this.sliding) return
+      return this.slide('next')
+    }
+
+  , prev: function () {
+      if (this.sliding) return
+      return this.slide('prev')
+    }
+
+  , slide: function (type, next) {
+      var $active = this.$element.find('.active')
+        , $next = next || $active[type]()
+        , isCycling = this.interval
+        , direction = type == 'next' ? 'left' : 'right'
+        , fallback  = type == 'next' ? 'first' : 'last'
+        , that = this
+        , e = $.Event('slide')
+
+      this.sliding = true
+
+      isCycling && this.pause()
+
+      $next = $next.length ? $next : this.$element.find('.item')[fallback]()
+
+      if ($next.hasClass('active')) return
+
+      if ($.support.transition && this.$element.hasClass('slide')) {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
+        $next.addClass(type)
+        $next[0].offsetWidth // force reflow
+        $active.addClass(direction)
+        $next.addClass(direction)
+        this.$element.one($.support.transition.end, function () {
+          $next.removeClass([type, direction].join(' ')).addClass('active')
+          $active.removeClass(['active', direction].join(' '))
+          that.sliding = false
+          setTimeout(function () { that.$element.trigger('slid') }, 0)
+        })
+      } else {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
+        $active.removeClass('active')
+        $next.addClass('active')
+        this.sliding = false
+        this.$element.trigger('slid')
+      }
+
+      isCycling && this.cycle()
+
+      return this
+    }
+
+  }
+
+
+ /* CAROUSEL PLUGIN DEFINITION
+  * ========================== */
+
+  $.fn.carousel = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('carousel')
+        , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
+      if (!data) $this.data('carousel', (data = new Carousel(this, options)))
+      if (typeof option == 'number') data.to(option)
+      else if (typeof option == 'string' || (option = options.slide)) data[option]()
+      else if (options.interval) data.cycle()
+    })
+  }
+
+  $.fn.carousel.defaults = {
+    interval: 5000
+  , pause: 'hover'
+  }
+
+  $.fn.carousel.Constructor = Carousel
+
+
+ /* CAROUSEL DATA-API
+  * ================= */
+
+  $(function () {
+    $('body').on('click.carousel.data-api', '[data-slide]', function ( e ) {
+      var $this = $(this), href
+        , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+        , options = !$target.data('modal') && $.extend({}, $target.data(), $this.data())
+      $target.carousel(options)
+      e.preventDefault()
+    })
+  })
+
+}(window.jQuery); 
+"logical_path"application.js"_version"%46dde6621c301f4928e3b34efee9e3b5"asset_paths["m/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery.js"q/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery_ujs.js"|/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-transition.js"w/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-alert.js"x/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-button.js"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-carousel.js"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-collapse.js"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-dropdown.js"w/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-modal.js"{/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-scrollspy.js"u/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-tab.js"y/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-tooltip.js"y/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-popover.js"{/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-typeahead.js"q/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap.js".$root/app/assets/javascripts/libs/ajax.js"0$root/app/assets/javascripts/libs/guides.js"2$root/app/assets/javascripts/libs/markdown.js"/$root/app/assets/javascripts/libs/users.js"0$root/app/assets/javascripts/application.js"
+mtime"2012-04-30T15:38:28-05:00"content_type"application/javascript"dependency_paths[{"hexdigest"%b598871936cd8877da37995c11d79e58"	path".$root/app/assets/javascripts/libs/ajax.js"
+mtimeu:	Time§Ä  P{"hexdigest"%918babb30cfa6d5ef4f2727827894cf5"	path"0$root/app/assets/javascripts/application.js"
+mtimeu;dÄ  †E{@5"%230b6c88bd135f248df4dcbf24d9057c@7"0$root/app/assets/javascripts/libs/guides.js@9u;‘Ä  ¿ô{@5"%253a49aea1235570426095bf25f766b2@7"&$root/app/assets/javascripts/libs@9u;‘Ä  ¿ô{"hexdigest"%2caafa0c2617f9985c1a0b07ebaefadf"
+mtimeu;$Ä  `â"	path"q/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery_ujs.js{"hexdigest"%937580ed7a7b275d34034dd39a416b8d"
+mtimeu;$Ä  @á"	path"q/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap.js{@5"%36e5f7a783ed7b09a037f6a77edecde0@7"!$root/app/assets/javascripts@9u;îÄ  PÜ{"hexdigest"%f55fbe7a9d3300d4597ef19fac6d75f2"
+mtimeu;$Ä  @á"	path"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-collapse.js{"hexdigest"%6ce865d2a2aeb248de3956f89f0541eb"
+mtimeu;ÉÄ  0"	path"2$root/app/assets/javascripts/libs/markdown.js{"hexdigest"%213c1100b8cf431e14ab123faedca6dd"
+mtimeu;$Ä  @á"	path"y/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-tooltip.js{"hexdigest"%b35c239fd9cd123bcf4fe2f19a54e4b5"
+mtimeu;$Ä  @á"	path"u/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-tab.js{"hexdigest"%683679b346b30943f8589b640966202a"
+mtimeu;$Ä  `â"	path"m/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery.js{"hexdigest"%684716b791706110ba31f0d29bf37e58"
+mtimeu;$Ä  @á"	path"w/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-modal.js{"hexdigest"%e618b9ad537695197cfb71dd599efabf"
+mtimeu;$Ä  @á"	path"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-dropdown.js{"hexdigest"%c7736e5f7431e23101ee7179bda1eeb0"	path"/$root/app/assets/javascripts/libs/users.js"
+mtimeu;•Ä  Ä{"hexdigest"%7244928bef7cf2ff74c4c0ac3810b337"
+mtimeu;$Ä  @á"	path"{/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-scrollspy.js{"hexdigest"%c107b969efc2655db3ff9eb1b726a966"
+mtimeu;$Ä  @á"	path"z/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-carousel.js{"hexdigest"%84b46a4ee1eb7f48af3f2507580d76c2"
+mtimeu;$Ä  @á"	path"w/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-alert.js{"hexdigest"%e2f6d08047c619ef18b06398b31ff0f7"
+mtimeu;$Ä  @á"	path"{/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-typeahead.js{"hexdigest"%b4e4d3184de9704f32813df1c1be6610"
+mtimeu;$Ä  @á"	path"y/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-popover.js{"hexdigest"%fc38eb1d9fee01135c89f55e8f1bca8f"
+mtimeu;$Ä  @á"	path"x/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-button.js{"hexdigest"%47100cb1b045f89e6a2d6f70fbc0d7f9"
+mtimeu;$Ä  @á"	path"|/Users/pbrousalis/.rvm/gems/ruby-1.8.7-p358/gems/bootstrap-sass-2.0.2/vendor/assets/javascripts/bootstrap-transition.js"
+class"BundledAsset:@compressedF:@created_atf1335831543.868176 ê2

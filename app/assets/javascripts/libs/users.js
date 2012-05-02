@@ -34,6 +34,11 @@ $(document).ready(function() {
     c = c + 1
   });
 
+    
+  $('.ad-tip').tooltip({ placement: 'left', trigger: 'manual' }); 
+  $('.carousel-inner').hover(function() { $(this).find('.ad-tip').tooltip('show') },
+                            function() { $(this).find('.ad-tip').tooltip('hide') });
+
   $('.time').tooltip({ placement: 'right', trigger: 'manual' }); 
   $('.activities li').hover(function() { $(this).find('.time').tooltip('show') },
                             function() { $(this).find('.time').tooltip('hide') });

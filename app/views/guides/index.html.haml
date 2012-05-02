@@ -1,5 +1,34 @@
 .guides.guide
+  .row.top
+    .span4.promotion
+      .header
+        %span Welcome 
+      .body
+        #promo-slider.carousel
+          .carousel-inner
+            %a.ad-tip{:href => "#", :rel => "tooltip", :title => "Coming soon!"}
+              .item.ad.active
 
+    .span4.promotion
+      .header
+        %span GUIDES
+        %span.leaders
+          = link_to "Top Rated", {:controller => "guides", :action => "index", :welcome => "top"}, {:class => "filter "}
+        %span.leaders
+          = link_to "Egocentric", {:controller => "guides", :action => "index", :welcome => "egocentric"}, {:class => "filter "}
+        %span.leaders
+          = link_to "Featured", {:controller => "guides", :action => "index", :welcome => "featured"}, {:class => "filter active"}
+      #featured.body
+        = render "featured"
+
+    .span4.recent
+      .header
+        %span Recent activity
+      .body
+        %ul.activities
+          - Activity.all.each do |a|
+            %li
+              != a.to_words
   .row
     .sidebar.scroll.index.span3
       %ul.nav
@@ -23,7 +52,7 @@
                   %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
     .guide-list.span9
       .header
-        %span.title Guides
+        %span.title All Guides
         %span.count= Guide.find(:all).count
         %span.ajax 
       .all-guides 

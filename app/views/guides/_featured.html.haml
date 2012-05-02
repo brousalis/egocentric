@@ -1,0 +1,14 @@
+%ul.leaderboard
+  - @featured.each do |g|
+    %li
+      %img.avatar{:src => "#{g.avatar ? g.avatar : "/assets/black.png"}"}
+      %a{:href => guide_path(g)}
+        %span.name
+          = g.name
+      %span.username
+        %strong by
+        = g.user.username
+        %strong in
+        = g.category.capitalize
+      %span.count
+        = g.comments.count 

@@ -14,6 +14,14 @@ class Guide < ActiveRecord::Base
 
   after_create :add_activity
 
+  def is_egocentric?
+    true if self.user.role == "egocentric"
+  end
+
+  def is_featured?
+    true if self.guide_type == "featured"
+  end
+
   def add_activity
     Activity.add(self.user, Activity::POSTED_GUIDE, self)
   end  
