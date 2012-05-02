@@ -54,11 +54,11 @@ private
     name = target.name
     action = "added" unless action == "edited"
     text = "#{action} <a href='#{guide}'>#{name}</a>"
-    if text.length >= 46
+    if text.length >= 28
       if target.user.username.length > 12
         name = truncate(name, 16) 
       else
-        name = truncate(name, 28)
+        name = truncate(name, 25)
       end
     end 
     "#{action} <a href='#{guide}'>#{name}</a>"
