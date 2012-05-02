@@ -25,6 +25,7 @@ Egocentric::Application.routes.draw do
   post "avatar" => "users#update_avatar", :as => "avatar"
   post "like" => "guides#like", :as => "like"
   get "welcome" => "guides#welcome", :as => "welcome"
+  get "recent" => "guides#recent", :as => "recent"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "sign_up" => "users#new", :as => "sign_up"

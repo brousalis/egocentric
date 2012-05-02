@@ -25,11 +25,9 @@
     .span4.recent
       .header
         %span Recent activity
-      .body
-        %ul.activities
-          - Activity.all.each do |a|
-            %li
-              != a.to_words
+        .ajax
+      #recent.body
+        = render "recent"
   .row
     .sidebar.scroll.index.span3
       %ul.nav
