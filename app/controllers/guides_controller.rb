@@ -18,7 +18,7 @@ class GuidesController < ApplicationController
 
   def welcome
     if params[:welcome] == "egocentric"
-      @featured = Guide.find_by_sql("select * from guides join users on guides.user_id = users.id where role = 'egocentric'")
+      @featured = Guide.where(:guide_type => "approved").limit(5)
     elsif params[:welcome] == "top"
       @featured = Guide.first(5).sort_by { |g| g.rate_average(false, :rating)}.reverse
     else
