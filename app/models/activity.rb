@@ -29,13 +29,15 @@ class Activity < ActiveRecord::Base
     "<span class='username'>#{self.user.username}</span> <span class='action'>#{action}</span> <a class='time' href='#' rel='tooltip' title='#{time_ago_in_words(self.created_at).sub("minutes","mins")} ago'><i class='icon icon-white icon-time'></i></a>"
   end
   
-  def self.add(user, activity_type, target)
+  def self.add(user, activity_type, target, created_at = nil)
     return false if user.blank? or activity_type.blank? or target.blank?
     activity = Activity.new(:user => user, :activity_type => activity_type, :target => target)
+    activity.created_at = created_at if created_at
     activity.save!
   end
 
 private
+
   def shorten_rating(target)
     guide = Rails.application.routes.url_helpers.guide_path(target.rateable) 
     name = target.rateable.name
@@ -52,6 +54,7 @@ private
     end
     "rated <a href='#{guide}'>#{name}</a> <span class='stars'>#{target.stars}</span>"
   end  
+
   def shorten(text, action = "added")
     guide = Rails.application.routes.url_helpers.guide_path(target) 
     name = target.name
@@ -66,6 +69,7 @@ private
     end 
     "#{action} <a href='#{guide}'>#{name}</a>"
   end
+
   def truncate(string, length = 10)
     string.size > length ? string[0,length] + "&hellip;" : string
   end  
