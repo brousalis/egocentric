@@ -24,7 +24,7 @@ class Activity < ActiveRecord::Base
     when self.activity_type == Activity::LIKED_COMMENT
       "liked a <a href='#{Rails.application.routes.url_helpers.guide_path(target.comment.commentable)}'>comment</a>"
     when self.activity_type == Activity::EDITED_GUIDE
-      shorten(target)
+      shorten(target, "edited")
     end
     "<span class='username'>#{self.user.username}</span> <span class='action'>#{action}</span> <a class='time' href='#' rel='tooltip' title='#{time_ago_in_words(self.created_at).sub("minutes","mins")} ago'><i class='icon icon-white icon-time'></i></a>"
   end
