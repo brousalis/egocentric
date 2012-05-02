@@ -180,9 +180,9 @@ $(document).ready(function() {
     return false;
   });
   
-  $('.leaders').live('click', function(e) {
-    $('.leaders').each(function() { $(this).removeClass('active') });
-    $(this).find('a').addClass('active');
+  $('.leaders a').live('click', function(e) {
+    $('.leaders a').each(function() { $(this).removeClass('active') });
+    $(this).addClass('active');
     $('.promotion .ajax').fadeIn();
     $.getScript(this.href);
     return false;

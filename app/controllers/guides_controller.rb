@@ -12,16 +12,22 @@ class GuidesController < ApplicationController
       @guides = Guide.find(:all, :order => "created_at DESC")
     end
 
+    @featured = Guide.where(:guide_type => "featured").limit(5)
+    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username", :limit => 6, :order => "guides_count DESC")
+  end 
+
+  def welcome
     if params[:welcome] == "egocentric"
       @featured = Guide.find_by_sql("select * from guides join users on guides.user_id = users.id where role = 'egocentric'")
     elsif params[:welcome] == "top"
       @featured = Guide.first(5).sort_by { |g| g.rate_average(false, :rating)}.reverse
     else
       @featured = Guide.where(:guide_type => "featured").limit(5)
+    end 
+    respond_to do |format|
+      format.js
     end
-
-    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username", :limit => 6, :order => "guides_count DESC")
-  end 
+  end
 
   def new
     @guides = Guide.all

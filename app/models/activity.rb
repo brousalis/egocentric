@@ -46,8 +46,11 @@ private
       else
         name = truncate(name, 23)
       end
+      if target.rater.username.length > 14
+        name = truncate(name, 12)
+      end
     end
-    "rated <a href='#{guide}'>#{name}</a> a #{target.stars}"
+    "rated <a href='#{guide}'>#{name}</a> <span class='stars'>#{target.stars}</span>"
   end  
   def shorten(text, action = "added")
     guide = Rails.application.routes.url_helpers.guide_path(target) 
