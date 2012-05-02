@@ -17,6 +17,7 @@ task :p => :environment do
   puts `git add .`
   puts `git commit -m "#{ENV['m']}" .`
   puts `git push origin master`
+  puts `git push heroku master`
 end
 
 task :h => :environment do

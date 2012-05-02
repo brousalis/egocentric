@@ -58,7 +58,7 @@ private
       if target.user.username.length > 12
         name = truncate(name, 16) 
       else
-        name = truncate(name, 25)
+        name = truncate(name, 22)
       end
     end 
     "#{action} <a href='#{guide}'>#{name}</a>"

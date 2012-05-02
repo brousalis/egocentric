@@ -12,6 +12,7 @@ gem 'opinio'
 gem 'forum_monster'
 gem 'kaminari'
 gem 'capistrano'
+
 gem 'pg'
 group :development do
   gem 'pg'
