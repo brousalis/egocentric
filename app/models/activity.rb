@@ -48,7 +48,7 @@ private
       else
         name = truncate(name, 23)
       end
-      if target.rater.username.length > 14
+      if target.rater.username.length >= 14
         name = truncate(name, 12)
       end
     end
