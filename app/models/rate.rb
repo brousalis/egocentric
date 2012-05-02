@@ -5,8 +5,13 @@ class Rate < ActiveRecord::Base
   
   attr_accessible :rate, :dimension
   after_create :add_activity
+  before_destroy :remove_activity
 
   def add_activity
     Activity.add(self.rater, Activity::RATED_GUIDE, self)
+  end 
+  
+  def remove_activity
+    Activity.find_by_target_id(self.id).delete
   end 
 end

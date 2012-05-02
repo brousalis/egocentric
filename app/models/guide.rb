@@ -13,7 +13,7 @@ class Guide < ActiveRecord::Base
   opinio_subjectum
 
   after_create :add_activity
-
+  before_destroy :remove_activity
   def is_egocentric?
     true if self.user.role == "egocentric"
   end
@@ -37,4 +37,8 @@ class Guide < ActiveRecord::Base
   def self.all_categories
     Guide.select(:category).group(:category).collect { |g| g.category }
   end
+
+   def remove_activity
+    Activity.find_by_target_id(self.id).delete
+  end 
 end
