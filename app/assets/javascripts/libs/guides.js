@@ -175,14 +175,15 @@ $(document).ready(function() {
   $('.filter').live('click', function(e) {
     $('.filter').each(function() { $(this).removeClass('active') });
     $(this).addClass('active');
-    $('.ajax').fadeIn();
+    $('.guide-list .ajax').fadeIn();
     $.getScript(this.href);
     return false;
   });
   
   $('.leaders').live('click', function(e) {
     $('.leaders').each(function() { $(this).removeClass('active') });
-    $(this).addClass('active');
+    $(this).find('a').addClass('active');
+    $('.promotion .ajax').fadeIn();
     $.getScript(this.href);
     return false;
   });

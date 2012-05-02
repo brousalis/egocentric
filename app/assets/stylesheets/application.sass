@@ -33,6 +33,7 @@ a
   height: 24px
   margin-right: 0px
   margin-top: 3px 
+  opacity: 0.3
 
 .navbar
   z-index: 1
@@ -191,12 +192,10 @@ a
   .top
     margin-bottom: 30px
     .promotion
+      .ajax
+        height: 16px !important
       #featured 
         min-width: 298px
-        .ajax
-          position: absolute
-          bottom: 10px
-          right: 10px
       .body
         padding: 0
         position: relative
@@ -209,8 +208,8 @@ a
           height: 182px
         .ad-tip
           cursor: default
-        .ad
           display: block
+        .ad
           position: relative
           height: 270px
           text-indent: -9999px
@@ -231,7 +230,7 @@ a
           text-transform: none
           font-size: 12px
           font-weight: bold
-          background: #000
+          background: rgba(0, 0, 0, 0.3)
           padding: 1px 6px !important
           margin-left: 6px
           float: right
@@ -516,7 +515,7 @@ a
     .admin.type
       margin-bottom: 13px
       .btn
-        width: 61px !important
+        width: 60px !important
         padding: 4px
     .btn
       border: 1px solid #000 !important

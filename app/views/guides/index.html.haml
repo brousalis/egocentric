@@ -11,13 +11,14 @@
 
     .span4.promotion
       .header
-        %span GUIDES
+        %span{:id => "guide-title"} GUIDES
         %span.leaders
-          = link_to "Top", {:controller => "guides", :action => "index", :welcome => "top"}, {:class => "filter "}
+          = link_to "Top", {:controller => "guides", :action => "index", :welcome => "top"}
         %span.leaders
-          = link_to "Egocentric", {:controller => "guides", :action => "index", :welcome => "egocentric"}, {:class => "filter "}
+          = link_to "Egocentric", {:controller => "guides", :action => "index", :welcome => "egocentric"}
         %span.leaders
-          = link_to "Featured", {:controller => "guides", :action => "index", :welcome => "featured"}, {:class => "filter active"}
+          = link_to "Featured", {:controller => "guides", :action => "index", :welcome => "featured", :class => "active"}
+        %span.ajax
       #featured.body
         = render "featured"
 
