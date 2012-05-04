@@ -14,7 +14,7 @@
   .sidebar.scroll.span3
     - if current_user && (current_user.username == @guide.user.username || current_user.role == "egocentric")
       .admin
-        = link_to "Edit" edit_guide_path(@guide.id), :class => "btn edit"
+        %a.btn.edit{:href => edit_guide_path(@guide.id)} Edit
         = link_to "Delete", guide_path, :method => :delete, :class => "btn delete"
     - if current_user && current_user.role == "egocentric"
       .admin.type
