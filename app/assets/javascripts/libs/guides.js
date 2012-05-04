@@ -14,10 +14,10 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.body img').each (function() {
+  $('.guide .body img').each (function() {
     $(this).wrap('<a href="'+$(this).attr('src')+'" rel="gal" class="gallery"></a>');
   });
-  $('.body .gallery').colorbox({rel:'gal'});
+  $('.guide .body .gallery').colorbox({rel:'gal'});
 
   $('.add-video').live('click', function(e) {
     var url = $('.video-url').val();

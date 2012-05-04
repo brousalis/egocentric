@@ -6,7 +6,7 @@
       - if @guide.video
         %iframe.youtube{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "http://www.youtube.com/embed/#{@guide.video}", :width => "100%"}
       - if @guide.body != ""
-        .body
+        .body.show
           != render_markdown(@guide.body)
     .comments#comment-list
       = comments_for @guide
