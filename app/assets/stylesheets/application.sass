@@ -35,21 +35,7 @@ a
   margin-top: 3px 
   opacity: 0.3
 
-.body
-  .gallery
-    padding: 6px
-    background: #f1f1f1
-    +transition(all 0.1s linear)
-    display: block
-    width: 545px !important
-    margin: 0px auto
-    &:hover 
-      background: #ddd
-      opacity: 0.9
-    img
-      border: 2px solid white
-      +box-shadow(none)
-      width: 540px !important
+
 
 .navbar
   z-index: 1
@@ -594,6 +580,21 @@ a
           +buttonBackground($darkblue, $blue)
 
 .guide
+  .body
+    .gallery
+      padding: 6px
+      background: #f1f1f1
+      +transition(all 0.1s linear)
+      display: block
+      width: 545px !important
+      margin: 0px auto
+      &:hover 
+        background: #ddd
+        opacity: 0.9
+      img
+        border: 2px solid white
+        +box-shadow(none)
+        width: 540px !important 
   .sidebar
     ul.nav
       +box-shadow(none)
