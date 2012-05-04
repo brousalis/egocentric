@@ -45,7 +45,7 @@ class GuidesController < ApplicationController
     updates['avatar'] = nil if updates['avatar'] == "url of image" || updates['avatar'] == ""
     updates['video'] = nil if updates['video'] == "url of youtube video" || updates['video'] == ""
     @guide.update_attributes(updates)
-    Activity.add(current_user, Activity::EDITED_GUIDE, @guide) unless current_user.username == "brous"
+    Activity.add(current_user, Activity::EDITED_GUIDE, @guide)
     render :json => { "status" => "success",
                        "redirect" => guide_path(@guide)}
   end

@@ -38,7 +38,7 @@
       %li
         %a.btn.preview{:href => "#"} Preview
       %li
-        %a.btn.delete{:href => delete_guide_path(@guide.id)} Delete
+        = link_to "Delete", guide_path, :method => :delete, :class => "btn delete"
       %li
         %a.btn.save{:href => "#"} Save
     %ul.nav.cheats
