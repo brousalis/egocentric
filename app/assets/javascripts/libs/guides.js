@@ -324,5 +324,3 @@ jQuery.expr[':'].Contains = function(a, i, m) {
         });
     };
 })(jQuery);
-
- $.fn.resize=function(a){var d=Math.ceil;if(a==null)a=200;var e=a,f=a;$(this).each(function(){var b=$(this).height(),c=$(this).width();if(b>c)f=d(c/b*a);else e=d(b/c*a);$(this).css({height:e,width:f})})};
