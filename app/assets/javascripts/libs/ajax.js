@@ -60,13 +60,6 @@ function save_guide(type) {
   $('<img/>').attr('src', value).error(function() { request(""); });   
 }
  
-function delete_guide(url) {
-  var failure = function(e) { }
-  var success = function(e) { window.location.href = e.redirect; }
-
-  ajax_request(url, 'post', {}, success, failure);
-}
- 
 function register() {
   var failure = function(e) {
     $('#new_user .alert').html("").fadeIn();

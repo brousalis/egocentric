@@ -14,6 +14,7 @@ class Guide < ActiveRecord::Base
 
   after_create :add_activity
   before_destroy :remove_activity
+
   def is_egocentric?
     true if self.user.role == "egocentric"
   end
@@ -39,6 +40,6 @@ class Guide < ActiveRecord::Base
   end
 
    def remove_activity
-    Activity.find_by_target_id(self.id).delete
+    Activity.find_by_target_id(self.id).delete if Activity.find_by_target_id(self.id)
   end 
 end

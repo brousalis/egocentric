@@ -1,24 +1,14 @@
 Egocentric::Application.routes.draw do
-#  resources :categories, :except => [:index, :show]
-#  resources :forums, :except => :index do
-#    resources :topics, :shallow => true, :except => :index do
-#      resources :posts, :shallow => true, :except => [:index, :show]
-#    end
-#    root :to => 'categories#index', :via => :get
-#  end
 
   opinio_model
 
   resources :guides do
     opinio
     member do
-      post :delete
+      get :select
       get :reload_comments
       post :rate
       get :save
-      get :approve
-      get :feature
-      get :no_type
     end
   end
 

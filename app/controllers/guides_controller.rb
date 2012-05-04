@@ -3,7 +3,6 @@ class GuidesController < ApplicationController
 
   before_filter :authorize, :only => [:create, :update, :delete, :new, :rate]
   before_filter :find_guide, :except => [:index]
-  before_filter :back
 
   def index
     if params[:filter] == "rating"
@@ -13,17 +12,18 @@ class GuidesController < ApplicationController
     end
 
     @featured = Guide.where(:guide_type => "featured").limit(5)
-    @user_leaders = User.find(:all, :select => "users.username, users.id, COUNT(*) as guides_count", :joins => [:guides], :group => "users.id, users.username", :limit => 6, :order => "guides_count DESC")
   end 
 
   def welcome
-    if params[:welcome] == "egocentric"
-      @featured = Guide.where(:guide_type => "approved").limit(5)
-    elsif params[:welcome] == "top"
-      @featured = Guide.first(5).sort_by { |g| g.rate_average(false, :rating)}.reverse
+    @featured = case
+    when params[:welcome] == "egocentric"
+      Guide.where(:guide_type => "approved").limit(5)
+    when params[:welcome] == "top"
+      Guide.first(5).sort_by { |g| g.rate_average(false, :rating)}.reverse
     else
-      @featured = Guide.where(:guide_type => "featured").limit(5)
-    end 
+      Guide.where(:guide_type => "featured").limit(5)
+    end
+
     respond_to do |format|
       format.js
     end
@@ -35,14 +35,9 @@ class GuidesController < ApplicationController
     end
   end
 
-  def new
-    @guides = Guide.all
-  end
-
-  def delete
+  def destroy
     @guide.destroy
-    render :json => { "status" => "success",
-                      "redirect" => "/guides"}
+    redirect_to "/guides"
   end
 
   def update
@@ -50,7 +45,7 @@ class GuidesController < ApplicationController
     updates['avatar'] = nil if updates['avatar'] == "url of image" || updates['avatar'] == ""
     updates['video'] = nil if updates['video'] == "url of youtube video" || updates['video'] == ""
     @guide.update_attributes(updates)
-    Activity.add(current_user, Activity::EDITED_GUIDE, @guide)
+    Activity.add(current_user, Activity::EDITED_GUIDE, @guide) unless current_user.username == "brous"
     render :json => { "status" => "success",
                        "redirect" => guide_path(@guide)}
   end
@@ -85,20 +80,8 @@ class GuidesController < ApplicationController
     end
   end
 
-  def approve
-    @guide.guide_type = "approved"
-    @guide.save
-    redirect_to "/guides"
-  end
-
-  def feature
-    @guide.guide_type = "featured"
-    @guide.save
-    redirect_to "/guides"
-  end
-
-  def no_type
-    @guide.guide_type = nil
+  def select
+    @guide.guide_type = params[:select] ? params[:select] : nil
     @guide.save
     redirect_to "/guides"
   end

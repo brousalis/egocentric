@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def format_date(datetime)
     return datetime.strftime("%m/%d/%Y")
   end

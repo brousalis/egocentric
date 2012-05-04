@@ -14,7 +14,7 @@ $(document).ready(function() {
     return false;
   });
 
- $('.add-video').live('click', function(e) {
+  $('.add-video').live('click', function(e) {
     var url = $('.video-url').val();
     if (url.indexOf('youtube') == -1) {
       alert("Enter a valid youtube url");
@@ -53,11 +53,6 @@ $(document).ready(function() {
     save_guide('put');
     return false;
   });  
-
-  $('.delete').live('click', function(e) {
-    delete_guide($(this).attr('href'));
-    return false;
-  });
 
   $('.remove-image').live('click', function(e) {
     $('.header').css('background', 'none');
@@ -324,3 +319,4 @@ jQuery.expr[':'].Contains = function(a, i, m) {
         });
     };
 })(jQuery);
+
