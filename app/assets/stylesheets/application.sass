@@ -7,13 +7,13 @@ $blue: #03488d
 @import ajaxful_rating
 
 html
-  background: url("/assets/bg.png") repeat
+  background: image-url('bg.png') repeat
   -webkit-font-smoothing: antialiased !important
 
 body
   padding-top: 75px
   font-family: proxima-nova, Helvetica, arial, sans
-  background: url("/assets/bg.png") repeat
+  background: image-url('bg.png') repeat
   color: #aaa
   padding-bottom: 60px
 
@@ -28,12 +28,28 @@ a
   float: right
   display: none
   +box-shadow(none)
-  background: url('/assets/loader.gif') no-repeat
+  background: image-url('loader.gif') no-repeat
   width: 24px
   height: 16px
   margin-right: 0px
   margin-top: 3px 
   opacity: 0.3
+
+.body
+  .gallery
+    padding: 6px
+    background: #f1f1f1
+    +transition(all 0.1s linear)
+    display: block
+    width: 545px !important
+    margin: 0px auto
+    &:hover 
+      background: #ddd
+      opacity: 0.9
+    img
+      border: 2px solid white
+      +box-shadow(none)
+      width: 540px !important
 
 .navbar
   z-index: 1
@@ -89,7 +105,7 @@ a
       line-height: 1
       color: #ffffff
       opacity: 0.3
-      background: url("/assets/user-white.png") 7px 4px no-repeat
+      background: image-url('user-white.png') 7px 4px no-repeat
       &.failure
         border-left: 3px solid red !important 
       &:focus 
@@ -137,9 +153,9 @@ a
         &.failure
           border-left: 3px solid red !important
         &.username
-          background: url("/assets/user-white.png") 7px 8px no-repeat
+          background: image-url('user-white.png') 7px 8px no-repeat
         &.password
-          background: url("/assets/lock-white.png") 7px 7px no-repeat
+          background: image-url('lock-whitepng') 7px 7px no-repeat
         &:focus
           opacity: 1
           color: #fff
@@ -165,7 +181,7 @@ a
       float: left
       margin-top: 10px
       margin-left: 20px
-      background: url("/assets/logo-new.png") no-repeat
+      background: image-url('logo-new.png')  no-repeat
     .menu
       float: right
       margin-top: 20px
@@ -186,7 +202,7 @@ a
               opacity: 0.8
               &:hover
                 opacity: 1
-                background: url("/assets/arrow.png") no-repeat 50% 60%
+                background: image-url('arrow.png')  no-repeat 50% 60%
 
 .guides
   .top
@@ -213,7 +229,7 @@ a
           position: relative
           height: 270px
           text-indent: -9999px
-          background: url('/assets/ad.png') no-repeat
+          background: image-url('ad.png')  no-repeat
           &:hover
             opacity: 0.8
     .header
@@ -354,16 +370,8 @@ a
           .username
             color: #fff
             padding-left: 7px
-          .activity-1
-            background: url('/assets/guide.png') no-repeat 7px 2px
-          .activity-2
-            background: url('/assets/rate.png') no-repeat 5px 3px
-          .activity-3
-            background: url('/assets/comment.png') no-repeat 5px
-          .activity-4
-            background: url('/assets/like.png') no-repeat 5px 3px
           .stars
-            background: url('/assets/small.png') no-repeat
+            background: image-url('small.png') no-repeat
             padding-left: 17px
           .time
             margin-right: 5px 
@@ -392,7 +400,7 @@ a
       position: relative
       +border-radius(8px 8px 0px 0px)
       h1
-        background: url("/assets/guide-header.png") repeat
+        background: image-url('guide-header.png') repeat
         position: relative
         top: 130px
         height: 50px
@@ -429,7 +437,7 @@ a
         width: 670px !important
         border: 0 !important
         font-weight: bold
-        background: url("/assets/guide-header.png") repeat
+        background: image-url('guide-header.png') repeat
         +border-radius(0)
         color: #fff
         font-family: 'Helvetica Neue', Helvetica
@@ -675,7 +683,7 @@ a
             +border-radius(0)
             border: none 
             opacity: 0.8
-            background: url("/assets/search.png") 7px 7px no-repeat
+            background: image-url('search.png') 7px 7px no-repeat
             &.failure
               border-left: 3px solid red !important 
             &:focus 
@@ -948,7 +956,7 @@ a
               font-size: 12px
               opacity: 0.2
               padding-left: 30px
-              background: url('/assets/left.png') no-repeat 
+              background: image-url('left.png') no-repeat 
           p
             margin-top: 10px
             font-family: "Helvetica Neue", Helvetica
@@ -982,11 +990,11 @@ a
               margin-left: 9px
               margin-top: 5px
               +transition(all 0.1s linear)
-              background: url('/assets/heart.png') 1px 0px no-repeat
+              background: image-url('heart.png') 1px 0px no-repeat
               &.active
-                background: url('/assets/heart_over.png') no-repeat -1px 0px
+                background: image-url('heart_over.png') no-repeat -1px 0px
               &:hover 
-                background: url('/assets/heart_over.png') no-repeat -1px 0px
+                background: image-url('heart_over.png') no-repeat -1px 0px
           img 
             width: 30px
             border: 1px solid #000
@@ -1021,13 +1029,13 @@ a
       &:focus
         color: #000
       &#user_username
-        background: url("/assets/user.png") 10px 12px no-repeat
+        background: image-url('user.png') 10px 12px no-repeat
       &#user_email
-        background: url("/assets/mail.png") 7px 12px no-repeat
+        background: image-url('mail.png') 7px 12px no-repeat
       &#user_password
-        background: url("/assets/lock.png") 8px 12px no-repeat
+        background: image-url('lock.png') 8px 12px no-repeat
       &#user_password_confirmation
-        background: url("/assets/lock.png") 8px 12px no-repeat
+        background: image-url('lock.png') 8px 12px no-repeat
   .modal-header
     padding: 20px
     +border-radius(8px 8px 0px 0px)
@@ -1170,3 +1178,142 @@ a
 textarea
   overflow: hidden
   height: auto
+
+/*
+ *  ColorBox Core Style:
+ *  The following CSS is consistent between example themes and should not be altered.
+
+#colorbox, #cboxOverlay, #cboxWrapper
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 9999
+  overflow: hidden
+
+#cboxOverlay
+  position: fixed
+  width: 100%
+  height: 100%
+
+#cboxMiddleLeft, #cboxBottomLeft
+  clear: left
+
+#cboxContent
+  position: relative
+
+#cboxLoadedContent
+  overflow: auto
+
+#cboxTitle
+  margin: 0
+
+#cboxLoadingOverlay, #cboxLoadingGraphic
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow
+  cursor: pointer
+
+.cboxPhoto
+  float: left
+  margin: auto
+  border: 0
+  display: block
+
+.cboxIframe
+  width: 100%
+  height: 100%
+  display: block
+  border: 0
+
+#colorbox, #cboxContent, #cboxLoadedContent
+  box-sizing: content-box
+
+/* 
+ *  User Style:
+ *  Change the following styles to modify the appearance of ColorBox.  They are
+ *  ordered & tabbed in a way that represents the nesting of the generated HTML.
+
+#cboxOverlay
+  background: #000
+
+#colorbox
+
+#cboxContent
+  margin-top: 20px
+
+.cboxIframe
+  background: #fff
+
+#cboxError
+  padding: 50px
+  border: 1px solid #ccc
+
+#cboxLoadedContent
+  border: 5px solid #000
+  background: #fff
+
+#cboxTitle
+  position: absolute
+  top: -20px
+  left: 0
+  color: #ccc
+
+#cboxCurrent
+  position: absolute
+  top: -20px
+  right: 0px
+  color: #ccc
+
+#cboxSlideshow
+  position: absolute
+  top: -20px
+  right: 90px
+  color: #fff
+
+#cboxPrevious
+  position: absolute
+  top: 50%
+  left: 5px
+  margin-top: -32px
+  background: image-url('controls.png') no-repeat top left
+  width: 28px
+  height: 65px
+  text-indent: -9999px
+  &:hover
+    background-position: bottom left
+
+#cboxNext
+  position: absolute
+  top: 50%
+  right: 5px
+  margin-top: -32px
+  background: image-url('controls.png') no-repeat top right
+  width: 28px
+  height: 65px
+  text-indent: -9999px
+  &:hover
+    background-position: bottom right
+
+#cboxLoadingOverlay
+  background: #000
+
+#cboxLoadingGraphic
+  background: image-url('loader.gif') no-repeat center center
+
+#cboxClose
+  position: absolute
+  top: 5px
+  right: 5px
+  display: block
+  background: image-url('controls.png') no-repeat top center
+  width: 38px
+  height: 19px
+  text-indent: -9999px
+  &:hover
+    background-position: bottom center
+
+
