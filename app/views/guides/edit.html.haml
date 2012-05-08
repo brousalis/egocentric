@@ -34,7 +34,15 @@
         %select#guide_category{:name => "guide[category]"}
           %option{:value => ""}
           - guide_categories.each do |c|
-            %option{:value => "#{c}", :selected => "#{'selected' ? @guide.category == c : ''}"}= c.capitalize
+            %option{:value => "#{c}", :selected => ("true" if @guide.category == c) }= c.capitalize
+      - if @guide.map 
+        %li.nav-header
+          Map
+        %li.categories
+          %select#guide_map{:name => "guide[map]"}
+            %option{:value => ""}
+            - maps.each do |c|
+              %option{:value => "#{c}", :selected => ("true" if @guide.map == c) }= c.capitalize 
       %li
         %a.btn.preview{:href => "#"} Preview
       %li

@@ -6,7 +6,8 @@ class Comment < ActiveRecord::Base
   before_destroy :remove_activity
 
   def add_activity
-    Activity.add(self.owner, Activity::POSTED_COMMENT, self)
+    type = self.commentable.type == Guide ? Activity::POSTED_COMMENT : Activity::REPLIED_COMMENT
+    Activity.add(self.owner, type, self)
   end
 
   def remove_activity

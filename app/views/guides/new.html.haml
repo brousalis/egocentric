@@ -22,10 +22,12 @@
 
   .sidebar.span3
     %ul.nav
-      %li.nav-header
-        Date
-      %li.date
-        = format_date(Date.today)
+      %li.top
+      %li.meta
+        .left
+          Date
+        .right
+          = format_date(Date.today)
       %li.nav-header
         Category
       %li.categories
@@ -33,6 +35,13 @@
           %option{:value => ""}
           - guide_categories.each do |c|
             %option{:value => "#{c}"}= c.capitalize
+      %li.nav-header
+        Map
+      %li.categories
+        %select#guide_map{:name => "guide[map]"}
+          %option{:value => ""}
+          - maps.each do |c|
+            %option{:value => "#{c}"}= c.capitalize 
       %li
         %a.btn.preview{:href => "#"} Preview
       %li

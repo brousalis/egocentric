@@ -1,6 +1,6 @@
 %ul#guides
   - @guides.each do |guide|
-    %li{:class => "#{guide.category}", :"data-rating" => "#{guide.rate_average}", :"data-date" => "#{format_date(guide.created_at)}"}
+    %li{:class => "#{guide.category} #{guide.map if guide.map}", :"data-rating" => "#{guide.rate_average}", :"data-date" => "#{format_date(guide.created_at)}"}
       %a{:href => guide_path(guide), :style => "display: block;"}
         %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
         .name

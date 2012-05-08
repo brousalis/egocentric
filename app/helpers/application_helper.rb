@@ -26,7 +26,11 @@ module ApplicationHelper
   end
 
   def guide_categories
-    ["capping", "offense", "defense", "midfield", "maps", "beginner"]
+    ["capping", "offense", "defense", "midfield", "beginner"]
+  end
+
+  def maps
+    ["katabatic", "sunstar", "arx novena", "crossfire", "temple", "drydock"]
   end
 
   def bar_width(user)

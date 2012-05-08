@@ -19,6 +19,7 @@ function submit_guide(type) {
                   name: $('.name').val(),
                   body: $('.body textarea').val(),
                   category: $('#guide_category').val(),
+                  map: $('#guide_map').val(),
                   video: $('.video-url').val() 
                 }
               }
@@ -41,6 +42,7 @@ function save_guide(type) {
                     name: $('.name').val(),
                     body: $('.body textarea').val(),
                     category: $('#guide_category').val(),
+                    map: $('#guide_map').val(),
                     video: $('.video-url').val() 
                   }
                 }

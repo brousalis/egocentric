@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428214935) do
+ActiveRecord::Schema.define(:version => 20120504045409) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",       :null => false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120428214935) do
     t.string   "video"
     t.string   "avatar"
     t.string   "guide_type"
+    t.string   "map"
   end
 
   create_table "likes", :force => true do |t|

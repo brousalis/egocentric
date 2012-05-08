@@ -11,6 +11,7 @@ class Activity < ActiveRecord::Base
   POSTED_COMMENT = 3
   LIKED_COMMENT = 4
   EDITED_GUIDE = 5
+  REPLIED_COMMENT = 6
 
   def to_words
     target = self.target
@@ -20,11 +21,13 @@ class Activity < ActiveRecord::Base
     when self.activity_type == Activity::RATED_GUIDE
       shorten_rating(target)
     when self.activity_type == Activity::POSTED_COMMENT
-      "posted a <a href='#{Rails.application.routes.url_helpers.guide_path(target.commentable)}'>comment</a>"
+      "posted a <a href='#{Rails.application.routes.url_helpers.guide_path(target.commentable)}#comment_#{target.id}'>comment</a>"
     when self.activity_type == Activity::LIKED_COMMENT
-      "liked a <a href='#{Rails.application.routes.url_helpers.guide_path(target.comment.commentable)}'>comment</a>"
+      "liked a <a href='#{Rails.application.routes.url_helpers.guide_path(target.comment.commentable)}#comment_#{target.comment.id}'>comment</a>"
     when self.activity_type == Activity::EDITED_GUIDE
       shorten(target, "edited")
+    when self.activity_type == Activity::REPLIED_COMMENT
+      "posted a <a href='#{Rails.application.routes.url_helpers.guide_path(target.commentable.commentable)}#comment_#{target.id}'>reply</a> to a comment"
     end
     "<span class='username'>#{self.user.username}</span> <span class='action'>#{action}</span> <a class='time' href='#' rel='tooltip' title='#{time_ago_in_words(self.created_at).sub("minutes","mins")} ago'><i class='icon icon-white icon-time'></i></a>"
   end

@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   var add = false;
 
@@ -13,6 +14,11 @@ $(document).ready(function() {
     }
     return false;
   });
+
+  if (document.location.hash) {
+    $(document.location.hash).addClass('highlight');
+    setTimeout(function() { $('html, body').animate({scrollTop: $(document.location.hash).offset().top - 80 }, 0);}, 500);
+  }
 
   $('.show img').each (function() {
     $(this).wrap('<a href="'+$(this).attr('src')+'" rel="gal" class="gallery"></a>');

@@ -7,7 +7,7 @@ class Guide < ActiveRecord::Base
   validates_presence_of :category
   validates_uniqueness_of :name
 
-  attr_accessible :name, :body, :category, :user, :avatar, :video, :guide_type
+  attr_accessible :name, :body, :category, :user, :avatar, :video, :guide_type, :map
 
   ajaxful_rateable :stars => 5, :dimensions => [:rating]
   opinio_subjectum
@@ -38,6 +38,10 @@ class Guide < ActiveRecord::Base
   def self.all_categories
     Guide.select(:category).group(:category).collect { |g| g.category }
   end
+
+  def self.all_maps
+    Guide.select(:map).group(:map).collect { |g| g.map }
+  end 
 
    def remove_activity
     Activity.find_by_target_id(self.id).delete if Activity.find_by_target_id(self.id)
