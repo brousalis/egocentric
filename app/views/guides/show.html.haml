@@ -37,11 +37,6 @@
         .left Category
         .right
           = @guide.category.capitalize
-      - if @guide.map != "" || @guide.map != nil
-        %li.meta
-          .left Map
-          .right
-            = @guide.map.gsub(/\b\w/){$&.upcase}
       - if @guide.more_from_category != []
         %li.list
           %div 
