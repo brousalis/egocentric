@@ -785,8 +785,6 @@ a
     border-right: 3px solid $navbarBackground
     border-bottom: 3px solid $navbarBackground
     li
-      &.highlight .comment
-        border: 1px solid $lightblue
       &#no_comments
         padding: 5px
       .comment
@@ -798,6 +796,8 @@ a
         margin: 8px
         position: relative
         padding-top: 10px
+        &.highlight 
+          border: 1px solid $lightblue
         &.closed
           height: 20px
           min-height: 20px

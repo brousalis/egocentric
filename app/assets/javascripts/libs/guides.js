@@ -16,7 +16,7 @@ $(document).ready(function() {
   });
 
   if (document.location.hash) {
-    $(document.location.hash).addClass('highlight');
+    $(document.location.hash).find('.comment').first().addClass('highlight');
     setTimeout(function() { $('html, body').animate({scrollTop: $(document.location.hash).offset().top - 80 }, 0);}, 500);
   }
 
