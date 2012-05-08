@@ -37,7 +37,7 @@
         .left Category
         .right
           = @guide.category.capitalize
-      - if @guide.map != "" || @guide.map != nil
+      - if (@guide.map != "" || @guide.map != nil)
         %li.meta
           .left Map
           .right

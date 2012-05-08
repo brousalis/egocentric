@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def maps
-    ["katabatic", "sunstar", "arx novena", "crossfire", "temple", "drydock"]
+    ["raindance", "katabatic", "sunstar", "arx novena", "crossfire", "temple", "drydock"]
   end
 
   def bar_width(user)
