@@ -49,6 +49,12 @@
               - Guide.all_categories.each do |cat|
                 %li
                   %a{:href => "#", :class => "#{cat}"} #{cat.capitalize}  
+                  - if cat == "capping"
+                    - if Guide.all_maps.count > 0
+                      %ul
+                        - Guide.all_maps.each do |map|
+                          %li
+                            %a{:href => "#", :class => "#{map}"} #{map.gsub(/\b\w/){$&.upcase}}  
     .guide-list.span9
       .header
         %span.title All Guides
