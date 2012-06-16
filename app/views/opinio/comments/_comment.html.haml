@@ -2,7 +2,6 @@
 %li{:id => "comment_#{comment.id}"}
   .comment
     .likes
-      = image_tag comment.owner.avatar.url(:comment)
       .count
         = comment.likes.count
       .like

@@ -2,10 +2,8 @@
   - @guides.each do |guide|
     %li{:class => "#{guide.category} #{guide.map if guide.map}", :"data-rating" => "#{guide.rate_average}", :"data-date" => "#{format_date(guide.created_at)}"}
       %a{:href => guide_path(guide), :style => "display: block;"}
-        %img{:src => "#{guide.avatar ? guide.avatar : "/assets/black.png"}"}
         .name
           %strong= truncate(guide.name, 51)
-          %span #{guide.all_comments.count}
         .meta
           by 
           %strong #{guide.user.username} 

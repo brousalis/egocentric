@@ -7,7 +7,7 @@ class Guide < ActiveRecord::Base
   validates_presence_of :category
   validates_uniqueness_of :name
 
-  attr_accessible :name, :body, :category, :user, :avatar, :video, :guide_type, :map
+  attr_accessible :name, :body, :category, :user, :video, :guide_type, :map
 
   ajaxful_rateable :stars => 5, :dimensions => [:rating]
   opinio_subjectum

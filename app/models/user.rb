@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :avatar
+  attr_accessible :username, :email, :password, :password_confirmation
   
   attr_accessor :password
   before_save :encrypt_password
@@ -11,11 +11,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :create, :message => "is invalid"  
 
-  has_attached_file :avatar, 
-                    :default_url => '/assets/default.png',
-                    :styles => { :comment => "30x30!",
-                                 :thumb => "24x24!",
-                                 :cropped => "24x24#"}
   has_many :guides
   has_many :comments
   has_many :likes

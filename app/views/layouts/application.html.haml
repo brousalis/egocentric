@@ -18,16 +18,11 @@
           .brand
             - if current_user
               %a{:href => "#"}
-                = image_tag current_user.avatar.url(:thumb)
                 #{current_user.username}
             - else
               %a{:"data-toggle" => "modal", :style => "padding-left: 10px", :href => "#register"}
                 %strong Join our community today!
                 %span Create an account
-          - if current_user
-            .brand.avatar
-              = form_for(current_user, :html => { :multipart => true }) do |f|
-                = f.file_field :avatar
           .nav-collapse
             %ul.nav
               - if current_user

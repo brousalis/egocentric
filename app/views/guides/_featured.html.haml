@@ -1,7 +1,6 @@
 %ul.leaderboard
   - @featured.each do |g|
     %li
-      %img.avatar{:src => "#{g.avatar ? g.avatar : "/assets/black.png"}"}
       %a{:href => guide_path(g)}
         %span.name
           = g.name

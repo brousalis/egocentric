@@ -3,13 +3,7 @@
     %a.close{"data-dismiss" => "alert", :href => "#"} ×
   %div{:class => "guide-#{@guide.id}"}
   .page.span9
-    .header{:style => "background: url(#{@guide.avatar})"}
-      .add
-        %a.btn.remove-image{:href => "#"} 
-          %i.icon.icon-minus
-        %a.btn.add-image{:href => "#"} 
-          %i.icon.icon-plus 
-        %input.image{:value => "#{@guide.avatar}"}
+    .header.no-avatar
       %input.name{:value => "#{@guide.name}"}
     .video
       %a.btn.remove-video{:href => "#"} 
