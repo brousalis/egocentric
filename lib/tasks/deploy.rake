@@ -17,7 +17,7 @@ task :deploy => :environment do
     "cd #{remote_path} && git fetch",
     "cd #{remote_path} && git reset --hard origin/master",
     "cd #{remote_path} && bundle install",
-    "cd #{remote_path} && rake assets:precompile",
+    "cd #{remote_path} && bundle exec rake assets:precompile",
     "cd #{remote_path} && touch tmp/restart.txt"
   ]
 
