@@ -2,7 +2,7 @@ require 'net/ssh'
 
 desc "Deploy site to production"
 task :deploy => :environment do
-  host        = '50.22.11.31'
+  host        = '184.173.85.198'
   user        = 'teamegoc'
   options     = {}
   remote_path = '~/egocentric'
