@@ -194,11 +194,6 @@ $(document).ready(function() {
     return false;
   });
 
-  var auto_refresh = setInterval( function () { 
-    $('.recent .ajax').fadeIn(); 
-    $.getScript('/recent'); 
-  }, 20000); 
-
   $('.sorting a').live('click', function(e) {
     $(this).addClass('active');
     $('.ajax').fadeIn();
